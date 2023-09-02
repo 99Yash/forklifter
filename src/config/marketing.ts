@@ -39,6 +39,6 @@ export const features = [
   {
     icon: Icons.Wallet,
     name: "No Strings attached",
-    description: "We're is a completely free service.",
+    description: "We're a completely free service.",
   },
 ];
