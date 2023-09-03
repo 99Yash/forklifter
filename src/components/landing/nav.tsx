@@ -7,7 +7,7 @@ const Nav = () => {
       className={` z-10 mx-auto flex items-center justify-between self-center p-2 lg:w-2/3`}
     >
       <Link href={"/"} className="flex list-none items-center">
-        <Icons.Logo className="mx-3 my-2 transform text-[#737777] duration-300 hover:text-gray-300" />
+        <Icons.Logo className="mx-3 my-2 transform text-muted-foreground duration-300 hover:text-foreground " />
       </Link>
       <Link
         href={"/sign-in"}
