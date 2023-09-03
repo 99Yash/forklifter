@@ -7,7 +7,7 @@ export default function LandingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className=" bg-gradient-to-br from-[#2222229a] via-black to-[#22222292]">
+    <div className=" bg-[#2222228b] md:bg-gradient-to-br md:from-[#2222229a] md:via-black md:to-[#22222231]">
       <Nav />
       <main className="flex flex-grow flex-col items-center">{children}</main>
       <Footer />
