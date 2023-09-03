@@ -2,7 +2,7 @@ import Nav from "@/components/landing/nav";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 
-export default function RootLayout({
+export default function LandingLayout({
   children,
 }: {
   children: React.ReactNode;

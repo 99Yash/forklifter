@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { siteConfig } from "@/config/site";
+import Providers from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,7 +58,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
+          <Providers>{children}</Providers>
         </ThemeProvider>
         <TailwindIndicator />
       </body>

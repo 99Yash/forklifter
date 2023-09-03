@@ -9,12 +9,7 @@ const Hero = () => {
     <section
       className={` relative z-10 flex h-screen max-w-6xl flex-col items-center justify-center gap-4`}
     >
-      <Particles
-        ease={20}
-        staticity={100}
-        color="#ddd9e1"
-        className="absolute inset-0 -z-10"
-      />
+      <Particles ease={20} color="#ddd9e1" className="absolute inset-0 -z-10" />
       <div className=" flex flex-col flex-wrap items-center justify-center gap-6 px-6 text-center lg:gap-3 lg:px-2">
         <h1
           className={` animate-fade-down bg-gradient-to-br from-slate-100/60 via-blue-200/50 to-purple-400/60 bg-clip-text text-6xl font-bold leading-[4.1rem] tracking-tight text-transparent md:bg-gradient-to-r md:via-blue-200/60 md:to-purple-300/60 `}

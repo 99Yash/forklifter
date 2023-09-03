@@ -11,13 +11,7 @@ const Cta = () => {
           relative z-10 flex h-screen flex-col items-center justify-center gap-4
             `}
     >
-      <Particles
-        ease={10}
-        quantity={25}
-        staticity={100}
-        color="#888789"
-        className="absolute inset-0 -z-10"
-      />
+      <Particles ease={10} color="#888789" className="absolute inset-0 -z-10" />
       <div className="flex flex-col flex-wrap items-center justify-center gap-3 px-6 text-center lg:px-2">
         <p className={`text-lg font-medium text-pink-400 lg:self-center `}>
           {data.end.highlight}
