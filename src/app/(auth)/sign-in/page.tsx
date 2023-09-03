@@ -1,6 +1,12 @@
 import { siteConfig } from "@/config/site";
 import EmailAuth from "./email-auth";
 import OAuthSignIn from "./oauth-signin";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sign In",
+  description: "Create an account or sign in",
+};
 
 export default function SignInPage() {
   return (

@@ -2,31 +2,50 @@
 
 import { Button } from "@/components/ui/button";
 import * as Icons from "@/components/ui/icons";
+import { signIn } from "next-auth/react";
 
 import { useState } from "react";
 
+type Provider = "github" | "google";
+
 export default function OAuthSignIn() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<Provider | null>(null);
+
+  const signInUser = async (provider: Provider) => {
+    try {
+      setIsLoading(provider);
+      await signIn(provider);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(null);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2">
       <Button
         variant="outline"
         className="bg-background"
-        // onClick={() => oauthSignIn("oauth_github")}
+        onClick={
+          ()=>signInUser("github")
+        }
       >
-        {isLoading ? (
+        {isLoading === "github" ? (
           <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <Icons.GitHub className="mr-2 h-4 w-4" />
         )}
-        Github
+        GitHub
       </Button>
       <Button
         variant="outline"
         className="bg-background"
-        // onClick={() => oauthSignIn("oauth_google")}
+        onClick={
+          ()=>signInUser("google")
+        }
       >
-        {isLoading ? (
+        {isLoading === "google" ? (
           <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <Icons.Google className="mr-2 h-4 w-4" />
