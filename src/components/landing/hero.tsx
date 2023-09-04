@@ -12,7 +12,7 @@ const Hero = () => {
       <Particles ease={20} color="#ddd9e1" className="absolute inset-0 -z-10" />
       <div className=" flex flex-col flex-wrap items-center justify-center gap-6 px-6 text-center lg:gap-3 lg:px-2">
         <h1
-          className={` animate-fade-down bg-gradient-to-br from-slate-100/60 via-blue-200/50 to-purple-400/60 bg-clip-text text-6xl font-bold leading-[4.1rem] tracking-tight text-transparent md:bg-gradient-to-r md:via-blue-200/60 md:to-purple-300/60 `}
+          className={` animate-fade-down bg-gradient-to-br from-slate-300/90 via-blue-200/50 to-purple-300/80 bg-clip-text text-6xl font-bold leading-[4.1rem] tracking-tight text-transparent md:bg-gradient-to-r md:from-slate-300/90 md:via-blue-200/60 md:to-purple-300/80 `}
           style={{ animationDelay: "0.20s", animationFillMode: "forwards" }}
         >
           <ReactWrapBalancer>{data.opening.heading}</ReactWrapBalancer>
@@ -25,7 +25,7 @@ const Hero = () => {
         </p>
       </div>
       <div
-        className="animate-fade-up flex flex-col gap-2 md:flex-row"
+        className="flex animate-fade-up flex-col gap-2 md:flex-row"
         style={{ animationDelay: "0.40s", animationFillMode: "forwards" }}
       >
         <Link

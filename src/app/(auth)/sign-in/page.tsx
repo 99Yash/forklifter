@@ -35,8 +35,8 @@ export default function SignInPage() {
         <OAuthSignIn />
       </div>
       <p className="px-6 text-center text-sm text-muted-foreground">
-        &copy; {new Date().getUTCFullYear()} {siteConfig.name} • All rights
-        reserved.
+        All rights reserved. &copy;{new Date().getUTCFullYear()}{" "}
+        {siteConfig.name}
       </p>
     </div>
   );
