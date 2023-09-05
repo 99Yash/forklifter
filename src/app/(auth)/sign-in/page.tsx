@@ -26,7 +26,7 @@ export default function SignInPage() {
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
-          <div className="relative flex justify-center text-xs uppercase">
+          <div className="relative flex justify-center text-xs font-medium uppercase">
             <span className="bg-background px-2 text-muted-foreground">
               Or continue with
             </span>
@@ -35,8 +35,8 @@ export default function SignInPage() {
         <OAuthSignIn />
       </div>
       <p className="px-6 text-center text-sm text-muted-foreground">
-        All rights reserved. &copy;{new Date().getUTCFullYear()}{" "}
-        {siteConfig.name}
+        {siteConfig.name} &copy;
+        {new Date().getUTCFullYear()} All rights reserved.
       </p>
     </div>
   );

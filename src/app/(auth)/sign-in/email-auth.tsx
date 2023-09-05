@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export default function EmailAuth() {
   const [isLoading, setIsLoading] = useState(false);
+  //todo handle form submission. set up email provider / credentials provider.
   return (
     <form className="grid gap-2">
       <div className="grid gap-1">
