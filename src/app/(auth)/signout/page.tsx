@@ -1,15 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { SignOutButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { Metadata } from "next";
-import { siteConfig } from "@/config/site";
-
-export const metadata: Metadata = {
-  title: "Sign Out",
-  description: `Are you sure you want to Sign out of ${siteConfig.name}`,
-};
+import { SignOutButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export default function AuthenticationPage() {
   const router = useRouter();

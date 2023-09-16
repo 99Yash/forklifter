@@ -1,12 +1,11 @@
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { ThemeProvider } from "@/components/theme-provider";
+import { siteConfig } from "@/config/site";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
-import "../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { siteConfig } from "@/config/site";
-import Providers from "@/components/providers";
-import { ClerkProvider } from "@clerk/nextjs";
+import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -60,7 +59,7 @@ export default function RootLayout({
       <ClerkProvider>
         <body className={`${inter.className} antialiased`}>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <Providers>{children}</Providers>
+            {children}
           </ThemeProvider>
           <TailwindIndicator />
         </body>
