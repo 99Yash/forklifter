@@ -3,7 +3,7 @@ import * as Icons from "@/components/ui/icons";
 export const data = {
   opening: {
     heading: "Show your work, we'll do the rest.",
-    subheading: "Create a stunning online presence as a developer.",
+    subheading: "Create a stunning online presence absolutely free of charge.",
   },
   middle: {
     highlight: "Focus on what you love.",

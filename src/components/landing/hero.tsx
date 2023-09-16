@@ -3,16 +3,34 @@ import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import ReactWrapBalancer from "react-wrap-balancer";
 import { Particles } from "../ui/particles";
+import Badge from "./top-badge";
 
 const Hero = () => {
   return (
     <section
-      className={` relative z-10 flex h-screen max-w-6xl flex-col items-center justify-center gap-4`}
+      className={` relative z-10 flex h-screen max-w-6xl flex-col items-center gap-4 pt-36`}
     >
       <Particles ease={20} color="#ddd9e1" className="absolute inset-0 -z-10" />
-      <div className=" flex flex-col flex-wrap items-center justify-center gap-6 px-6 text-center lg:gap-3 lg:px-2">
+      <div className="mb-6" data-aos="fade-down">
+        <div className="relative inline-flex before:absolute before:inset-0 ">
+          {/* <Link
+            className="group relative inline-flex w-full items-center justify-center rounded-full border border-transparent px-3  py-1 text-sm font-medium text-zinc-300 transition duration-150 ease-in-out [background:linear-gradient(theme(colors.primary.900),_theme(colors.primary.900))_padding-box,_conic-gradient(theme(colors.primary.400),_theme(colors.primary.700)_25%,_theme(colors.primary.700)_75%,_theme(colors.primary.400)_100%)_border-box] before:pointer-events-none before:absolute before:inset-0 before:rounded-full before:bg-zinc-800/30 hover:text-white"
+            href={siteConfig.links.github}
+            target="_blank"
+          >
+            <span className="relative inline-flex items-center">
+              {siteConfig.name} is currently in Progress{" "}
+              <span className="text-primary-500 ml-1 tracking-normal transition-transform duration-150 ease-in-out group-hover:translate-x-0.5">
+                -&gt;
+              </span>
+            </span>
+          </Link> */}
+          <Badge />
+        </div>
+      </div>
+      <div className=" flex flex-col flex-wrap gap-6 px-6 text-center lg:gap-3 lg:px-2">
         <h1
-          className={` animate-fade-down bg-gradient-to-br from-slate-300/90 via-blue-200/50 to-purple-300/80 bg-clip-text text-6xl font-bold leading-[4.1rem] tracking-tight text-transparent md:bg-gradient-to-r md:from-slate-300/90 md:via-blue-200/60 md:to-purple-300/80 `}
+          className={` animate-fade-down bg-gradient-to-r from-gray-500/90 via-gray-100/75 to-gray-500/80 bg-clip-text text-7xl font-bold tracking-tight text-transparent md:bg-gradient-to-r md:from-gray-500/90 md:via-gray-100/75 md:to-gray-500/90 md:text-8xl md:leading-[6.1rem] `}
           style={{ animationDelay: "0.20s", animationFillMode: "forwards" }}
         >
           <ReactWrapBalancer>{data.opening.heading}</ReactWrapBalancer>

@@ -7,12 +7,12 @@ import { env } from "@/env.mjs";
 import {
   DefaultSession,
   getServerSession,
-  User,
   type NextAuthOptions,
 } from "next-auth";
 import { randomBytes } from "crypto";
-//todo: add default id and username for a new User
+import { User } from "@prisma/client";
 
+//todo: add default id and username for a new User
 declare module "next-auth" {
   interface User {
     username: string;
@@ -35,9 +35,6 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
   ],
-  pages: {
-    signIn: "/sign-in",
-  },
   callbacks: {
     async signIn({ user, account, credentials }) {
       console.log(user, account, credentials);
@@ -45,8 +42,8 @@ export const authOptions: NextAuthOptions = {
       const email = user.email;
       if (email) {
         dbUser = await prisma.user.findUnique({ where: { email } });
+        if (dbUser) return true;
       }
-      console.log(dbUser);
       if (!dbUser) {
         //? Generate a username based on the user's name and random characters
         let username = user.name ? user.name.substring(0, 7).trim() : "";
@@ -62,7 +59,7 @@ export const authOptions: NextAuthOptions = {
           },
         });
       }
-      return dbUser ? true : false;
+      return true;
     },
     session: async ({ session, user }) => ({
       ...session,

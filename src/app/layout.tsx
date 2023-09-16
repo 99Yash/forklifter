@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { siteConfig } from "@/config/site";
 import Providers from "@/components/providers";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,12 +57,14 @@ export default function RootLayout({
       <head>
         <Analytics />
       </head>
-      <body className={`${inter.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Providers>{children}</Providers>
-        </ThemeProvider>
-        <TailwindIndicator />
-      </body>
+      <ClerkProvider>
+        <body className={`${inter.className} antialiased`}>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <Providers>{children}</Providers>
+          </ThemeProvider>
+          <TailwindIndicator />
+        </body>
+      </ClerkProvider>
     </html>
   );
 }

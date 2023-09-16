@@ -21,6 +21,7 @@ export const Flame = Lucide.Flame;
 export const Help = Lucide.HelpCircle;
 export const Key = Lucide.Key;
 export const LayoutPanelLeft = Lucide.LayoutPanelLeft;
+export const LinkedIn = Lucide.Linkedin;
 export const Moon = Lucide.Moon;
 export const Organization = Lucide.Building;
 export const Page = Lucide.File;
