@@ -2,8 +2,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import * as Icons from "@/components/ui/icons";
 import { UserNav } from "@/components/user-nav";
 import { currentUser } from "@clerk/nextjs";
+import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Dashboard",
+};
 
 const page = async () => {
   const user = await currentUser();

@@ -1,12 +1,12 @@
-"use client";
+import { Metadata } from "next";
+import LogOutButtons from "./logout-buttons";
 
-import { Button } from "@/components/ui/button";
-import { SignOutButton } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+export const metadata: Metadata = {
+  title: "Sign Out",
+  description: "Sign out of your account",
+};
 
 export default function AuthenticationPage() {
-  const router = useRouter();
-
   return (
     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
       <div className="flex flex-col space-y-2 text-center">
@@ -14,9 +14,7 @@ export default function AuthenticationPage() {
         <p className="text-sm text-muted-foreground">
           Are you sure you want to sign out?
         </p>
-        <SignOutButton signOutCallback={() => router.push("/")}>
-          <Button>Confirm</Button>
-        </SignOutButton>
+        <LogOutButtons />
       </div>
     </div>
   );

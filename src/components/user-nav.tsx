@@ -4,72 +4,128 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 export function UserNav({ user }: { user: User }) {
   const initials = `${user?.firstName?.charAt(0) ?? ""} ${
     user?.lastName?.charAt(0) ?? ""
   }`;
+  function getUserEmail(user: User) {
+    const email =
+      user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
+        ?.emailAddress ?? "";
+
+    return email;
+  }
+  const email = getUserEmail(user);
   return (
+    // <DropdownMenu>
+    //   <DropdownMenuTrigger
+    //     asChild
+    //     className="border-none focus-within:border-none hover:cursor-pointer focus:border-none"
+    //   >
+    //     <Avatar className="h-8 w-8">
+    //       <AvatarImage src={user?.imageUrl as string} />
+    //       <AvatarFallback>{initials}</AvatarFallback>
+    //     </Avatar>
+    //   </DropdownMenuTrigger>
+    //   <DropdownMenuContent className=" w-56 text-muted-foreground" align="end">
+    //     <DropdownMenuLabel className="font-normal">
+    //       <div className="flex flex-col space-y-1">
+    //         <p className="text-sm font-medium leading-none">
+    //           {user.firstName} {user.lastName}
+    //         </p>
+    //         <p className="text-xs leading-none text-muted-foreground">
+    //           {email}
+    //         </p>
+    //       </div>
+    //     </DropdownMenuLabel>
+    //     <DropdownMenuSeparator />
+
+    //     <DropdownMenuGroup>
+    //       <DropdownMenuItem asChild className="cursor-pointer">
+    //         <Icons.User className="mr-2 h-4 w-4" />
+    //         <span className="font-normal text-gray-300">Profile</span>
+    //         <DropdownMenuShortcut className="font-semibold">
+    //           ⌘P
+    //         </DropdownMenuShortcut>
+    //       </DropdownMenuItem>
+    //       <DropdownMenuItem asChild>
+    //         <Icons.LineChart className="mr-2 h-4 w-4" />
+    //         <span className="font-normal text-gray-300">Dashboard</span>
+    //         <DropdownMenuShortcut className="font-semibold">
+    //           ⌘D
+    //         </DropdownMenuShortcut>
+    //       </DropdownMenuItem>
+    //       <DropdownMenuItem asChild>
+    //         <Link href="/signout">
+    //           <Icons.Logout className="mr-2 h-4 w-4" aria-hidden="true" />
+    //           Log out
+    //           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+    //         </Link>
+    //       </DropdownMenuItem>
+    //     </DropdownMenuGroup>
+    //   </DropdownMenuContent>
+    // </DropdownMenu>
     <DropdownMenu>
-      <DropdownMenuTrigger
-        asChild
-        className="border-none focus-within:border-none hover:cursor-pointer focus:border-none"
-      >
-        <Avatar className="h-8 w-8">
-          <AvatarImage src={user?.imageUrl as string} />
-          <AvatarFallback>{initials}</AvatarFallback>
-        </Avatar>
+      <DropdownMenuTrigger asChild>
+        <Button variant="secondary" className="relative h-8 w-8 rounded-full">
+          <Avatar className="h-8 w-8">
+            <AvatarImage src={user.imageUrl} alt={user.username ?? ""} />
+            <AvatarFallback>{initials}</AvatarFallback>
+          </Avatar>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className=" w-[180px] text-muted-foreground"
-        align="end"
-      >
-        <div className="flex items-center justify-start gap-2 p-2">
-          <div className="flex flex-col space-y-1 leading-none">
-            {user.firstName && user.lastName && (
-              <p className="text-muted-foreground">
-                {user?.firstName} {user?.lastName}
-              </p>
-            )}
-
-            {user?.emailAddresses.at(0) && (
-              <p className="truncate text-xs font-medium text-muted-foreground">
-                {user?.emailAddresses.at(0)?.emailAddress ?? ""}
-              </p>
-            )}
+      <DropdownMenuContent className="w-56" align="end" forceMount>
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">
+              {user.firstName} {user.lastName}
+            </p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {email}
+            </p>
           </div>
-        </div>
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-
-        <DropdownMenuItem className="cursor-pointer">
-          <Icons.User className="mr-2 h-4 w-4" />
-          <span className="font-normal text-gray-300">Profile</span>
-          <DropdownMenuShortcut className="font-semibold">
-            ⌘P
-          </DropdownMenuShortcut>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
-          <Icons.LineChart className="mr-2 h-4 w-4" />
-          <span className="font-normal text-gray-300">Dashboard</span>
-          <DropdownMenuShortcut className="font-semibold">
-            ⌘D
-          </DropdownMenuShortcut>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem className="mt-2 cursor-pointer">
-          <Link href={"/sign-out"} className="flex items-center">
-            <Icons.Logout className="mr-2 h-4 w-4" />
-            <span className="font-normal text-gray-300">Log out</span>
+        <DropdownMenuGroup>
+          <DropdownMenuItem className="cursor-pointer" asChild>
+            <Link href="/dashboard/account">
+              <Icons.User className="mr-2 h-4 w-4" aria-hidden="true" />
+              Account
+              <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild className="cursor-pointer">
+            <Link href="/dashboard/stores">
+              <Icons.LineChart className="mr-2 h-4 w-4" aria-hidden="true" />
+              Dashboard
+              <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild disabled>
+            <Link href="/dashboard/settings">
+              <Icons.Settings className="mr-2 h-4 w-4" aria-hidden="true" />
+              Settings
+              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link href="/signout">
+            <Icons.Logout className="mr-2 h-4 w-4" aria-hidden="true" />
+            Log out
+            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </Link>
-          <DropdownMenuShortcut className=" font-semibold">
-            ⇧⌘Q
-          </DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
