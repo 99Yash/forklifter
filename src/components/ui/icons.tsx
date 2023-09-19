@@ -1,9 +1,9 @@
-import * as Lucide from "lucide-react";
 import type { LucideProps } from "lucide-react";
+import * as Lucide from "lucide-react";
 
 export type Icon = (props: LucideProps) => JSX.Element;
 
-export const Logo = Lucide.Orbit;
+export const Logo = Lucide.Zap;
 export const Add = Lucide.Plus;
 export const ArrowRight = Lucide.ArrowRight;
 export const Wallet = Lucide.Wallet;
@@ -31,7 +31,9 @@ export const Spinner = Lucide.Loader2;
 export const Sun = Lucide.SunMedium;
 export const Trash = Lucide.Trash;
 export const Twitter = Lucide.Twitter;
+export const Logout = Lucide.LogOut;
 export const User = Lucide.User;
+export const LineChart = Lucide.LineChart;
 export const Warning = Lucide.AlertTriangle;
 export const Google: Icon = (props) => (
   <svg {...props} viewBox="0 0 24 24">
