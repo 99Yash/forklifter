@@ -33,7 +33,7 @@ export default function Footer() {
               </svg>
             </Link>
           </div>
-          <div className="mt-8 flex gap-2 md:order-1 md:mt-0">
+          <div className="mt-8 hidden gap-2 md:order-1 md:mt-0 md:flex">
             <p className="text-center text-xs leading-6 text-gray-400">
               &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
               <Link
@@ -74,6 +74,40 @@ export default function Footer() {
               .
             </p>
           </div>
+        </div>
+        <div className="text-xs text-gray-400 md:hidden">
+          &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
+          <Link
+            className="font-semibold text-blue-400"
+            href={siteConfig.links.twitter}
+          >
+            Yash.
+          </Link>{" "}
+          Inspired by{" "}
+          <Link
+            target="_blank"
+            className=" text-pink-300"
+            href={"https://acme-corp.jumr.dev"}
+          >
+            Acme
+          </Link>{" "}
+          and{" "}
+          <Link
+            target="_blank"
+            className=" text-pink-300"
+            href={"https://highstorm.app/"}
+          >
+            Highstorm
+          </Link>
+          . Components by{" "}
+          <Link
+            target="_blank"
+            className="text-blue-400"
+            href={"https://twitter.com/shadcn"}
+          >
+            shadcn
+          </Link>
+          .
         </div>
       </div>
     </footer>
