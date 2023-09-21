@@ -59,18 +59,6 @@ export function OAuthSignIn() {
         )}
         Google
       </Button>
-      <Button
-        variant="outline"
-        className="bg-background"
-        onClick={() => oauthSignIn("oauth_linkedin")}
-      >
-        {isLoading === "oauth_linkedin" ? (
-          <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.LinkedIn className="mr-2 h-4 w-4 text-blue-500" />
-        )}
-        LinkedIn
-      </Button>
     </div>
   );
 }

@@ -75,7 +75,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
-        <div className="text-xs text-gray-400 md:hidden">
+        <div className="mt-4 text-xs text-gray-400 md:hidden">
           &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
           <Link
             className="font-semibold text-blue-400"
