@@ -8,7 +8,7 @@ import Badge from "./top-badge";
 const Hero = () => {
   return (
     <section
-      className={` relative z-10 flex h-screen max-w-6xl flex-col items-center gap-4 pt-36`}
+      className={` relative z-10 flex h-screen max-w-6xl flex-col items-center gap-4 pt-20 md:pt-36`}
     >
       <Particles ease={20} color="#ddd9e1" className="absolute inset-0 -z-10" />
       <div
@@ -36,12 +36,12 @@ const Hero = () => {
         </p>
       </div>
       <div
-        className="flex animate-fade-up flex-col gap-2 md:flex-row"
+        className="mt-8 flex animate-fade-up flex-col gap-2 sm:w-full md:w-fit md:flex-row"
         style={{ animationDelay: "0.40s", animationFillMode: "forwards" }}
       >
         <Link
           href={"/sign-in"}
-          className="flex justify-center rounded-md bg-gray-300 px-6 py-2 font-medium text-gray-900 hover:bg-slate-300/90"
+          className="flex justify-center rounded-md bg-gray-300 px-6 py-2 font-medium text-gray-900 hover:bg-slate-300/90 sm:mx-6 md:mx-0"
         >
           Get going -&gt;
         </Link>

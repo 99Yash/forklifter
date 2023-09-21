@@ -6,17 +6,19 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Dashboard",
-};
+export async function generateMetadata({}): Promise<Metadata> {
+  const user = await currentUser();
+  return {
+    title: `${user?.firstName} ${user?.lastName}`,
+  };
+}
 
 const page = async () => {
   const user = await currentUser();
+  if (!user) redirect("/");
   const initials = `${user?.firstName?.charAt(0) ?? ""} ${
     user?.lastName?.charAt(0) ?? ""
   }`;
-  if (!user) redirect("/");
   return (
     <div>
       <header className="m-5 flex items-center justify-between gap-2">

@@ -33,10 +33,47 @@ export default function Footer() {
               </svg>
             </Link>
           </div>
-          <p className="mt-8 text-xs leading-5 text-gray-400 md:order-1 md:mt-0">
-            &copy; {new Date().getUTCFullYear()} All rights reserved. Built by
-            Yash
-          </p>
+          <div className="mt-8 flex gap-2 md:order-1 md:mt-0">
+            <p className="text-center text-xs leading-6 text-gray-400">
+              &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
+              <Link
+                className="font-semibold text-blue-400"
+                href={siteConfig.links.twitter}
+              >
+                Yash.
+              </Link>
+            </p>
+            <p className="text-center text-xs leading-6 text-gray-400">
+              Inspired by{" "}
+              <Link
+                target="_blank"
+                className=" text-pink-300"
+                href={"https://acme-corp.jumr.dev"}
+              >
+                Acme
+              </Link>{" "}
+              and{" "}
+              <Link
+                target="_blank"
+                className=" text-pink-300"
+                href={"https://highstorm.app/"}
+              >
+                Highstorm
+              </Link>
+              .
+            </p>
+            <p className="text-center text-xs leading-6 text-gray-400">
+              Components by{" "}
+              <Link
+                target="_blank"
+                className="text-blue-400"
+                href={"https://twitter.com/shadcn"}
+              >
+                shadcn
+              </Link>
+              .
+            </p>
+          </div>
         </div>
       </div>
     </footer>
