@@ -3,6 +3,7 @@ import { Particles } from "../ui/particles";
 import { data } from "@/config/marketing";
 import ReactWrapBalancer from "react-wrap-balancer";
 import Link from "next/link";
+import * as Icons from "@/components/ui/icons";
 
 const Cta = () => {
   return (
@@ -28,9 +29,9 @@ const Cta = () => {
       </div>
       <Link
         href={"/sign-in"}
-        className="flex justify-center rounded-md bg-gray-300/90 px-6 py-2 font-medium text-gray-950 hover:bg-slate-300/90 "
+        className="flex items-center justify-center gap-2 rounded-md bg-gray-300/90 px-6 py-2 font-medium text-gray-950 hover:bg-slate-300/90 "
       >
-        Click this button-&gt;
+        Click this button <Icons.ArrowRight className="h-4 w-4" />
       </Link>
     </section>
   );

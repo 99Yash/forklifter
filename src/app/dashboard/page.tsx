@@ -1,51 +1,30 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import * as Icons from "@/components/ui/icons";
-import { UserNav } from "@/components/user-nav";
 import { currentUser } from "@clerk/nextjs";
 import { Metadata } from "next";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { ProfileForm } from "./_components/profile-form";
 
-export async function generateMetadata({}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const user = await currentUser();
+  const realFirstName = user?.firstName?.split(" ")[0];
   return {
-    title: `${user?.firstName} ${user?.lastName}`,
+    title: `${realFirstName}'s Fork`,
   };
 }
 
-const page = async () => {
+export default async function Page() {
   const user = await currentUser();
-  if (!user) redirect("/");
-  const initials = `${user?.firstName?.charAt(0) ?? ""} ${
-    user?.lastName?.charAt(0) ?? ""
-  }`;
+  if (!user) return null;
+
   return (
-    <div>
-      <header className="m-5 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center">
-            <Link href={"/"}>
-              <Icons.Logo className="mr-2 h-7 w-7 font-bold" />
-            </Link>
-            <span className="text-xl font-semibold text-muted-foreground ">
-              /
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Avatar className="h-6 w-6">
-              {user?.hasImage && <AvatarImage src={user?.imageUrl} />}
-              <AvatarFallback className="text-xs">{initials}</AvatarFallback>
-            </Avatar>
-            <span className="text-sm">
-              {user?.firstName} {user?.lastName}
-            </span>
-          </div>
-        </div>
-        <UserNav user={user} />
-      </header>
-      <hr className="max-w-screen mx-3 h-px border-0 bg-secondary" />
+    <div className="space-y-4 lg:container">
+      <div className="flex flex-col">
+        <h2 className="text-xl font-bold">
+          {user.firstName?.split(" ")[0]}&apos;s Workspace
+        </h2>
+        <p className="text-muted-foreground">
+          Edit your profile data to be reflected on your site
+        </p>
+      </div>
+      <ProfileForm />
     </div>
   );
-};
-
-export default page;
+}

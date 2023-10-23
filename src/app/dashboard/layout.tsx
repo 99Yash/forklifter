@@ -1,7 +1,26 @@
-export default function Layout({ children }: { children: React.ReactNode }) {
+import { redirect } from "next/navigation";
+import Header from "./header";
+import { SidebarNav } from "./sidebar";
+import { currentUser } from "@clerk/nextjs";
+
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const user = await currentUser();
+  if (!user) redirect("/");
+
   return (
-    <div className="relative flex min-h-screen flex-col md:container">
-      {children}
+    <div className="flex flex-col gap-4">
+      <Header user={user} />
+      <hr className="max-w-screen mx-3 -mt-4 h-px border-0 bg-secondary" />
+      <div className="container mt-1 flex flex-1 gap-8 ">
+        <aside className="hidden w-52 flex-col md:flex">
+          <SidebarNav />
+        </aside>
+        <main className="flex flex-1 flex-col overflow-hidden">{children}</main>
+      </div>
     </div>
   );
 }

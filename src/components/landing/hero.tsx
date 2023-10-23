@@ -4,6 +4,7 @@ import Link from "next/link";
 import ReactWrapBalancer from "react-wrap-balancer";
 import { Particles } from "../ui/particles";
 import Badge from "./top-badge";
+import * as Icons from "@/components/ui/icons";
 
 const Hero = () => {
   return (
@@ -41,9 +42,9 @@ const Hero = () => {
       >
         <Link
           href={"/sign-in"}
-          className="flex justify-center rounded-md bg-gray-300 px-6 py-2 font-medium text-gray-900 hover:bg-slate-300/90 sm:mx-6 md:mx-0"
+          className="flex items-center justify-center gap-2 rounded-md bg-gray-300 px-6 py-2 font-medium text-gray-900 hover:bg-slate-300/90 sm:mx-6 md:mx-0"
         >
-          Get going -&gt;
+          Get going <Icons.ArrowRight className="h-4 w-4" />
         </Link>
         <Link
           href={siteConfig.links.github}
