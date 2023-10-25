@@ -1,14 +1,14 @@
 import { redirect } from "next/navigation";
 import Header from "./header";
 import { SidebarNav } from "./sidebar";
-import { currentUser } from "@clerk/nextjs";
-
+import { getServerAuthSession } from "@/server/auth";
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const user = await currentUser();
+  const session = await getServerAuthSession();
+  const user = session?.user;
   if (!user) redirect("/");
 
   return (

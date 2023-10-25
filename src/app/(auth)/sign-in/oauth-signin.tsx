@@ -2,34 +2,23 @@
 
 import { Button } from "@/components/ui/button";
 import * as Icons from "@/components/ui/icons";
-import { useToast } from "@/components/ui/use-toast";
-import { useSignIn } from "@clerk/nextjs";
-import { OAuthStrategy } from "@clerk/nextjs/server";
+import { signIn } from "next-auth/react";
 
 import { useState } from "react";
 
-export function OAuthSignIn() {
-  const [isLoading, setIsLoading] = useState<OAuthStrategy | null>(null);
-  const { signIn, isLoaded: signInLoaded } = useSignIn();
-  const { toast } = useToast();
+type Provider = "github" | "google";
 
-  const oauthSignIn = async (provider: OAuthStrategy) => {
-    if (!signInLoaded) return null;
+export default function OAuthSignIn() {
+  const [isLoading, setIsLoading] = useState<Provider | null>(null);
+
+  const signInUser = async (provider: Provider) => {
     try {
       setIsLoading(provider);
-      await signIn.authenticateWithRedirect({
-        strategy: provider,
-        redirectUrl: "/sso-callback",
-        redirectUrlComplete: "/dashboard",
-      });
-    } catch (cause) {
-      console.error(cause);
+      await signIn(provider);
+    } catch (error) {
+      console.error(error);
+    } finally {
       setIsLoading(null);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Something went wrong, please try again.",
-      });
     }
   };
 
@@ -38,21 +27,21 @@ export function OAuthSignIn() {
       <Button
         variant="outline"
         className="bg-background"
-        onClick={() => oauthSignIn("oauth_github")}
+        onClick={() => signInUser("github")}
       >
-        {isLoading === "oauth_github" ? (
+        {isLoading === "github" ? (
           <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <Icons.GitHub className="mr-2 h-4 w-4" />
         )}
-        Github
+        GitHub
       </Button>
       <Button
         variant="outline"
         className="bg-background"
-        onClick={() => oauthSignIn("oauth_google")}
+        onClick={() => signInUser("google")}
       >
-        {isLoading === "oauth_google" ? (
+        {isLoading === "google" ? (
           <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
           <Icons.Google className="mr-2 h-4 w-4" />

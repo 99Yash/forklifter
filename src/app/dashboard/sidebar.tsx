@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
 import * as Icons from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const workspaceItems = [
   {
@@ -29,10 +29,7 @@ const workspaceItems = [
 ] as const;
 
 export function SidebarNav() {
-  const path = usePathname();
-
-  const { workspace } = useParams();
-  const pathname = path.replace(`/dashboard/${workspace}`, "");
+  const pathname = usePathname();
   const items = workspaceItems;
   if (!items?.length) {
     return null;

@@ -37,7 +37,7 @@ export default function Footer() {
             <p className="text-center text-xs leading-6 text-gray-400">
               &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
               <Link
-                className="font-semibold text-blue-400"
+                className="text-blue-400 duration-200 hover:font-semibold"
                 href={siteConfig.links.twitter}
               >
                 Yash.
@@ -47,38 +47,18 @@ export default function Footer() {
               Inspired by{" "}
               <Link
                 target="_blank"
-                className=" text-pink-300"
-                href={"https://acme-corp.jumr.dev"}
-              >
-                Acme
-              </Link>{" "}
-              and{" "}
-              <Link
-                target="_blank"
-                className=" text-pink-300"
+                className=" text-pink-300 duration-200 hover:font-semibold"
                 href={"https://highstorm.app/"}
               >
-                Highstorm
+                Highstorm.
               </Link>
-              .
-            </p>
-            <p className="text-center text-xs leading-6 text-gray-400">
-              Components by{" "}
-              <Link
-                target="_blank"
-                className="text-blue-400"
-                href={"https://twitter.com/shadcn"}
-              >
-                shadcn
-              </Link>
-              .
             </p>
           </div>
         </div>
         <div className="mt-4 text-xs text-gray-400 md:hidden">
           &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
           <Link
-            className="font-semibold text-blue-400"
+            className="text-blue-400 duration-200 hover:font-semibold"
             href={siteConfig.links.twitter}
           >
             Yash.
@@ -87,27 +67,10 @@ export default function Footer() {
           <Link
             target="_blank"
             className=" text-pink-300"
-            href={"https://acme-corp.jumr.dev"}
-          >
-            Acme
-          </Link>{" "}
-          and{" "}
-          <Link
-            target="_blank"
-            className=" text-pink-300"
             href={"https://highstorm.app/"}
           >
-            Highstorm
+            Highstorm.
           </Link>
-          . Components by{" "}
-          <Link
-            target="_blank"
-            className="text-blue-400"
-            href={"https://twitter.com/shadcn"}
-          >
-            shadcn
-          </Link>
-          .
         </div>
       </div>
     </footer>

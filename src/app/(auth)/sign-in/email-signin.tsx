@@ -1,122 +1,25 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
-import { useSignIn, useSignUp } from "@clerk/nextjs";
 
-import * as Icons from "@/components/ui/icons";
-import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
+import * as Icons from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 
 export function EmailSignIn() {
   const [isLoading, setIsLoading] = React.useState(false);
-
-  const { signIn, isLoaded: signInLoaded, setActive } = useSignIn();
-  const { signUp, isLoaded: signUpLoaded } = useSignUp();
-  const router = useRouter();
-  const { toast } = useToast();
-
-  const signInWithLink = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const email = new FormData(e.currentTarget).get("email");
-    if (!signInLoaded || typeof email !== "string") return null;
-
-    // the catch here prints out the error.
-    // if the user doesn't exist we will return a 422 in the network response.
-    // so push that to the sign up.
-    setIsLoading(true);
-    await signIn
-      .create({
-        identifier: email,
-      })
-      .catch((error) => {
-        console.log("sign-in error", JSON.stringify(error));
-      });
-
-    const firstFactor = signIn.supportedFirstFactors.find(
-      (f) => f.strategy === "email_link",
-      // This cast shouldn't be necessary but because TypeScript is dumb and can't infer it.
-    ) as { emailAddressId: string } | undefined;
-
-    if (firstFactor) {
-      const magicFlow = signIn.createMagicLinkFlow();
-
-      setIsLoading(false);
-      toast({
-        title: "Email Sent",
-        description: "Check your inbox for a verification email.",
-      });
-      const response = await magicFlow
-        .startMagicLinkFlow({
-          emailAddressId: firstFactor.emailAddressId,
-          redirectUrl: `${window.location.origin}/`,
-        })
-        .catch(() => {
-          toast({
-            variant: "destructive",
-            title: "Error",
-            description: "Something went wrong, please try again.",
-          });
-        });
-
-      const verification = response?.firstFactorVerification;
-      if (verification?.status === "expired") {
-        toast({
-          variant: "destructive",
-          title: "Link Expired",
-          description: "Link expired, please try again.",
-        });
-      }
-
-      magicFlow.cancelMagicLinkFlow();
-      if (response?.status === "complete") {
-        await setActive({ session: response.createdSessionId });
-        router.push(`/dashboard`);
-      }
-    } else {
-      if (!signUpLoaded) return null;
-      await signUp.create({
-        emailAddress: email,
-      });
-      const { startMagicLinkFlow } = signUp.createMagicLinkFlow();
-
-      setIsLoading(false);
-      toast({
-        title: "Email Sent",
-        description: "Check your inbox for a verification email.",
-      });
-      const response = await startMagicLinkFlow({
-        redirectUrl: `${window.location.origin}/`,
-      })
-        .catch(() => {
-          toast({
-            variant: "destructive",
-            title: "Error",
-            description: "Something went wrong, please try again.",
-          });
-        })
-        .then((res) => res);
-
-      if (response?.status === "complete") {
-        await setActive({ session: response.createdSessionId });
-        router.push(`/dashboard`);
-        return;
-      }
-    }
-  };
-
+  //todo handle form submission. set up email provider / credentials provider.
   return (
-    <form className="grid gap-2" onSubmit={signInWithLink}>
+    <form className="grid gap-2">
       <div className="grid gap-1">
         <Input
-          name="email"
-          placeholder="name@example.com"
           type="email"
-          autoCapitalize="none"
-          autoComplete="email"
-          autoCorrect="off"
+          placeholder="name@example.com"
+          name="email"
           className="bg-background"
+          autoCorrect="off"
+          autoComplete="email"
+          autoCapitalize="none"
         />
       </div>
       <Button disabled={isLoading}>
