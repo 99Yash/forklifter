@@ -11,8 +11,8 @@ export default function LogOutButtons() {
 
   return (
     <>
-      <SignOutButton
-        signOutCallback={() =>
+      <Button
+        onClick={() =>
           startTransition(() => {
             router.push("/");
           })
@@ -22,7 +22,7 @@ export default function LogOutButtons() {
           {isPending && <Icons.Spinner className="mr-2 h-4 w-4" />}
           Sign Out
         </Button>
-      </SignOutButton>
+      </Button>
       <Button
         aria-label="Go back to the previous page"
         variant="outline"
