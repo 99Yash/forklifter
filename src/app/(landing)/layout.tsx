@@ -1,7 +1,7 @@
 import Footer from "@/components/landing/footer";
 import Nav from "@/components/landing/nav";
 
-export default async function LandingLayout({
+export default function LandingLayout({
   children,
 }: {
   children: React.ReactNode;
