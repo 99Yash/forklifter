@@ -5,7 +5,6 @@ import {
   type NextAuthOptions,
   type User,
 } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "@/env.mjs";
@@ -19,7 +18,6 @@ import { db } from "@/server/db";
  */
 declare module "next-auth" {
   interface User {
-    username: string;
     id: string;
   }
   interface Session extends DefaultSession {
@@ -34,8 +32,8 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    async signIn({ user }) {
-      console.log(">>>>>> signInCB", user);
+    async signIn({ user, profile }) {
+      console.log(">>>>>> signInCB", profile);
       let dbUser: User | null = null;
       const email = user.email;
       if (email) {
@@ -65,8 +63,8 @@ export const authOptions: NextAuthOptions = {
 
         dbUser = await db.user.create({
           data: {
-            email: user.email,
-            name: user.name,
+            email: user.email!,
+            name: user.name!,
             image: user.image,
             username,
           },
@@ -79,13 +77,14 @@ export const authOptions: NextAuthOptions = {
       user: {
         ...session.user,
         id: user.id,
-        username: user.username,
       },
     }),
-    redirect() {
-      return "/";
-    },
   },
+  pages: {
+    signIn: "/sign-in",
+    signOut: "/signout",
+  },
+  secret: env.NEXTAUTH_SECRET,
   adapter: PrismaAdapter(db),
   debug: env.NODE_ENV === "development",
   providers: [
@@ -93,10 +92,10 @@ export const authOptions: NextAuthOptions = {
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
-    GithubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
-    }),
+    // GithubProvider({
+    //   clientId: env.GITHUB_CLIENT_ID,
+    //   clientSecret: env.GITHUB_CLIENT_SECRET,
+    // }),
     /**
      * ...add more providers here.
      *
