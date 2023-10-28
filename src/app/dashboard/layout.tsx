@@ -1,14 +1,14 @@
+import { getCurrentUser } from "@/lib/authOpts";
 import { redirect } from "next/navigation";
 import Header from "./header";
 import { SidebarNav } from "./sidebar";
-import { currentUser } from "@clerk/nextjs";
 
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const user = await currentUser();
+  const user = await getCurrentUser();
   if (!user) redirect("/");
 
   return (

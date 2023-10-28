@@ -2,11 +2,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserNav } from "@/components/user-nav";
 import Link from "next/link";
 import * as Icons from "@/components/ui/icons";
-import { User } from "@clerk/nextjs/server";
+import { User } from "next-auth";
 
 export default function Header({ user }: { user: User }) {
-  const initials = `${user?.firstName?.charAt(0) ?? ""} ${
-    user?.lastName?.charAt(0) ?? ""
+  const initials = `${user.name?.split(" ")[0]![0]}${
+    user.name?.split(" ")[1] ? user.name?.split(" ")[1]![0] ?? "." : ""
   }`;
   return (
     <header className="m-4 flex items-center justify-between gap-2 md:pl-4">
@@ -21,12 +21,10 @@ export default function Header({ user }: { user: User }) {
         </div>
         <div className="flex items-center gap-2">
           <Avatar className="h-5 w-5">
-            {user?.hasImage && <AvatarImage src={user?.imageUrl} />}
+            {<AvatarImage src={user?.image!} />}
             <AvatarFallback className="text-xs">{initials}</AvatarFallback>
           </Avatar>
-          <span className="text-sm font-semibold ">
-            {user?.firstName} {user?.lastName}
-          </span>
+          <span className="text-sm font-semibold ">{user.name}</span>
         </div>
       </div>
       <UserNav user={user} />

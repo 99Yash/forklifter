@@ -1,9 +1,9 @@
 import { siteConfig } from "@/config/site";
-import { currentUser } from "@clerk/nextjs/server";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { EmailSignIn } from "./email-signin";
-import { OAuthSignIn } from "./oauth-signin";
+import EmailSignIn from "./email-signin";
+import OAuthSignIn from "./oauth-signin";
+import { getCurrentUser } from "@/lib/authOpts";
 
 export const metadata: Metadata = {
   title: "Sign In",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function SignInPage() {
-  const user = await currentUser();
+  const user = await getCurrentUser();
   if (user) redirect("/dashboard");
   return (
     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">

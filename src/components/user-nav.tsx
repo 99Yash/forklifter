@@ -1,4 +1,3 @@
-import { User } from "@clerk/nextjs/server";
 import * as Icons from "@/components/ui/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -13,19 +12,13 @@ import {
 } from "./ui/dropdown-menu";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { User } from "next-auth";
 
 export function UserNav({ user }: { user: User }) {
-  const initials = `${user?.firstName?.charAt(0) ?? ""} ${
-    user?.lastName?.charAt(0) ?? ""
+  const initials = `${user.name?.split(" ")[0]![0]}${
+    user.name?.split(" ")[1] ? user.name?.split(" ")[1]![0] ?? "." : ""
   }`;
-  function getUserEmail(user: User) {
-    const email =
-      user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
-        ?.emailAddress ?? "";
-
-    return email;
-  }
-  const email = getUserEmail(user);
+  const email = user.email;
   return (
     // <DropdownMenu>
     //   <DropdownMenuTrigger
@@ -79,7 +72,7 @@ export function UserNav({ user }: { user: User }) {
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.imageUrl} alt={user.username ?? ""} />
+            <AvatarImage src={user.image!} alt={user.username ?? ""} />
             <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
         </Button>
@@ -87,9 +80,7 @@ export function UserNav({ user }: { user: User }) {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">
-              {user.firstName} {user.lastName}
-            </p>
+            <p className="text-sm font-medium leading-none">{user.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
               {email}
             </p>

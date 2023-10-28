@@ -2,9 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider   = "prisma-client-js"
-  engineType = "dataproxy"
-  previewFeatures = []
+  provider        = "prisma-client-js"
+  engineType      = "dataproxy"
 }
 
 datasource db {
@@ -13,9 +12,104 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+model Account {
+    id                String  @id @default(auto()) @map("_id") @db.ObjectId
+    userId            String  @db.ObjectId
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
+    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@unique([provider, providerAccountId])
+}
+
+model Session {
+    id           String   @id @default(auto()) @map("_id") @db.ObjectId
+    sessionToken String   @unique
+    userId       String   @db.ObjectId
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model User {
-  id        String   @id @default(cuid())  @map("_id")
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  username      String         @unique @default(cuid())
+  email         String         @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  experiences   Experience[]
+  testimonials  Testimonial[]
+  contributions Contribution[]
+  projects      Project[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Testimonial {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  // Name of the employer / client
+  author      String
+  // Designation of the employer / client
+  designation String
+  message     String
+  userId      String @unique @db.ObjectId
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum OSSTag {
+  FEATURE
+  BUG
+  ENHANCEMENT
+  DOCUMENTATION
+  CHORE
+  REFACTOR
+  FIX
+  TEST
+  OTHER
+}
+
+model Contribution {
+  id          String   @id @default(cuid()) @map("_id") @db.ObjectId
+  orgName     String
+  description String
+  tags        OSSTag[]
+  // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
+  url         String
+  userId      String   @unique @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          String   @id @default(cuid()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  webUrl      String
+  githubUrl   String
+  userId      String   @unique @db.ObjectId
+  techStack   String[]
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Experience {
+  id               String   @id @default(cuid()) @map("_id") @db.ObjectId
+  position         String
+  orgName          String
+  orgUrl           String
+  startDate        DateTime
+  endDate          DateTime
+  currentlyWorking Boolean
+  description      String
+  userId           String   @unique @db.ObjectId
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime @default(now())
 }

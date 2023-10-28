@@ -1,12 +1,11 @@
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
-import { ClerkProvider } from "@clerk/nextjs";
+import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
-import { cn } from "@/lib/utils";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -61,16 +60,15 @@ export default function RootLayout({
       <head>
         <Analytics />
       </head>
-      <ClerkProvider>
-        <body
-          className={cn("min-h-screen font-sans antialiased", inter.variable)}
-        >
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            {children}
-          </ThemeProvider>
-          <TailwindIndicator />
-        </body>
-      </ClerkProvider>
+
+      <body
+        className={cn("min-h-screen font-sans antialiased", inter.variable)}
+      >
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
+        <TailwindIndicator />
+      </body>
     </html>
   );
 }

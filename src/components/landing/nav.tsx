@@ -1,15 +1,15 @@
+import { siteConfig } from "@/config/site";
+import { getAuthSession } from "@/lib/authOpts";
 import { cn } from "@/lib/utils";
-import { currentUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { buttonVariants } from "../ui/button";
 import * as Icons from "../ui/icons";
-import { siteConfig } from "@/config/site";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const Nav = async () => {
-  const user = await currentUser();
+  const session = await getAuthSession();
 
-  if (!user)
+  if (!session)
     return (
       <nav
         className={` z-10 mx-auto flex items-center justify-between self-center p-2 lg:w-2/3`}
@@ -35,8 +35,10 @@ const Nav = async () => {
       </nav>
     );
 
-  const initials = `${user?.firstName?.charAt(0) ?? ""} ${
-    user?.lastName?.charAt(0) ?? ""
+  const initials = `${session.user.name?.split(" ")[0]![0]}${
+    session.user.name?.split(" ")[1]
+      ? session.user.name?.split(" ")[1]![0] ?? "."
+      : ""
   }`;
 
   return (
@@ -59,7 +61,7 @@ const Nav = async () => {
         )}
       >
         <Avatar className="mr-2 h-5 w-5">
-          <AvatarImage src={user.imageUrl} />
+          <AvatarImage src={session.user.image!} />
           <AvatarFallback className="text-xs">{initials}</AvatarFallback>
         </Avatar>
         Dashboard

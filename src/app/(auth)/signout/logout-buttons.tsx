@@ -1,10 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { SignOutButton } from "@clerk/nextjs";
+
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import * as Icons from "@/components/ui/icons";
+import { signOut } from "next-auth/react";
 
 export default function LogOutButtons() {
   const router = useRouter();
@@ -12,10 +13,14 @@ export default function LogOutButtons() {
 
   return (
     <>
-      <SignOutButton
-        signOutCallback={() =>
-          startTransition(() => {
-            router.push("/");
+      <Button
+        onClick={() =>
+          startTransition(async () => {
+            try {
+              await signOut();
+            } catch (error) {
+              console.error("Error signing out", error);
+            }
           })
         }
       >
@@ -23,7 +28,7 @@ export default function LogOutButtons() {
           {isPending && <Icons.Spinner className="mr-2 h-4 w-4" />}
           Sign Out
         </Button>
-      </SignOutButton>
+      </Button>
       <Button
         aria-label="Go back to the previous page"
         variant="outline"
