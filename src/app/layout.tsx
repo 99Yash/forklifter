@@ -3,10 +3,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/site";
 
 import { Analytics } from "@vercel/analytics/react";
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import { cn } from "@/lib/utils";
+import Providers from "@/components/providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,10 +66,12 @@ export default function RootLayout({
       <body
         className={cn("min-h-screen font-sans antialiased", inter.variable)}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          {children}
-        </ThemeProvider>
-        <TailwindIndicator />
+        <Providers>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            {children}
+          </ThemeProvider>
+          <TailwindIndicator />
+        </Providers>
       </body>
     </html>
   );

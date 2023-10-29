@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
 import * as Icons from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const workspaceItems = [
   {
@@ -31,12 +31,8 @@ const workspaceItems = [
 export function SidebarNav() {
   const path = usePathname();
 
-  const { workspace } = useParams();
-  const pathname = path.replace(`/dashboard/${workspace}`, "");
   const items = workspaceItems;
-  if (!items?.length) {
-    return null;
-  }
+  const pathname = path === "/dashboard" && "/dashboard/";
 
   return (
     <nav className="grid items-start gap-2">
@@ -47,9 +43,12 @@ export function SidebarNav() {
             <Link
               key={index}
               href={item.href === "/" ? "/dashboard" : `/dashboard${item.href}`}
-              className={
-                "flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-accent-foreground"
-              }
+              className={cn(
+                "flex items-center gap-2 text-sm font-semibold text-muted-foreground duration-200 hover:text-accent-foreground",
+                pathname === `/dashboard${item.href}`
+                  ? "text-accent-foreground"
+                  : "text-muted-foreground",
+              )}
             >
               <span
                 className={cn(

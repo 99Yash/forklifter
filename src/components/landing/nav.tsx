@@ -30,7 +30,7 @@ const Nav = async () => {
           )}
         >
           Sign in
-          <Icons.ChevronRight className="w4 h-4" />
+          <Icons.ChevronRight className="h-4 w-4" />
         </Link>
       </nav>
     );

@@ -1,5 +1,10 @@
 import { Card } from "@/components/ui/card";
 
+export const metadata = {
+  title: {
+    default: "Pricing",
+  },
+};
 export default function page() {
   return (
     <div className="flex flex-col gap-6">

@@ -1,5 +1,6 @@
 "use client";
-
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,18 +12,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -53,15 +46,16 @@ const profileFormSchema = z.object({
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
 // This can come from your database or API.
-const defaultValues: Partial<ProfileFormValues> = {
-  bio: "I own a computer.",
-  urls: [
-    { value: "https://shadcn.com" },
-    { value: "http://twitter.com/shadcn" },
-  ],
-};
 
 export function ProfileForm() {
+  const { data: defaultValues, isFetched } = useQuery({
+    queryFn: async () => {
+      const { data } = await axios.get(`/api/users/profile/`);
+      return data;
+    },
+    queryKey: ["user-profile"],
+    enabled: false, // Disable until we have the userId
+  });
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues,
@@ -93,7 +87,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Display Name</FormLabel>
               <FormControl>
-                <Input placeholder="ygkr" {...field} />
+                <Input autoComplete="off" placeholder="ygkr" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
@@ -110,7 +104,11 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="tonyhopkins@example.com" {...field} />
+                <Input
+                  autoComplete="off"
+                  placeholder="tonyhopkins@example.com"
+                  {...field}
+                />
               </FormControl>
               <FormDescription>
                 This would be the primary contact method to you.
@@ -127,6 +125,7 @@ export function ProfileForm() {
               <FormLabel>Bio</FormLabel>
               <FormControl>
                 <Textarea
+                  autoComplete="off"
                   placeholder="Tell us a little bit about yourself"
                   className="resize-none"
                   {...field}
@@ -155,7 +154,7 @@ export function ProfileForm() {
                     Add links to your website, blog, or social media profiles.
                   </FormDescription>
                   <FormControl>
-                    <Input {...field} />
+                    <Input autoComplete="off" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

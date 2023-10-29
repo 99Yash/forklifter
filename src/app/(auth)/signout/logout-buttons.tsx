@@ -25,7 +25,7 @@ export default function LogOutButtons() {
         }
       >
         <Button className="w-full" disabled={isPending}>
-          {isPending && <Icons.Spinner className="mr-2 h-4 w-4" />}
+          {isPending && <Icons.Spinner className="mr-2 h-4 w-4 animate-spin" />}
           Sign Out
         </Button>
       </Button>
