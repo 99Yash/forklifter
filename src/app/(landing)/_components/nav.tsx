@@ -2,9 +2,13 @@ import { siteConfig } from "@/config/site";
 import { getAuthSession } from "@/lib/authOpts";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { buttonVariants } from "../ui/button";
-import * as Icons from "../ui/icons";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../../components/ui/avatar";
+import { buttonVariants } from "../../../components/ui/button";
+import * as Icons from "../../../components/ui/icons";
 
 const Nav = async () => {
   const session = await getAuthSession();

@@ -10,21 +10,19 @@ const Features = () => {
         {data.middle.highlight}
       </p>
       <h1
-        className={`bg-gradient-to-r from-slate-200/70 via-slate-300 to-slate-200/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent `}
+        className={`bg-gradient-to-r from-slate-200/70 via-slate-300 to-slate-200/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent`}
       >
         {data.middle.heading}
       </h1>
-      <hr className="mx-auto my-4 w-40 border-blue-500 " />
-      <p
-        className={`hidden max-w-xl text-lg text-gray-400 md:mr-[4.5rem] md:block `}
-      >
-        {data.middle.subTitle}
+      <hr className="mx-auto my-4 w-40 border-blue-500" />
+      <p className={`hidden max-w-xl text-lg text-gray-400 md:flex`}>
+        <ReactWrapBalancer>{data.middle.subTitle}</ReactWrapBalancer>
       </p>
-      <p className={`max-w-xl text-lg text-gray-400 `}>
+      <p className={`max-w-xl text-lg text-gray-400`}>
         <ReactWrapBalancer>{data.middle.text}</ReactWrapBalancer>
       </p>
       <p
-        className={`bg-gradient-to-r from-blue-100 via-slate-300 to-blue-100 bg-clip-text text-lg font-bold text-transparent `}
+        className={`bg-gradient-to-r from-blue-100 via-slate-300 to-blue-100 bg-clip-text text-lg font-bold text-transparent`}
       >
         {data.middle.endText}
       </p>

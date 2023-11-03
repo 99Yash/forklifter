@@ -2,7 +2,7 @@ import { data } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import ReactWrapBalancer from "react-wrap-balancer";
-import { Particles } from "../ui/particles";
+import { Particles } from "../../../components/ui/particles";
 import Badge from "./top-badge";
 import * as Icons from "@/components/ui/icons";
 

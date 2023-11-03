@@ -1,5 +1,5 @@
 import React from "react";
-import { Particles } from "../ui/particles";
+import { Particles } from "../../../components/ui/particles";
 import { data } from "@/config/marketing";
 import ReactWrapBalancer from "react-wrap-balancer";
 import Link from "next/link";

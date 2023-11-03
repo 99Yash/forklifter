@@ -8,7 +8,7 @@ export const data = {
   middle: {
     highlight: "Focus on what you love.",
     heading: "Catapult your Online Presence",
-    subTitle: " Don't venture outside your expertise if it's not your passion.",
+    subTitle: "Don't venture outside your expertise if it's not your passion.",
     text: `Show your skills as a backend or a junior developer in the best possible light. Include links to your LinkedIn, Twitter, and GitHub profiles to connect seamlessly with potential employers and collaborators. Don't settle for a lackluster online presence.`,
     endText: "Elevate your game.",
   },

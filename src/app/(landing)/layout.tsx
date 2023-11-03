@@ -1,5 +1,5 @@
-import Footer from "@/components/landing/footer";
-import Nav from "@/components/landing/nav";
+import Footer from "@/app/(landing)/_components/footer";
+import Nav from "@/app/(landing)/_components/nav";
 
 export default async function LandingLayout({
   children,

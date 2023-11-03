@@ -1,6 +1,6 @@
-import Cta from "@/components/landing/cta";
-import Features from "@/components/landing/features";
-import Hero from "@/components/landing/hero";
+import Cta from "@/app/(landing)/_components/cta";
+import Features from "@/app/(landing)/_components/features";
+import Hero from "@/app/(landing)/_components/hero";
 
 export default function Landing() {
   return (
