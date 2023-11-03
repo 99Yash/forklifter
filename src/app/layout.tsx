@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   ],
   twitter: {
     title: siteConfig.name,
-    description:
-      "A fully responsive Portfolio generator • Shadcn/UI • Server Components",
+    description: "Fully responsive, Open source Portfolio generator ",
     creator: "@YashGouravKar1",
+    card: "summary_large_image",
   },
   authors: {
     name: "Yash Gourav Kar",
@@ -49,6 +49,13 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [
+      {
+        url: "https://forklifter.vercel.app/og.png",
+        width: 2322,
+        height: 1306,
+      },
+    ],
   },
 };
 
