@@ -6,7 +6,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const user = await getCurrentUser();
   const realFirstName = user?.name?.split(" ")[0];
   return {
-    title: `${realFirstName}'s Projects`,
+    title: `${realFirstName}'s Workspace`,
   };
 }
 

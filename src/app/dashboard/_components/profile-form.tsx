@@ -1,6 +1,4 @@
 "use client";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -14,9 +12,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 const profileFormSchema = z.object({
@@ -27,6 +24,14 @@ const profileFormSchema = z.object({
     })
     .max(30, {
       message: "displayName must not be longer than 30 characters.",
+    }),
+  username: z
+    .string()
+    .min(1, {
+      message: "username must be at least 1 characters.",
+    })
+    .max(14, {
+      message: "username must not be longer than 14 characters.",
     }),
   email: z
     .string({
@@ -45,26 +50,16 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-// This can come from your database or API.
-
 export function ProfileForm() {
-  const { data: defaultValues, isFetched } = useQuery({
-    queryFn: async () => {
-      const { data } = await axios.get(`/api/users/profile/`);
-      return data;
-    },
-    queryKey: ["user-profile"],
-    enabled: false, // Disable until we have the userId
-  });
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
-    defaultValues,
+    defaultValues: {
+      displayName: "Yash Kumar Verma",
+      username: "ygkonline",
+      email: "yashgkr@gmail.com",
+      bio: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit commodi dolorem eos voluptates, voluptas facilis esse qui sapiente accusantium non minus!",
+    },
     mode: "onChange",
-  });
-
-  const { fields, append } = useFieldArray({
-    name: "urls",
-    control: form.control,
   });
 
   function onSubmit(data: ProfileFormValues) {
@@ -87,7 +82,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Display Name</FormLabel>
               <FormControl>
-                <Input autoComplete="off" placeholder="ygkr" {...field} />
+                <Input autoComplete="off" placeholder="Yash" {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
@@ -106,7 +101,7 @@ export function ProfileForm() {
               <FormControl>
                 <Input
                   autoComplete="off"
-                  placeholder="tonyhopkins@example.com"
+                  placeholder="user@test.com"
                   {...field}
                 />
               </FormControl>
@@ -139,38 +134,23 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <div>
-          {fields.map((field, index) => (
-            <FormField
-              control={form.control}
-              key={field.id}
-              name={`urls.${index}.value`}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className={cn(index !== 0 && "sr-only")}>
-                    URLs
-                  </FormLabel>
-                  <FormDescription className={cn(index !== 0 && "sr-only")}>
-                    Add links to your website, blog, or social media profiles.
-                  </FormDescription>
-                  <FormControl>
-                    <Input autoComplete="off" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          ))}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="mt-2"
-            onClick={() => append({ value: "" })}
-          >
-            Add URL
-          </Button>
-        </div>
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Username</FormLabel>
+              <FormControl>
+                <Input autoComplete="off" placeholder="ygkonline" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is your username. Existing links wont redirect you to the
+                new page on changing the username.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button type="submit">Update profile</Button>
       </form>
     </Form>

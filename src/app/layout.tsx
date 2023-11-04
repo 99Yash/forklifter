@@ -26,7 +26,6 @@ export const metadata: Metadata = {
     "portfolio",
     "generator",
     "NextJS",
-    "React",
     "TailwindCSS",
     "TypeScript",
     "MongoDB",

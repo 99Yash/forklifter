@@ -7,19 +7,29 @@ import { usePathname } from "next/navigation";
 
 const workspaceItems = [
   {
-    title: "Projects",
+    title: "Edit Profile",
     href: "/",
-    icon: Icons.Post,
+    icon: Icons.User,
   },
   {
-    title: "Pricing",
-    href: "/pricing",
-    icon: Icons.Billing,
+    title: "Projects",
+    href: "/projects",
+    icon: Icons.Projects,
   },
   {
-    title: "Danger Zone",
-    href: "/danger",
-    icon: Icons.Warning,
+    title: "Experiences",
+    href: "/experiences",
+    icon: Icons.Building,
+  },
+  {
+    title: "Testimonials",
+    href: "/testimonials",
+    icon: Icons.Quote,
+  },
+  {
+    title: "Contributions",
+    href: "/oss",
+    icon: Icons.GITMerge,
   },
   {
     title: "Settings",
@@ -32,10 +42,10 @@ export function SidebarNav() {
   const path = usePathname();
 
   const items = workspaceItems;
-  const pathname = path === "/dashboard" && "/dashboard/";
+  const pathname = path === "/dashboard" ? "/dashboard/" : path;
 
   return (
-    <nav className="grid items-start gap-2">
+    <nav className="grid w-full items-start gap-2">
       {items.map((item, index) => {
         const Icon = item.icon;
         return (
@@ -52,7 +62,7 @@ export function SidebarNav() {
             >
               <span
                 className={cn(
-                  "group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                  "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
                   pathname === `/dashboard${item.href}`
                     ? "bg-accent"
                     : "transparent",
