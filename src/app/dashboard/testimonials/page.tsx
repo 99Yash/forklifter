@@ -35,15 +35,15 @@ const page = async () => {
           <ProjectCard.Skeleton pulse={false} />
         </ul>
         <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center">
-          <Balancer>
-            <h2 className="text-2xl font-bold">
-              You haven&apos;t added testimonials.
-            </h2>
-            <p className="text-lg text-muted-foreground">
+          <h2 className="text-2xl font-bold">
+            <Balancer>You&apos;ve zero testimonials.</Balancer>
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            <Balancer>
               If you have prior experience or collaborations, do consider asking
               for one.
-            </p>
-          </Balancer>
+            </Balancer>
+          </p>
         </div>
       </div>
       {/* )} */}

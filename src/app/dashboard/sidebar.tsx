@@ -45,7 +45,7 @@ export function SidebarNav() {
   const pathname = path === "/dashboard" ? "/dashboard/" : path;
 
   return (
-    <nav className="grid w-full items-start gap-2">
+    <nav className="flex flex-col items-start gap-2">
       {items.map((item, index) => {
         const Icon = item.icon;
         return (
@@ -54,7 +54,7 @@ export function SidebarNav() {
               key={index}
               href={item.href === "/" ? "/dashboard" : `/dashboard${item.href}`}
               className={cn(
-                "flex items-center gap-2 text-sm font-semibold text-muted-foreground duration-200 hover:text-accent-foreground",
+                "flex min-w-full items-center gap-2 text-sm font-semibold text-muted-foreground duration-200 hover:text-accent-foreground",
                 pathname === `/dashboard${item.href}`
                   ? "text-accent-foreground"
                   : "text-muted-foreground",
@@ -62,7 +62,7 @@ export function SidebarNav() {
             >
               <span
                 className={cn(
-                  "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                  "flex min-w-full items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
                   pathname === `/dashboard${item.href}`
                     ? "bg-accent"
                     : "transparent",

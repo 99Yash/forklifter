@@ -7,7 +7,7 @@ import {
 import { getRandomPatternStyle } from "@/lib/random-pattern";
 import { cn } from "@/lib/utils";
 import { type Project } from "@prisma/client";
-import { Link } from "lucide-react";
+import Link from "next/link";
 
 export function ProjectCard(props: { project: Project }) {
   const { project } = props;

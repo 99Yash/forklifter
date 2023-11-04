@@ -16,7 +16,7 @@ export default async function Layout({
       <Header user={user} />
       <hr className="max-w-screen mx-3 -mt-4 h-px border-0 bg-secondary" />
       <div className="container mt-1 flex flex-1 gap-8 ">
-        <aside className="hidden w-52 flex-col md:flex">
+        <aside className="hidden md:flex md:w-52">
           <SidebarNav />
         </aside>
         <main className="flex flex-1 flex-col overflow-hidden">{children}</main>

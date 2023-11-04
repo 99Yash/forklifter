@@ -1,6 +1,5 @@
 import { getCurrentUser } from "@/lib/authOpts";
 import { Metadata } from "next";
-import Balancer from "react-wrap-balancer";
 import { ProjectCard } from "../_components/project-card";
 
 export const metadata: Metadata = {
@@ -26,27 +25,13 @@ const page = async () => {
           </li>
         ))}
       </ul> */}
-
       {/* {projects.length === 0 && ( */}
       <div className="relative">
         <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
-          <ProjectCard.Skeleton pulse={false} />
-          <ProjectCard.Skeleton pulse={false} />
-          <ProjectCard.Skeleton pulse={false} />
+          <ProjectCard.Skeleton />
+          <ProjectCard.Skeleton />
+          <ProjectCard.Skeleton />
         </ul>
-        <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="text-2xl font-bold">
-            <Balancer>
-              You haven&apos;t added any prior experiences yet.
-            </Balancer>
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            <Balancer>
-              If you don&apos;t have any, head over to the Contributions tab to
-              add any Open Source contributions.
-            </Balancer>
-          </p>
-        </div>
       </div>
       {/* )} */}
     </div>

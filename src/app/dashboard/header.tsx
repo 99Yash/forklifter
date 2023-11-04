@@ -15,13 +15,16 @@ export default function Header({ user }: { user: User }) {
           <Link href={"/"}>
             <Icons.Logo className="mr-2 h-7 w-7 font-bold" />
           </Link>
-          <span className="text-xl font-semibold text-muted-foreground ">
-            /
-          </span>
+          <span className="text-xl font-semibold text-muted-foreground">/</span>
         </div>
         <div className="flex items-center gap-2">
           <Avatar className="h-5 w-5">
-            {<AvatarImage src={user?.image!} />}
+            <AvatarImage
+              src={
+                user?.image ??
+                "https://cdn.vectorstock.com/i/1000x1000/45/79/male-avatar-profile-picture-silhouette-light-vector-4684579.webp"
+              }
+            />
             <AvatarFallback className="text-xs">{initials}</AvatarFallback>
           </Avatar>
           <span className="text-sm font-semibold ">{user.name}</span>
