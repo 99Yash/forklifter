@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/lib/authOpts";
 import React from "react";
 import { ProjectCard } from "../_components/project-card";
 import Balancer from "react-wrap-balancer";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Account",

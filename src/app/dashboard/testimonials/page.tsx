@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/lib/authOpts";
 import React from "react";
 import { ProjectCard } from "../_components/project-card";
 import Balancer from "react-wrap-balancer";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Testimonials",
@@ -38,7 +38,7 @@ const page = async () => {
           <h2 className="text-2xl font-bold">
             <Balancer>You&apos;ve zero testimonials.</Balancer>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-md text-muted-foreground">
             <Balancer>
               If you have prior experience or collaborations, do consider asking
               for one.

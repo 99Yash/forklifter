@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import LogOutButtons from "./logout-buttons";
 
 export const metadata: Metadata = {

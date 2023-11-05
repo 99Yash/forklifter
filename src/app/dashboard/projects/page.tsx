@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/lib/authOpts";
 import React from "react";
 import { ProjectCard } from "../_components/project-card";
 import Balancer from "react-wrap-balancer";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -18,7 +18,7 @@ const page = async () => {
       <div className="flex flex-col">
         <h2 className="text-xl font-bold">Projects</h2>
         <p className="text-muted-foreground">
-          All your projects will show up here.
+          All your personal projects will show up here.
         </p>
       </div>
       {/* <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -39,7 +39,7 @@ const page = async () => {
           <h2 className="text-2xl font-bold">
             <Balancer>You have no projects yet.</Balancer>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-md text-muted-foreground">
             <Balancer>Create your first project to get started.</Balancer>
           </p>
         </div>

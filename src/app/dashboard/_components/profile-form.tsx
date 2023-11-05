@@ -10,11 +10,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import * as Icons from "@/components/ui/icons";
 
 const profileFormSchema = z.object({
   displayName: z
@@ -30,15 +30,14 @@ const profileFormSchema = z.object({
     .min(1, {
       message: "username must be at least 1 characters.",
     })
-    .max(14, {
-      message: "username must not be longer than 14 characters.",
+    .max(25, {
+      message: "username must not be longer than 25 characters.",
     }),
   email: z
     .string({
       required_error: "Please select an email to display.",
     })
     .email(),
-  bio: z.string().max(160).min(4),
   urls: z
     .array(
       z.object({
@@ -50,14 +49,24 @@ const profileFormSchema = z.object({
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
-export function ProfileForm() {
+export function ProfileForm({
+  user,
+}: {
+  user: {
+    name: string;
+    username: string;
+    email: string;
+    twitterUrl: string | null;
+    githubUrl: string | null;
+    linkedinUrl: string | null;
+  };
+}) {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
-      displayName: "Yash Kumar Verma",
-      username: "ygkonline",
-      email: "yashgkr@gmail.com",
-      bio: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit commodi dolorem eos voluptates, voluptas facilis esse qui sapiente accusantium non minus!",
+      displayName: user.name,
+      username: user.username,
+      email: user.email,
     },
     mode: "onChange",
   });
@@ -106,29 +115,7 @@ export function ProfileForm() {
                 />
               </FormControl>
               <FormDescription>
-                This would be the primary contact method to you.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="bio"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Bio</FormLabel>
-              <FormControl>
-                <Textarea
-                  autoComplete="off"
-                  placeholder="Tell us a little bit about yourself"
-                  className="resize-none"
-                  {...field}
-                />
-              </FormControl>
-              <FormDescription>
-                Write a short bio about yourself. It will be displayed on your
-                profile.
+                This is your primary contact method.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -143,7 +130,8 @@ export function ProfileForm() {
               <FormControl>
                 <Input autoComplete="off" placeholder="ygkonline" {...field} />
               </FormControl>
-              <FormDescription>
+              <FormDescription className="flex gap-2 text-yellow-600">
+                <Icons.Warning className="h-4 w-4" />
                 This is your username. Existing links wont redirect you to the
                 new page on changing the username.
               </FormDescription>

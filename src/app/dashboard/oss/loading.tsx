@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import { ProjectCard } from "../_components/project-card";
 import React from "react";
 

@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/authOpts";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import Balancer from "react-wrap-balancer";
 import { ProjectCard } from "../_components/project-card";
 
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 const page = async () => {
   const user = await getCurrentUser();
   if (!user) return null;
+
   return (
     <div className="space-y-4 lg:container">
       <div className="flex flex-col">
@@ -36,14 +37,12 @@ const page = async () => {
         </ul>
         <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center">
           <h2 className="text-2xl font-bold">
-            <Balancer>
-              You haven&apos;t added any prior experiences yet.
-            </Balancer>
+            <Balancer>You haven&apos;t added experiences.</Balancer>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-md text-muted-foreground">
             <Balancer>
-              If you don&apos;t have any, head over to the Contributions tab to
-              add any Open Source contributions.
+              Don&apos;t have any? Head over to the Contributions tab to add any
+              Open Source contributions.
             </Balancer>
           </p>
         </div>

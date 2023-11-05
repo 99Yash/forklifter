@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/lib/authOpts";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 import { ProjectCard } from "../_components/project-card";
 
 export const metadata: Metadata = {

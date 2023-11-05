@@ -45,6 +45,8 @@ model User {
   email         String         @unique
   emailVerified DateTime?
   image         String?
+  oneLiner      String?
+  bio           String?
   twitterUrl    String?
   githubUrl     String?
   linkedinUrl   String?

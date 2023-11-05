@@ -2,7 +2,7 @@ import { getCurrentUser } from "@/lib/authOpts";
 import React from "react";
 import { ProjectCard } from "../_components/project-card";
 import Balancer from "react-wrap-balancer";
-import { Metadata } from "next";
+import { type Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Open Source Contributions",
@@ -36,9 +36,9 @@ const page = async () => {
         </ul>
         <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center">
           <h2 className="text-2xl font-bold">
-            <Balancer>You have Zero open source contributions.</Balancer>
+            <Balancer>You&apos;ve Zero open source contributions.</Balancer>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-md text-muted-foreground">
             <Balancer>Add your contributions here.</Balancer>
           </p>
         </div>
