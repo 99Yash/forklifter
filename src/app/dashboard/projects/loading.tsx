@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const loading = () => {
   return (
-    <div className="space-y-4 lg:container">
+    <div className="flex flex-col gap-4">
       <div className="flex flex-col">
         <h2 className="text-xl font-bold">Projects</h2>
         <p className="text-muted-foreground">

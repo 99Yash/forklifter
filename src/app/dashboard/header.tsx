@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { UserNav } from "@/components/user-nav";
 import Link from "next/link";
 import * as Icons from "@/components/ui/icons";
-import { User } from "next-auth";
+import { type User } from "next-auth";
 
 export default function Header({ user }: { user: User }) {
   const initials = `${user.name?.split(" ")[0]![0]}${

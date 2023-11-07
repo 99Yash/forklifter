@@ -28,7 +28,7 @@ export default async function Page() {
   });
 
   return (
-    <div className="space-y-4 lg:container">
+    <div className="flex flex-col gap-4">
       <div className="flex flex-col">
         <h2 className="text-xl font-bold">
           {user.name?.split(" ")[0]}&apos;s Workspace

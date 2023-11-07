@@ -3,6 +3,7 @@ import React from "react";
 import { ProjectCard } from "../_components/project-card";
 import Balancer from "react-wrap-balancer";
 import { type Metadata } from "next";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -14,12 +15,14 @@ const page = async () => {
   if (!user) return null;
   //TODO fetch projects
   return (
-    <div className="space-y-4 lg:container">
-      <div className="flex flex-col">
-        <h2 className="text-xl font-bold">Projects</h2>
-        <p className="text-muted-foreground">
-          All your personal projects will show up here.
-        </p>
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-2">
+        <div className="flex flex-col">
+          <h2 className="text-xl font-bold">Projects</h2>
+          <p className="text-muted-foreground">
+            All your personal projects will show up here.
+          </p>
+        </div>
       </div>
       {/* <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {projects.map((project) => (
@@ -42,6 +45,7 @@ const page = async () => {
           <p className="text-md text-muted-foreground">
             <Balancer>Create your first project to get started.</Balancer>
           </p>
+          <Button className="mt-4">Add a new Project</Button>
         </div>
       </div>
       {/* //TODO Add a create project button */}

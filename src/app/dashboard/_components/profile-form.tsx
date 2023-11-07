@@ -132,8 +132,8 @@ export function ProfileForm({
               </FormControl>
               <FormDescription className="flex gap-2 text-yellow-600">
                 <Icons.Warning className="h-4 w-4" />
-                This is your username. Existing links wont redirect you to the
-                new page on changing the username.
+                Existing links wont redirect you to a new page on changing the
+                username.
               </FormDescription>
               <FormMessage />
             </FormItem>
