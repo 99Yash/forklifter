@@ -98,6 +98,7 @@ model Project {
   id          String   @id @default(cuid()) @map("_id") @db.ObjectId
   name        String
   description String
+  // add an image or a screenshot if possible, use uploadThing for those things
   webUrl      String
   githubUrl   String
   userId      String   @unique @db.ObjectId

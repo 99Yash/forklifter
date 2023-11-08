@@ -19,7 +19,7 @@ export function ProjectCard(props: { project: Project }) {
           <CardTitle className="flex items-center justify-between">
             <span>{project.name}</span>
           </CardTitle>
-          <CardDescription>{project.webUrl}&nbsp;</CardDescription>
+          <CardDescription>{project.description}</CardDescription>
         </CardHeader>
       </Card>
     </Link>

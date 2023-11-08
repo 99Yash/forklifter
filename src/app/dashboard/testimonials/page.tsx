@@ -3,6 +3,16 @@ import React from "react";
 import { ProjectCard } from "../_components/project-card";
 import Balancer from "react-wrap-balancer";
 import { type Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import { redirect } from "next/navigation";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export const metadata: Metadata = {
   title: "Testimonials",
@@ -11,14 +21,30 @@ export const metadata: Metadata = {
 
 const page = async () => {
   const user = await getCurrentUser();
-  if (!user) return null;
+  if (!user) return redirect("/");
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col">
-        <h2 className="text-xl font-bold">Testimonials</h2>
-        <p className="text-muted-foreground">
-          Add testimonials from your previous employer or any other authority.
-        </p>
+      <div className="flex justify-between">
+        <div className="flex flex-col">
+          <h2 className="text-xl font-bold">Testimonials</h2>
+          <p className="text-muted-foreground">
+            Add testimonials from your previous employer or any other authority.
+          </p>
+        </div>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="mt-4">Plug a Testimonial</Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>Add a Testimonial</DialogTitle>
+              <DialogDescription>
+                You can add upto 3 testimonials in the FREE tier.
+              </DialogDescription>
+            </DialogHeader>
+            <form action=""></form>
+          </DialogContent>
+        </Dialog>
       </div>
       {/* <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {projects.map((project) => (
