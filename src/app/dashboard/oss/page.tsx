@@ -13,7 +13,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return null;
   return (
-    <div className="space-y-4 lg:container">
+    <div className="flex flex-col gap-4">
       <div className="flex flex-col">
         <h2 className="text-xl font-bold">Open Source Contributions</h2>
         <p className="text-muted-foreground">
@@ -39,7 +39,7 @@ const page = async () => {
             <Balancer>You&apos;ve Zero open source contributions.</Balancer>
           </h2>
           <p className="text-md text-muted-foreground">
-            <Balancer>Add your contributions here.</Balancer>
+            <Balancer>Put all your Open Source contributions here.</Balancer>
           </p>
         </div>
       </div>

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   ],
   twitter: {
     title: siteConfig.name,
-    description: "Fully responsive, Open source Portfolio generator ",
+    description: "Fully responsive, Open source Portfolio generator.",
     creator: "@YashGouravKar1",
     card: "summary_large_image",
   },
@@ -55,6 +55,9 @@ export const metadata: Metadata = {
         height: 1306,
       },
     ],
+  },
+  icons: {
+    shortcut: "/icon.svg",
   },
 };
 
