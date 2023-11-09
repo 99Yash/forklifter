@@ -1,18 +1,10 @@
 import { getCurrentUser } from "@/lib/authOpts";
-import { type Metadata } from "next";
-import Balancer from "react-wrap-balancer";
-import { ProjectCard } from "../_components/project-card";
-import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { type Metadata } from "next";
+import { redirect } from "next/navigation";
+import Balancer from "react-wrap-balancer";
+import AddExperience from "../_components/forms/add-experience";
+import { ProjectCard } from "../_components/project-card";
 
 export const metadata: Metadata = {
   title: "Experiences",
@@ -38,20 +30,7 @@ const page = async () => {
             Highlight previous work experiences here.
           </p>
         </div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="mt-4">Add an Experience</Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle>Add a new Experience</DialogTitle>
-              <DialogDescription>
-                You can add upto 3 experiences in the FREE tier.
-              </DialogDescription>
-            </DialogHeader>
-            <form action=""></form>
-          </DialogContent>
-        </Dialog>
+        <AddExperience />
       </div>
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {/* {experiences.map((experience) => (

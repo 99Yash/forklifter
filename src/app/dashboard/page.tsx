@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { ProfileForm } from "./_components/profile-form";
+import { ProfileForm } from "./_components/forms/update-profile";
 import { getCurrentUser } from "@/lib/authOpts";
 import { prisma } from "@/lib/db";
 

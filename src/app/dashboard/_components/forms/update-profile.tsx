@@ -10,42 +10,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import * as Icons from "@/components/ui/icons";
-
-const profileFormSchema = z.object({
-  displayName: z
-    .string()
-    .min(2, {
-      message: "displayName must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "displayName must not be longer than 30 characters.",
-    }),
-  username: z
-    .string()
-    .min(1, {
-      message: "username must be at least 1 characters.",
-    })
-    .max(25, {
-      message: "username must not be longer than 25 characters.",
-    }),
-  email: z
-    .string({
-      required_error: "Please select an email to display.",
-    })
-    .email(),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      }),
-    )
-    .optional(),
-});
+import { toast } from "sonner";
+import { profileFormSchema } from "@/lib/schemas";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -72,14 +43,7 @@ export function ProfileForm({
   });
 
   function onSubmit(data: ProfileFormValues) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+    toast.success("You've submitted the form.");
   }
   return (
     <Form {...form}>
@@ -128,7 +92,7 @@ export function ProfileForm({
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input autoComplete="off" placeholder="ygkonline" {...field} />
+                <Input autoComplete="off" placeholder="ygkr" {...field} />
               </FormControl>
               <FormDescription className="flex gap-2 text-yellow-600">
                 <Icons.Warning className="h-4 w-4" />

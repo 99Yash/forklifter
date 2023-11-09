@@ -112,7 +112,7 @@ model Experience {
   orgName          String
   orgUrl           String
   startDate        DateTime
-  endDate          DateTime
+  endDate          DateTime?
   currentlyWorking Boolean
   description      String
   userId           String   @unique @db.ObjectId

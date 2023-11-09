@@ -1,4 +1,3 @@
-import * as Icons from "@/components/ui/icons";
 import { getCurrentUser } from "@/lib/authOpts";
 
 import { type Metadata } from "next";

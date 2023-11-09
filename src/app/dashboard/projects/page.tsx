@@ -1,19 +1,10 @@
 import { getCurrentUser } from "@/lib/authOpts";
-import React from "react";
-import { ProjectCard } from "../_components/project-card";
-import Balancer from "react-wrap-balancer";
-import { type Metadata } from "next";
-import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/db";
+import { type Metadata } from "next";
 import { redirect } from "next/navigation";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import Balancer from "react-wrap-balancer";
+import ProjectForm from "../_components/forms/add-project";
+import { ProjectCard } from "../_components/project-card";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -31,27 +22,15 @@ const page = async () => {
   });
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-between">
+      <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <h2 className="text-xl font-bold">Projects</h2>
           <p className="text-muted-foreground">
             All your projects will show up here.
           </p>
         </div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button className="mt-4">Add a Project</Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle>Add a new Project</DialogTitle>
-              <DialogDescription>
-                You can add upto 3 projects in the FREE tier.
-              </DialogDescription>
-            </DialogHeader>
-            <form action=""></form>
-          </DialogContent>
-        </Dialog>
+        {/* //? includes the create Project button */}
+        <ProjectForm />
       </div>
       <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {projects.map((project) => (
