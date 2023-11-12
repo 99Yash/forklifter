@@ -64,30 +64,22 @@ model Testimonial {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   // Name of the employer / client (eg. Robert Crawford)
   author      String
+  // LinkedIn or Twitter or anything for the contact of the Author
+  authorUrl String
   // Designation of the employer / client (eg. Ex-Engineering Manager & Sr. Computer Scientist @ Adobe California)
   designation String
+  // Message from the employer / client
   message     String
   userId      String @unique @db.ObjectId
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-enum OSSTag {
-  FEATURE
-  BUG
-  ENHANCEMENT
-  DOCUMENTATION
-  CHORE
-  REFACTOR
-  FIX
-  TEST
-  OTHER
 }
 
 model Contribution {
   id          String   @id @default(cuid()) @map("_id") @db.ObjectId
   orgName     String
   description String
-  tags        OSSTag[]
+  //OSSTags have been defined to be a specific set of Strings in constants.ts
+  tags        String[]
   // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
   url         String
   userId      String   @unique @db.ObjectId

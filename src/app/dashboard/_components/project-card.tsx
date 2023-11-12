@@ -1,25 +1,28 @@
 import {
   Card,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/components/ui/card";
 import { getRandomPatternStyle } from "@/lib/random-pattern";
 import { cn } from "@/lib/utils";
-import { type Project } from "@prisma/client";
 import Link from "next/link";
 
-export function ProjectCard(props: { project: Project }) {
-  const { project } = props;
+export function ProjectCard(props: {
+  primaryText: string;
+  secondaryText: string;
+  id: string;
+}) {
+  const { primaryText, secondaryText, id } = props;
   return (
     <Link href={`/`}>
       <Card className="overflow-hidden">
-        <div className="h-32" style={getRandomPatternStyle(project.id)} />
+        <div className="h-32" style={getRandomPatternStyle(id)} />
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            <span>{project.name}</span>
+            <span>{primaryText}</span>
           </CardTitle>
-          <CardDescription>{project.description}</CardDescription>
+          <CardDescription>{secondaryText}</CardDescription>
         </CardHeader>
       </Card>
     </Link>

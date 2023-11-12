@@ -35,7 +35,6 @@ export const profileFormSchema = z.object({
 export const projectSchema = z.object({
   name: z.string().min(1).max(255),
   description: z.string().min(1).max(500),
-  userId: z.string(),
   githubUrl: z.string().url(),
   webUrl: z.string().url(),
   techStack: z
@@ -45,24 +44,54 @@ export const projectSchema = z.object({
     }),
 });
 
-export const experienceSchema = z.object({
-  title: z.string().min(1).max(255),
-  description: z.string().min(1).max(500),
+export const extendedProjectSchema = projectSchema.extend({
   userId: z.string(),
-  company: z.string().min(1).max(25),
+});
+
+export const experienceSchema = z.object({
+  position: z.string().min(1).max(255),
+  description: z.string().min(1).max(500),
+  orgName: z.string().min(1).max(25),
+  orgUrl: z
+    .string()
+    .min(1, {
+      message: "Please enter a valid URL.",
+    })
+    .url({
+      message: "Please enter a valid URL.",
+    }),
   startDate: z.date({
     required_error: "A starting date is missing.",
   }),
   endDate: z.date().optional(),
 });
 
+export const extendedExperienceSchema = experienceSchema.extend({
+  userId: z.string(),
+});
+
 export const ossSchema = z.object({
   orgName: z.string().min(1).max(200),
   description: z.string().min(1).max(500),
-  tags: z.nativeEnum(OSSTAGS),
+  tags: z.array(
+    z.enum([
+      "Feature",
+      "Bug",
+      "Enhancement",
+      "Documentation",
+      "Chore",
+      "Test",
+      "Fix",
+      "Other",
+    ]),
+  ),
   url: z.string().url({
     message: "Please enter a valid URL",
   }),
+});
+
+export const extendedOssSchema = ossSchema.extend({
+  userId: z.string(),
 });
 
 export const testimonialSchema = z.object({
@@ -82,6 +111,14 @@ export const testimonialSchema = z.object({
     .max(40, {
       message: "Designation must be between 1 and 40 characters",
     }),
+  authorUrl: z
+    .string()
+    .min(1, {
+      message: "Please enter a valid URL for the author",
+    })
+    .url({
+      message: "Please enter a valid URL for the author",
+    }),
   message: z
     .string()
     .min(1, {
@@ -90,4 +127,8 @@ export const testimonialSchema = z.object({
     .max(200, {
       message: "Message must be between 1 and 200 characters",
     }),
+});
+
+export const extendedTestimonialSchema = testimonialSchema.extend({
+  userId: z.string(),
 });

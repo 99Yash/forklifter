@@ -9,9 +9,16 @@ import * as Icons from "@/components/ui/icons";
 const Hero = () => {
   return (
     <section
-      className={` relative z-10 flex h-screen max-w-6xl flex-col items-center gap-4 pt-20 md:pt-36`}
+      className={`relative z-10 flex h-screen max-w-6xl flex-col items-center gap-4 pt-20 md:pt-36`}
     >
-      <Particles ease={20} color="#ddd9e1" className="absolute inset-0 -z-10" />
+      <Particles
+        ease={20}
+        color="#84ba8b"
+        vy={-0.15}
+        vx={-0.15}
+        quantity={40}
+        className="absolute inset-0 -z-10"
+      />
       <div
         className="mb-6 animate-fade-down"
         style={{
@@ -24,7 +31,7 @@ const Hero = () => {
       </div>
       <div className=" flex flex-col flex-wrap gap-6 px-6 text-center lg:gap-3 lg:px-2">
         <h1
-          className={` animate-fade-down bg-gradient-to-r from-gray-500/90 via-gray-100/75 to-gray-500/80 bg-clip-text text-7xl font-bold tracking-tight text-transparent md:bg-gradient-to-r md:from-gray-500/90 md:via-gray-100/75 md:to-gray-500/90 md:text-8xl md:leading-[6.1rem] `}
+          className={`animate-fade-down bg-gradient-to-r from-gray-500/90 via-gray-100/75 to-gray-500/80 bg-clip-text text-7xl font-bold tracking-tight text-transparent md:bg-gradient-to-r md:from-gray-500/90 md:via-gray-100/75 md:to-gray-500/90 md:text-8xl md:leading-[6.1rem] `}
           style={{ animationDelay: "0.20s", animationFillMode: "forwards" }}
         >
           <ReactWrapBalancer>{data.opening.heading}</ReactWrapBalancer>

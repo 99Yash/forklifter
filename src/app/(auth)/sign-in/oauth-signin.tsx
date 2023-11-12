@@ -5,6 +5,7 @@ import * as Icons from "@/components/ui/icons";
 import { signIn } from "next-auth/react";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 type Provider = "github" | "google";
 
@@ -15,7 +16,9 @@ export default function OAuthSignIn() {
     try {
       setIsLoading(provider);
       await signIn(provider);
+      toast.success("You're in. Redirecting you to the dashboard...");
     } catch (error) {
+      toast.error("Failed to sign you in.");
       console.error(error);
     } finally {
       setIsLoading(null);

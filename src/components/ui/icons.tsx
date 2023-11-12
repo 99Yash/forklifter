@@ -6,6 +6,7 @@ export type Icon = (props: LucideProps) => JSX.Element;
 export const Logo = Lucide.Zap;
 export const Add = Lucide.Plus;
 export const ArrowRight = Lucide.ArrowRight;
+export const Analytics = Lucide.Activity;
 export const Wallet = Lucide.Wallet;
 export const Billing = Lucide.CreditCard;
 export const Check = Lucide.Check;

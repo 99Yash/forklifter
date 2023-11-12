@@ -36,6 +36,11 @@ const workspaceItems = [
     href: "/settings",
     icon: Icons.Settings,
   },
+  {
+    title: "Analytics",
+    href: "/analytics",
+    icon: Icons.Analytics,
+  },
 ] as const;
 
 export function SidebarNav() {
@@ -68,7 +73,13 @@ export function SidebarNav() {
                     : "transparent",
                 )}
               >
-                <Icon className="mr-2 h-4 w-4" />
+                <Icon
+                  className={`mr-2 h-4 w-4 ${
+                    pathname !== `/dashboard${item.href}`
+                      ? `transform hover:scale-90`
+                      : ``
+                  } `}
+                />
                 <span>{item.title}</span>
               </span>
             </Link>

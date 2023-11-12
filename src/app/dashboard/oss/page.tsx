@@ -6,7 +6,7 @@ import AddOSS from "../_components/forms/add-oss";
 import { ProjectCard } from "../_components/project-card";
 
 export const metadata: Metadata = {
-  title: "Open Source Contributions",
+  title: "Open Source",
   description: `Add or edit OSS Contributions by you.`,
 };
 

@@ -32,34 +32,39 @@ const page = async () => {
         </div>
         <AddExperience />
       </div>
-      <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        {/* {experiences.map((experience) => (
-          <li key={experience.id}>
-            <ProjectCard experience={experience} />
-          </li>
-        ))} */}
-      </ul>
 
-      {/* {experiences.length === 0 && ( */}
-      <div className="relative">
-        <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
-          <ProjectCard.Skeleton pulse={false} />
-          <ProjectCard.Skeleton pulse={false} />
-          <ProjectCard.Skeleton pulse={false} />
-        </ul>
-        <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="text-2xl font-bold">
-            <Balancer>You haven&apos;t added experiences.</Balancer>
-          </h2>
-          <p className="text-md text-muted-foreground">
-            <Balancer>
-              Don&apos;t have any? Head over to the Contributions tab to add any
-              Open Source contributions.
-            </Balancer>
-          </p>
+      {experiences.length === 0 ? (
+        <div className="relative">
+          <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
+            <ProjectCard.Skeleton pulse={false} />
+            <ProjectCard.Skeleton pulse={false} />
+            <ProjectCard.Skeleton pulse={false} />
+          </ul>
+          <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center">
+            <h2 className="text-2xl font-bold">
+              <Balancer>You haven&apos;t added experiences.</Balancer>
+            </h2>
+            <p className="text-md text-muted-foreground">
+              <Balancer>
+                Don&apos;t have any? Head over to the Contributions tab to add
+                any Open Source contributions.
+              </Balancer>
+            </p>
+          </div>
         </div>
-      </div>
-      {/* )} */}
+      ) : (
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {experiences.map((experience) => (
+            <li key={experience.id}>
+              <ProjectCard
+                id={experience.id}
+                primaryText={experience.orgName}
+                secondaryText={experience.position}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

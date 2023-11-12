@@ -3,7 +3,7 @@ import { ProjectCard } from "../_components/project-card";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "Open Source Contributions",
+  title: "Open Source",
   description: `Add or edit OSS Contributions by you.`,
 };
 
