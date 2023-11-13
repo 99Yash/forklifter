@@ -19,3 +19,7 @@ export function catchError(err: unknown) {
     return toast("Something went wrong, please try again later.");
   }
 }
+
+export const manualDialogClose = () => {
+  document.getElementById('dialog-close')?.click();
+};

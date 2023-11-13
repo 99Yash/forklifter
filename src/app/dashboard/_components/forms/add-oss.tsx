@@ -29,37 +29,28 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import * as Icons from "@/components/ui/icons";
+import { catchError } from '../../../../lib/utils';
 
 type Inputs = z.infer<typeof ossSchema>;
 
 const AddOSS = () => {
   const form = useForm<Inputs>({
     resolver: zodResolver(ossSchema),
+    defaultValues:{
+      tags:[]
+    }
   });
 
   const [isPending, startTransition] = useTransition();
 
   function onSubmit(data: Inputs) {
-    console.log("fuc");
     startTransition(async () => {
-      try {
-        toast.promise(
-          new Promise<void>(async (resolve, reject) => {
             try {
               await addOSS(data);
-              resolve();
-            } catch (error) {
-              reject(error);
-            }
-          }),
-          {
-            loading: "Saving Contribution...",
-            success: "Successfully added Contribution",
-            error: "Failed to add contribution.",
-          },
-        );
         form.reset();
-      } catch (err) {}
+      } catch (err) {
+        catchError(err)
+      }
     });
   }
 

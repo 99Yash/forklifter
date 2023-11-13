@@ -77,7 +77,7 @@ const AddTestimonial = () => {
         <Form {...form}>
           <form
             className="flex flex-col gap-2"
-            onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+            onSubmit={form.handleSubmit(onSubmit)}
           >
             <FormField
               control={form.control}

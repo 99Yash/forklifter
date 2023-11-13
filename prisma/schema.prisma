@@ -70,36 +70,36 @@ model Testimonial {
   designation String
   // Message from the employer / client
   message     String
-  userId      String @unique @db.ObjectId
+  userId      String @db.ObjectId
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Contribution {
-  id          String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   orgName     String
   description String
   //OSSTags have been defined to be a specific set of Strings in constants.ts
   tags        String[]
   // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
   url         String
-  userId      String   @unique @db.ObjectId
+  userId      String   @db.ObjectId
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Project {
-  id          String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
   // add an image or a screenshot if possible, use uploadThing for those things
   webUrl      String
   githubUrl   String
-  userId      String   @unique @db.ObjectId
+  userId      String   @db.ObjectId
   techStack   String[]
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Experience {
-  id               String   @id @default(cuid()) @map("_id") @db.ObjectId
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
   position         String
   orgName          String
   orgUrl           String
@@ -107,7 +107,7 @@ model Experience {
   endDate          DateTime?
   currentlyWorking Boolean
   description      String
-  userId           String   @unique @db.ObjectId
+  userId           String   @db.ObjectId
   user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt        DateTime @default(now())
 }

@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { OSSTAGS } from "./constants";
 
 export const profileFormSchema = z.object({
   displayName: z

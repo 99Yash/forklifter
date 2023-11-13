@@ -26,7 +26,7 @@ const page = async () => {
         <div className="flex flex-col">
           <h2 className="text-xl font-bold">Projects</h2>
           <p className="text-muted-foreground">
-            All your projects will show up here.
+            All your projects show up here.
           </p>
         </div>
         {/* //? includes the create Project button */}

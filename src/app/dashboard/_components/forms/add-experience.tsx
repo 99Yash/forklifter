@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { experienceSchema } from "@/lib/schemas";
-import { cn } from "@/lib/utils";
+import { catchError, cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -67,7 +67,9 @@ const AddExperience = () => {
           },
         );
         form.reset();
-      } catch (err) {}
+      } catch (err) {
+        catchError(err)
+      }
     });
   }
 
