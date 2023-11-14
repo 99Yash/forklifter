@@ -22,6 +22,7 @@ export const Ellipsis = Lucide.MoreVertical;
 export const Flame = Lucide.Flame;
 export const GITMerge = Lucide.GitMerge;
 export const Help = Lucide.HelpCircle;
+export const Info = Lucide.Info;
 export const Key = Lucide.Key;
 export const LayoutPanelLeft = Lucide.LayoutPanelLeft;
 export const LineChart = Lucide.LineChart;

@@ -22,13 +22,16 @@ export const profileFormSchema = z.object({
       required_error: "Please select an email to display.",
     })
     .email(),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      }),
-    )
-    .optional(),
+  githubUrl:
+ z.string().url({ message: "Please enter a valid URL." }),
+  twitterUrl: 
+z.string().url({ message: "Please enter a valid URL." }),
+  linkedinUrl:
+  z.string().url({ message: "Please enter a valid URL." }),
+  oneLiner: 
+z.string().min(1).max(100),
+  bio:
+    z.string().min(1).max(500),
 });
 
 export const projectSchema = z.object({

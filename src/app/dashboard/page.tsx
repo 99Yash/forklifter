@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { ProfileForm } from "./_components/forms/update-profile";
 import { getCurrentUser } from "@/lib/authOpts";
 import { prisma } from "@/lib/db";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export async function generateMetadata(): Promise<Metadata> {
   const user = await getCurrentUser();
@@ -21,6 +22,8 @@ export default async function Page() {
       name: true,
       username: true,
       email: true,
+      bio:true,
+      oneLiner:true,
       twitterUrl: true,
       githubUrl: true,
       linkedinUrl: true,
@@ -28,16 +31,18 @@ export default async function Page() {
   });
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col">
-        <h2 className="text-xl font-bold">
+    <Card className="flex flex-col gap-4">
+      <CardHeader className="flex flex-col">
+        <CardTitle className="text-xl font-bold">
           {user.name?.split(" ")[0]}&apos;s Workspace
-        </h2>
-        <p className="text-muted-foreground">
+        </CardTitle>
+        <CardDescription className="text-muted-foreground">
           Edit your profile data to be reflected on your site
-        </p>
-      </div>
+        </CardDescription>
+      </CardHeader>
+      <CardContent  >
       <ProfileForm user={prismaUser!} />
-    </div>
+      </CardContent>
+    </Card>
   );
 }

@@ -209,7 +209,7 @@ const AddProject = () => {
                 </PopoverContent>
               </Popover>
               <FormDescription> 
-                This is the tech stack that will be shown next ot this project.
+                This is the tech stack that will be shown next to this project.
               </FormDescription>
               <FormMessage />
             </FormItem>
