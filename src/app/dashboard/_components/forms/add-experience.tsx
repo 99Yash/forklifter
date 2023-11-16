@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { experienceSchema } from "@/lib/schemas";
-import { catchError, cn } from "@/lib/utils";
+import { catchError, cn, manualDialogClose } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -48,7 +48,6 @@ const AddExperience = () => {
   const [isPending, startTransition] = useTransition();
 
   function onSubmit(data: Inputs) {
-    console.log("fuc");
     startTransition(async () => {
       try {
         toast.promise(
@@ -65,11 +64,12 @@ const AddExperience = () => {
             success: "Experience added successfully!",
             error: "Failed to add experience.",
           },
-        );
-        form.reset();
-      } catch (err) {
-        catchError(err)
-      }
+          );
+          form.reset();
+          manualDialogClose()
+        } catch (err) {
+          catchError(err)
+        }
     });
   }
 
@@ -155,7 +155,7 @@ const AddExperience = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Joined</FormLabel>
-                    <Popover>
+                    <Popover modal>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
@@ -195,7 +195,7 @@ const AddExperience = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Left</FormLabel>
-                    <Popover>
+                    <Popover modal>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button

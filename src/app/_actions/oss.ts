@@ -19,6 +19,7 @@ export async function addOSS(input: z.infer<typeof ossSchema>) {
   await prisma.contribution.create({
     data: {
       orgName: input.orgName,
+      orgUrl:input.orgUrl,
       url: input.url,
       description: input.description,
       tags: input.tags,

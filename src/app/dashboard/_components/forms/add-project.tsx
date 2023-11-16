@@ -74,14 +74,27 @@ const AddProject = () => {
   function onSubmit(data: Inputs) {
     startTransition(async () => {
       try {
-        await addProject(data)
-        form.reset()
-        toast.success("Project added successfully.")
-        manualDialogClose()
-      } catch (err) {
-        catchError(err)
-      }
-    })
+        toast.promise(
+          new Promise<void>(async (resolve, reject) => {
+            try {
+              await addProject(data);
+              resolve();
+            } catch (error) {
+              reject(error);
+            }
+          }),
+          {
+            loading: "Saving your project...",
+            success: "Project saved successfully!",
+            error: "Failed to save project.",
+          },
+          );
+          form.reset();
+          manualDialogClose()
+        } catch (err) {
+          catchError(err)
+        }
+      })
   }
 
   return (
@@ -160,7 +173,7 @@ const AddProject = () => {
           render={({ field }) => (
             <FormItem className="flex flex-col">
               <FormLabel>Language</FormLabel>
-              <Popover>
+              <Popover modal>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button

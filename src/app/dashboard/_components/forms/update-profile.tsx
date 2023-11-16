@@ -79,7 +79,9 @@ export function ProfileForm({
           name="email"
           render={({ field }) => (
             <FormItem className="flex-1" >
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="flex gap-2 items-end" >Email
+              <Icons.Mail className="h-4 w-4 text-gray-500" />
+              </FormLabel>
               <FormControl>
                 <Input
                   autoComplete="off"
@@ -93,14 +95,14 @@ export function ProfileForm({
               <FormMessage />
             </FormItem>
           )}
-          />
+          /> 
           </div>
           <div className="flex lg:flex-row gap-2 items-center">
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
-                <FormItem>
+                <FormItem >
                   <FormLabel>Username</FormLabel>
                   <FormControl>
                     <Input autoComplete="off" placeholder="ygkr" {...field} />
@@ -132,13 +134,15 @@ export function ProfileForm({
           )}
         />    
           </div>
-          <div className="flex gap-2 flex-1 items-center">
+          <div className="grid gap-2 grid-cols-3">
           <FormField
           control={form.control}
           name="linkedinUrl"
           render={({ field }) => (
             <FormItem >
-              <FormLabel>LinkedIn</FormLabel>
+              <FormLabel className="flex gap-2 items-end" >LinkedIn
+                <Icons.LinkedIn className="h-4 w-4 text-gray-500" />
+              </FormLabel>
               <FormControl>
                 <Input placeholder="https://linkedin.com/in/ygkr" {...field} />
               </FormControl>
@@ -154,7 +158,10 @@ export function ProfileForm({
           name="twitterUrl"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Twitter</FormLabel>
+              <FormLabel className="flex gap-2 items-end" >
+                Twitter 
+                <Icons.Twitter className="h-4 w-4 text-gray-500" />
+                </FormLabel>
               <FormControl>
                 <Input placeholder="https://twitter.com/YashGouravKar1" {...field} />
               </FormControl>
@@ -170,7 +177,9 @@ export function ProfileForm({
           name="githubUrl"
           render={({ field }) => (
             <FormItem className="flex-1">
-              <FormLabel>Github</FormLabel>
+              <FormLabel className="flex gap-2 items-end " >Github
+              <Icons.GitHub className="h-4 w-4 text-gray-500" />
+              </FormLabel>
               <FormControl>
                 <Input placeholder="https://github.com/99yash" {...field} />
               </FormControl>

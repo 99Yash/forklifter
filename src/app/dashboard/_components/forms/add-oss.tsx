@@ -1,7 +1,6 @@
 "use client";
 
 import { addOSS } from "@/app/_actions/oss";
-import { addTestimonial } from "@/app/_actions/testimonial";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -20,16 +19,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import * as Icons from "@/components/ui/icons";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ossSchema, testimonialSchema } from "@/lib/schemas";
+import { ossSchema } from "@/lib/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
-import * as Icons from "@/components/ui/icons";
-import { catchError } from '../../../../lib/utils';
+import { catchError, manualDialogClose } from '../../../../lib/utils';
 
 type Inputs = z.infer<typeof ossSchema>;
 
@@ -45,12 +44,27 @@ const AddOSS = () => {
 
   function onSubmit(data: Inputs) {
     startTransition(async () => {
+      try {
+        toast.promise(
+          new Promise<void>(async (resolve, reject) => {
             try {
               await addOSS(data);
-        form.reset();
-      } catch (err) {
-        catchError(err)
-      }
+              resolve();
+            } catch (error) {
+              reject(error);
+            }
+          }),
+          {
+            loading: "Saving contribution...",
+            success: "Contribution added successfully!",
+            error: "Failed to add contribution.",
+          },
+          );
+          form.reset();
+          manualDialogClose()
+        } catch (err) {
+          catchError(err)
+        }
     });
   }
 
@@ -79,6 +93,19 @@ const AddOSS = () => {
                   <FormLabel>Name of the organization</FormLabel>
                   <FormControl>
                     <Input placeholder="Infisical.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="orgUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Org URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="https://infisical.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

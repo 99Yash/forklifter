@@ -29,6 +29,7 @@ export const LineChart = Lucide.LineChart;
 export const LinkedIn = Lucide.Linkedin;
 export const Logo = Lucide.Zap;
 export const Logout = Lucide.LogOut;
+export const Mail = Lucide.Mail;
 export const Moon = Lucide.Moon;
 export const Organization = Lucide.Building;
 export const Page = Lucide.File;

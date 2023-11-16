@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import Balancer from "react-wrap-balancer";
 import AddOSS from "../_components/forms/add-oss";
 import { ProjectCard } from "../_components/project-card";
+import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Open Source",
@@ -13,6 +14,13 @@ export const metadata: Metadata = {
 const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect("/");
+
+    const contributions = await prisma.contribution.findMany({
+      where:{
+        userId:user.id
+      }
+    })
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -25,7 +33,7 @@ const page = async () => {
         <AddOSS />
       </div>
 
-      <div className="relative">
+      {contributions.length===0 ? <div className="relative">
         <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
           <ProjectCard.Skeleton pulse={false} />
           <ProjectCard.Skeleton pulse={false} />
@@ -39,7 +47,18 @@ const page = async () => {
             <Balancer>Put all your Open Source contributions here.</Balancer>
           </p>
         </div>
-      </div>
+      </div>:(
+         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+         {contributions.map((oss) => (
+           <li key={oss.id}>
+             <ProjectCard
+               id={oss.id}
+               primaryText={oss.orgName}
+               secondaryText={oss.tags.join(" ")}
+             />
+           </li>
+          )
+          )}</ul>)}
     </div>
   );
 };

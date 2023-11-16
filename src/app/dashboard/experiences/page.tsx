@@ -58,8 +58,8 @@ const page = async () => {
             <li key={experience.id}>
               <ProjectCard
                 id={experience.id}
-                primaryText={experience.orgName}
-                secondaryText={experience.position}
+                primaryText={experience.position}
+                secondaryText={experience.orgName}
               />
             </li>
           ))}

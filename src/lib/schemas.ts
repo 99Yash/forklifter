@@ -74,6 +74,9 @@ export const extendedExperienceSchema = experienceSchema.extend({
 
 export const ossSchema = z.object({
   orgName: z.string().min(1).max(200),
+  orgUrl: z.string().url().min(1,{
+    message:"Org URL cannot be empty"
+  }),
   description: z.string().min(1).max(500),
   tags: z.array(
     z.enum([
@@ -110,7 +113,7 @@ export const testimonialSchema = z.object({
     .min(1, {
       message: "Designation must be between 1 and 20 characters",
     })
-    .max(40, {
+    .max(80, {
       message: "Designation must be between 1 and 40 characters",
     }),
   authorUrl: z
@@ -126,8 +129,8 @@ export const testimonialSchema = z.object({
     .min(1, {
       message: "Message must be between 1 and 200 characters",
     })
-    .max(200, {
-      message: "Message must be between 1 and 200 characters",
+    .max(1000, {
+      message: "Message must be between 1 and 1000 characters",
     }),
 });
 
