@@ -9,6 +9,10 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import { prisma } from "./db";
+import { siteConfig } from "@/config/site";
+import { resend } from "./resend";
+import WelcomeEmail from "@/components/emails/welcome";
+import { toast } from "sonner";
 
 declare module "next-auth" {
   interface User {
@@ -36,6 +40,28 @@ export const authOptions: NextAuthOptions = {
     signIn: "/sign-in",
   },
   secret: env.NEXTAUTH_SECRET,
+  events:{
+    async signIn(message) {
+      //? Show a welcome message when a new user gets in
+      if(message.isNewUser){
+        const {name,email}= message.user
+        //TODO Send welcome email from Resend.
+        try{
+          await resend.emails.send({
+            from: siteConfig.name,
+            to: email!,
+            subject:`Welcome to Forklifter`,
+            react: WelcomeEmail({
+              fromEmail:env.EMAIL_FROM_ADDRESS,
+              firstName: name?.split(' ')[0],
+            })
+          })
+          }catch(err:any){
+console.log("RESEND",err)
+          }
+      }
+    },
+  },
   callbacks: {
     session: async ({ session, user }) => ({
       ...session,

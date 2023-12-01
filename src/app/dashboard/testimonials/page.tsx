@@ -1,10 +1,12 @@
+import { buttonVariants } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/authOpts";
+import { prisma } from "@/lib/db";
+import { cn } from "@/lib/utils";
 import { type Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import Balancer from "react-wrap-balancer";
 import { ProjectCard } from "../_components/project-card";
-import AddTestimonial from "../_components/forms/add-testimonial";
-import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Testimonials",
@@ -30,7 +32,9 @@ const page = async () => {
             Add testimonials from your previous employer or any other authority.
           </p>
         </div>
-        <AddTestimonial />
+        {/* <AddTestimonial /> */}
+            <Link className={cn(buttonVariants({variant:"default",className:"min-w-max"}))} href={`/onboarding`}>Add a Testimonial</Link>
+
       </div>
 
      {testimonials.length ===0 ? <div className="relative">

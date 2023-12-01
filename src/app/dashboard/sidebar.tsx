@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 
 const workspaceItems = [
   {
-    title: "Edit Profile",
+    title: "Profile",
     href: "/",
     icon: Icons.User,
   },
@@ -59,10 +59,7 @@ export function SidebarNav() {
               key={index}
               href={item.href === "/" ? "/dashboard" : `/dashboard${item.href}`}
               className={cn(
-                "flex min-w-full items-center gap-2 text-sm font-semibold text-muted-foreground duration-200 hover:text-accent-foreground",
-                pathname === `/dashboard${item.href}`
-                  ? "text-accent-foreground"
-                  : "text-muted-foreground",
+               `flex min-w-full items-center gap-2 text-sm font-semibold text-muted-foreground duration-200 hover:text-accent-foreground ${pathname === `/dashboard${item.href}` ? "text-accent-foreground " : "transform hover:scale-105"} `
               )}
             >
               <span
@@ -74,11 +71,7 @@ export function SidebarNav() {
                 )}
               >
                 <Icon
-                  className={`mr-2 h-4 w-4 ${
-                    pathname !== `/dashboard${item.href}`
-                      ? `transform hover:scale-90`
-                      : ``
-                  } `}
+                  className={`mr-2 h-4 w-4`}
                 />
                 <span>{item.title}</span>
               </span>

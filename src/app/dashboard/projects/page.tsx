@@ -11,15 +11,16 @@ export const metadata: Metadata = {
   description: `List of projects.`,
 };
 
-const page = async () => {
+const ProjectsPage = async () => {
+
   const user = await getCurrentUser();
   if (!user) return redirect("/");
-
   const projects = await prisma.project.findMany({
     where: {
       userId: user.id,
     },
   });
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -51,19 +52,19 @@ const page = async () => {
         </div>
       ) : (
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {projects.map((project) => (
-            <li key={project.id}>
-              <ProjectCard
-                id={project.id}
-                primaryText={project.name}
-                secondaryText={project.description}
-              />
-            </li>
-          ))}
+            {projects.map((project) => (
+              <li key={project.id}>
+                <ProjectCard
+                  id={project.id}
+                  primaryText={project.name}
+                  secondaryText={project.description}
+                />
+              </li>
+            ))}
         </ul>
       )}
     </div>
   );
 };
 
-export default page;
+export default ProjectsPage;

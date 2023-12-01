@@ -16,7 +16,7 @@ export default function OAuthSignIn() {
     try {
       setIsLoading(provider);
       await signIn(provider);
-      toast.success("You're in. Redirecting you to the dashboard...");
+      toast.success("You're in! Loading up your dashboard...");
     } catch (error) {
       toast.error("Failed to sign you in.");
       console.error(error);

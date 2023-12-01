@@ -3,6 +3,7 @@ import { UserNav } from "@/components/user-nav";
 import Link from "next/link";
 import * as Icons from "@/components/ui/icons";
 import { type User } from "next-auth";
+import { fallbackUserImg } from "@/lib/constants";
 
 export default function Header({ user }: { user: User }) {
   const initials = `${user.name?.split(" ")[0]![0]}${
@@ -15,14 +16,14 @@ export default function Header({ user }: { user: User }) {
           <Link href={"/"}>
             <Icons.Logo className="mr-2 h-7 w-7 font-bold" />
           </Link>
-          <span className="text-xl font-semibold text-muted-foreground">/</span>
+          <span className="text-lg font-semibold text-muted-foreground">/</span>
         </div>
         <div className="flex items-center gap-2">
           <Avatar className="h-5 w-5">
             <AvatarImage
               src={
                 user?.image ??
-                "https://cdn.vectorstock.com/i/1000x1000/45/79/male-avatar-profile-picture-silhouette-light-vector-4684579.webp"
+                fallbackUserImg
               }
             />
             <AvatarFallback className="text-xs">{initials}</AvatarFallback>

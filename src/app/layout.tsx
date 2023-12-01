@@ -24,8 +24,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   description: "Online portfolio generator",
   keywords: [
-    "portfolio",
-    "generator",
+    "Portfolio",
+    "Website",
+    "Generator",
     "NextJS",
     "TailwindCSS",
     "TypeScript",

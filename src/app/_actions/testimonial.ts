@@ -16,11 +16,12 @@ export async function addTestimonial(input: z.infer<typeof testimonialSchema>) {
   });
   if (!dbUser) throw new Error("User not found");
 
-  await prisma.testimonial.create({
+  const addedTestimonial= await prisma.testimonial.create({
     data: {
       ...input,
       userId: user.id,
     },
   });
   revalidatePath(`/dashboard/testimonials`);
+  return addedTestimonial;
 }
