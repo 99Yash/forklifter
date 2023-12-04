@@ -22,7 +22,7 @@ export function ProjectCard(props: {
           <CardTitle className="flex items-center justify-between">
             <span>{primaryText}</span>
           </CardTitle>
-          <CardDescription>{secondaryText}</CardDescription>
+          <CardDescription className="min-h-[2.5rem] max-h-[3rem]" >{secondaryText}</CardDescription>
         </CardHeader>
       </Card>
     </Link>
