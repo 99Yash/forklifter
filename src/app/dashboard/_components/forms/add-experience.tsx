@@ -31,9 +31,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { experienceSchema } from "@/lib/schemas";
 import { catchError, cn, manualDialogClose } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { format } from "date-fns";
+import { add, format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -46,6 +46,9 @@ const AddExperience = () => {
   });
 
   const [isPending, startTransition] = useTransition();
+
+  const [startDatePickerOpen, setStartDatePickerOpen] = useState(false);
+  const [endDatePickerOpen, setEndDatePickerOpen] = useState(false);
 
   function onSubmit(data: Inputs) {
     startTransition(async () => {
@@ -85,7 +88,7 @@ const AddExperience = () => {
         </DialogHeader>
         <Form {...form}>
           <form
-            className="flex flex-col gap-2"
+            className="space-y-4"
             onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
           >
             <FormField
@@ -155,7 +158,7 @@ const AddExperience = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Joined</FormLabel>
-                    <Popover modal>
+                    <Popover modal open={startDatePickerOpen} onOpenChange={setStartDatePickerOpen}>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
@@ -180,7 +183,7 @@ const AddExperience = () => {
                           selected={field.value}
                           onSelect={field.onChange}
                           disabled={(date) =>
-                            date > new Date() || date < new Date("1980-01-01")
+                            date < new Date() || date > add(new Date(), { years: 1 })
                           }
                         />
                       </PopoverContent>
@@ -195,7 +198,7 @@ const AddExperience = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Left</FormLabel>
-                    <Popover modal>
+                    <Popover open={endDatePickerOpen} onOpenChange={setEndDatePickerOpen}>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
