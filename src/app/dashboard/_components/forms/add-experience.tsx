@@ -177,13 +177,18 @@ const AddExperience = () => {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
+                      <PopoverContent className="fixed w-auto p-0" align="start">
                         <Calendar
                           mode="single"
                           selected={field.value}
-                          onSelect={field.onChange}
+                          onSelect={
+                            (date) => {
+                              field.onChange(date);
+                              setStartDatePickerOpen(false);
+                            }
+                          }
                           disabled={(date) =>
-                            date < new Date() || date > add(new Date(), { years: 1 })
+                            date > new Date()
                           }
                         />
                       </PopoverContent>
@@ -217,17 +222,25 @@ const AddExperience = () => {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="z-50 w-auto p-0" align="start">
+                      <PopoverContent className="fixed w-auto p-0" align="start">
                         <Calendar
                           mode="single"
                           selected={field.value}
-                          onSelect={field.onChange}
-                          disabled={(date) => date < new Date("1980-01-01")}
+                          onSelect={
+                            (date) => {
+                              field.onChange(date);
+                              setEndDatePickerOpen(false);
+                            }
+                          }
+                          disabled={(date) =>
+                      // future dates up to 6 months, in case employee knows he'll be leaving in advance
+                      date > add(new Date(), { months: 6 })
+                    }
                         />
                       </PopoverContent>
                     </Popover>
                     <FormDescription>
-                      Leave untouched if you&apos;re still working.
+Leave untouched if you&apos;re still working.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
