@@ -18,6 +18,9 @@ import * as Icons from "@/components/ui/icons";
 import { toast } from "sonner";
 import { profileFormSchema } from "@/lib/schemas";
 import { Textarea } from "@/components/ui/textarea";
+import { useTransition } from "react";
+import { catchError } from "@/lib/utils";
+import { updateProfile } from "@/app/_actions/profile";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -50,8 +53,18 @@ export function ProfileForm({
     mode: "onChange",
   });
 
+  const [isPending, startTransition] = useTransition();
+
   function onSubmit(data: ProfileFormValues) {
-    toast.success("You've submitted the form.");
+
+    startTransition(async () => {
+      try {
+        await updateProfile(data);
+        toast.success("Profile updated successfully!");
+      } catch (error) {
+        catchError(error);
+      }
+    });
   }
   return (
     <Form {...form}>
@@ -204,7 +217,12 @@ export function ProfileForm({
             </FormItem>
           )}
         />
-        <Button type="submit">Update profile</Button>
+        <Button type="submit">{isPending && (
+                <Icons.Spinner
+                  className="mr-2 h-4 w-4 animate-spin"
+                  aria-hidden="true"
+                />
+              )}Update profile</Button>
       </form>
     </Form>
   );
