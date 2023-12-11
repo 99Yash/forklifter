@@ -1,9 +1,9 @@
 import { getCurrentUser } from "@/lib/authOpts";
-import { prisma } from "@/lib/db";
 import { type Metadata } from "next";
 import { redirect } from "next/navigation";
 import Balancer from "react-wrap-balancer";
 import { ProjectCard } from "../_components/project-card";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Analytics",
@@ -14,24 +14,17 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect("/");
 
-  const experiences = await prisma.experience.findMany({
-    where: {
-      userId: user.id,
-    },
-  });
-
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
         <div className="flex flex-col">
-          <h2 className="text-xl font-bold">Web Analytics</h2>
+          <h2 className="text-xl font-bold">{siteConfig.name} Analytics</h2>
           <p className="text-muted-foreground">
-            Analytics for the visits to your site.
+            Insights for the visits to your site.
           </p>
         </div>
       </div>
 
-      {experiences.length === 0 ? (
         <div className="relative">
           <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
             <ProjectCard.Skeleton pulse={false} />
@@ -47,19 +40,6 @@ const page = async () => {
             </p>
           </div>
         </div>
-      ) : (
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {experiences.map((experience) => (
-            <li key={experience.id}>
-              <ProjectCard
-                id={experience.id}
-                primaryText={experience.orgName}
-                secondaryText={experience.position}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };
