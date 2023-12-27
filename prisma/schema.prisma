@@ -1,9 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider   = "prisma-client-js"
-  engineType = "dataproxy"
 }
 
 datasource db {
@@ -62,14 +60,10 @@ model User {
 
 model Testimonial {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
-  // Name of the employer / client (eg. Robert Crawford)
-  author      String
-  // LinkedIn or Twitter or anything for the contact of the Author
-  authorUrl   String
-  // Designation of the employer / client (eg. Ex-Engineering Manager & Sr. Computer Scientist @ Adobe California)
-  designation String
-  // Message from the employer / client
-  message     String
+  author      String     // Name of the employer / client (eg. Robert Crawford)
+  authorUrl   String    // LinkedIn or Twitter or anything for the contact of the Author
+  designation String   // (eg. Sr. Computer Scientist @ Adobe California)
+  message     String  // Message from the employer / client
   userId      String @db.ObjectId
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -79,10 +73,8 @@ model Contribution {
   orgName     String
   orgUrl      String
   description String
-  //OSSTags have been defined to be a specific set of Strings in constants.ts
-  tags        String[]
-  // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
-  url         String
+  tags        String[] // OSSTags have been defined to be a specific set of Strings in constants.ts
+  url         String   // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
   userId      String   @db.ObjectId
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -91,7 +83,7 @@ model Project {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
-  // add an image or a screenshot if possible, use uploadThing for those things
+  // add an image (screenshot) if possible, use uploadThing for those things
   webUrl      String
   githubUrl   String
   userId      String   @db.ObjectId
