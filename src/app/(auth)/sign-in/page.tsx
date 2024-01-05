@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 import { redirect } from "next/navigation";
 import EmailSignIn from "./email-signin";
 import OAuthSignIn from "./oauth-signin";
-import { getCurrentUser } from "@/lib/authOpts";
+import { getCurrentUser } from "@/lib/auth-opts";
 
 export const metadata: Metadata = {
   title: "Sign In",
