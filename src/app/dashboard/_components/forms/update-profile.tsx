@@ -58,6 +58,18 @@ export function ProfileForm({
   function onSubmit(data: ProfileFormValues) {
     startTransition(async () => {
       try {
+        if (
+          data.displayName === user.name &&
+          data.username === user.username &&
+          data.email === user.email &&
+          data.bio === user.bio &&
+          data.oneLiner === user.oneLiner &&
+          data.twitterUrl === user.twitterUrl &&
+          data.githubUrl === user.githubUrl &&
+          data.linkedinUrl === user.linkedinUrl
+        ) {
+          return;
+        }
         await updateProfile(data);
         toast.success('Profile updated successfully!');
       } catch (error) {
@@ -65,6 +77,7 @@ export function ProfileForm({
       }
     });
   }
+
   return (
     <Form {...form}>
       <form
@@ -235,7 +248,7 @@ export function ProfileForm({
             </FormItem>
           )}
         />
-        <Button type="submit">
+        <Button type="submit" disabled={isPending}>
           {isPending && (
             <Icons.Spinner
               className="mr-2 h-4 w-4 animate-spin"

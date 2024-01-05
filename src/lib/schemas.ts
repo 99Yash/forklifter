@@ -14,8 +14,8 @@ export const profileFormSchema = z.object({
     .min(1, {
       message: 'Username must be at least 1 characters.',
     })
-    .max(9, {
-      message: 'Username must not be longer than 9 characters.',
+    .max(25, {
+      message: 'Username must not be longer than 25 characters.',
     })
     .refine((val) => val !== 'dashboard', {
       message: 'Username cannot be set as "dashboard"',
@@ -29,7 +29,14 @@ export const profileFormSchema = z.object({
   twitterUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   linkedinUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   oneLiner: z.string().min(1).max(100),
-  bio: z.string().min(1).max(500),
+  bio: z
+    .string()
+    .min(1, {
+      message: 'Please enter a bio.',
+    })
+    .max(80, {
+      message: 'Max character length (80) exceeded.',
+    }),
 });
 
 export const projectSchema = z.object({
