@@ -3,13 +3,12 @@
 
 generator client {
   provider   = "prisma-client-js"
-  engineType = "dataproxy"
 }
 
 datasource db {
   provider  = "mongodb"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 model Account {

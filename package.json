@@ -15,7 +15,7 @@
     "db-studio": "prisma studio",
     "dev": "next dev",
     "lint": "next lint",
-    "postinstall": "prisma generate --data-proxy",
+    "postinstall": "prisma generate",
     "start": "next start"
   },
   "dependencies": {
