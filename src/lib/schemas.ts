@@ -11,14 +11,18 @@ export const profileFormSchema = z.object({
     }),
   username: z
     .string()
+    .regex(/^[a-zA-Z0-9_]+$/, {
+      message:
+        'Username must only contain alphanumeric characters and underscores.',
+    })
     .min(1, {
-      message: 'Username must be at least 1 characters.',
+      message: 'Username must not be empty.',
     })
     .max(25, {
       message: 'Username must not be longer than 25 characters.',
     })
     .refine((val) => val !== 'dashboard', {
-      message: 'Username cannot be set as "dashboard"',
+      message: 'This is not a valid username',
     }),
   email: z
     .string({
