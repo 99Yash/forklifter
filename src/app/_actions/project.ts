@@ -1,6 +1,6 @@
 "use server";
 
-import { getCurrentUser } from "@/lib/authOpts";
+import { getCurrentUser } from "@/lib/auth-opts";
 import { prisma } from "@/lib/db";
 import { projectSchema } from "@/lib/schemas";
 import { revalidatePath } from "next/cache";

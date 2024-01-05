@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { getAuthSession } from "@/lib/authOpts";
+import { getAuthSession } from "@/lib/auth-opts";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import {

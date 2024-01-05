@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 import { ProfileForm } from "./_components/forms/update-profile";
-import { getCurrentUser } from "@/lib/authOpts";
+import { getCurrentUser } from "@/lib/auth-opts";
 import { prisma } from "@/lib/db";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 

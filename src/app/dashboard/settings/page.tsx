@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/lib/authOpts";
+import { getCurrentUser } from "@/lib/auth-opts";
 
 import { type Metadata } from "next";
 import { redirect } from "next/navigation";
