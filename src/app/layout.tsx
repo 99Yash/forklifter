@@ -5,6 +5,7 @@ import { siteConfig } from "@/config/site";
 import { Analytics } from "@vercel/analytics/react";
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
+import LogLib from "@loglib/tracker/react";
 import "../styles/globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/providers";
@@ -78,6 +79,7 @@ export default function RootLayout({
       >
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <LogLib config={{id:"forklifter_vercel"}} />
             {children}
           </ThemeProvider>
           <Toaster />

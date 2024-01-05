@@ -153,6 +153,13 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@loglib/tracker@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@loglib/tracker/-/tracker-0.8.0.tgz#42ceafe533a59dae532231ad3c3dab94f120216f"
+  integrity sha512-WShEN7s4fcmWaWgBNmx4sDNaoLPudvfmopHxeJpWTAb4SEpypRsk4Kx143UQQEvFHE+jPQi/P3m8ennpVqFWAg==
+  dependencies:
+    web-vitals "^3.4.0"
+
 "@next-auth/prisma-adapter@^1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@next-auth/prisma-adapter/-/prisma-adapter-1.0.7.tgz#86195e9cc5a23a9e71370c7e8745b630388143b1"
@@ -3371,6 +3378,11 @@ watchpack@2.4.0:
   dependencies:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
+
+web-vitals@^3.4.0:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.5.1.tgz#af7a9dc60708b81007922ab55a23d963676ba30a"
+  integrity sha512-xQ9lvIpfLxUj0eSmT79ZjRoU5wIRfIr7pNukL7ZE4EcWZSmfZQqOlhuAGfkVa3EFmzPHZhWhXfm2i5ys+THVPg==
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
