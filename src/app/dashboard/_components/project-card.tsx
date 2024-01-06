@@ -3,10 +3,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { getRandomPatternStyle } from "@/lib/random-pattern";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+} from '@/components/ui/card';
+import { getRandomPatternStyle } from '@/lib/random-pattern';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export function ProjectCard(props: {
   primaryText: string;
@@ -22,7 +22,9 @@ export function ProjectCard(props: {
           <CardTitle className="flex items-center justify-between">
             <span>{primaryText}</span>
           </CardTitle>
-          <CardDescription className="min-h-[2.5rem] max-h-[3rem]" >{secondaryText}</CardDescription>
+          <CardDescription className="min-h-[2.5rem] max-h-[3rem]">
+            {secondaryText}
+          </CardDescription>
         </CardHeader>
       </Card>
     </Link>
@@ -31,18 +33,25 @@ export function ProjectCard(props: {
 
 ProjectCard.Skeleton = function ProjectCardSkeleton(props: {
   pulse?: boolean;
+  isAnalyticsCard?: boolean;
 }) {
-  const { pulse = true } = props;
+  const { pulse = true, isAnalyticsCard = false } = props;
   return (
     <Card>
-      <div className={cn("h-32 bg-muted", pulse && "animate-pulse")} />
+      <div
+        className={cn(
+          'bg-muted',
+          isAnalyticsCard ? 'h-[72px]' : 'h-32',
+          pulse && 'animate-pulse'
+        )}
+      />
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          <span className={cn("flex-1 bg-muted", pulse && "animate-pulse")}>
+          <span className={cn('flex-1 bg-muted', pulse && 'animate-pulse')}>
             &nbsp;
           </span>
         </CardTitle>
-        <CardDescription className={cn("bg-muted", pulse && "animate-pulse")}>
+        <CardDescription className={cn('bg-muted', pulse && 'animate-pulse')}>
           &nbsp;
         </CardDescription>
       </CardHeader>
