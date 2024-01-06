@@ -1,10 +1,8 @@
+import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/auth-opts';
 import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import Balancer from 'react-wrap-balancer';
 import { ProjectCard } from '../_components/project-card';
-import { siteConfig } from '@/config/site';
-import Analytics from './analytics';
 
 export const metadata: Metadata = {
   title: 'Analytics',
@@ -28,21 +26,10 @@ const page = async () => {
 
       <div className="relative">
         <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
-          <ProjectCard.Skeleton pulse={false} />
-          <ProjectCard.Skeleton pulse={false} />
-          <ProjectCard.Skeleton pulse={false} />
+          <ProjectCard.Skeleton />
+          <ProjectCard.Skeleton />
+          <ProjectCard.Skeleton />
         </ul>
-        <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="text-2xl font-bold">
-            <Balancer>Analytics is currently in Private Beta</Balancer>
-          </h2>
-          {/* <p className="text-md text-muted-foreground">
-            <Balancer>
-              Subscribe to our newsletter to be notified for the latest updates.
-            </Balancer>
-          </p> */}
-          <Analytics />
-        </div>
       </div>
     </div>
   );
