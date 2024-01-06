@@ -32,7 +32,7 @@ export default function ErrorPage({ error }: { readonly error: Error }) {
             <Balancer>
               {env.NODE_ENV === 'development'
                 ? error.message
-                : 'Please try again later.'}
+                : 'There seems to be an error. Please try again later.'}
             </Balancer>
           </p>
         </div>
