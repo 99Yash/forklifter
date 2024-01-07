@@ -1,9 +1,9 @@
-import { type Metadata } from "next";
-import { ProjectCard } from "../_components/project-card";
-import React from "react";
+import { type Metadata } from 'next';
+import { ProjectCard } from '../_components/project-card';
+import React from 'react';
 
 export const metadata: Metadata = {
-  title: "Open Source",
+  title: 'Open Source',
   description: `Add or edit OSS Contributions by you.`,
 };
 
@@ -11,9 +11,9 @@ const loading = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col">
-        <h2 className="text-xl font-bold">Open Source Contributions</h2>
+        <h2 className="text-xl font-bold">Contributions</h2>
         <p className="text-muted-foreground">
-          Add or Edit OSS Contributions by you.
+          Enlist your most important Open Source Contributions here.
         </p>
       </div>
 

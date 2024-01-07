@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { addOSS } from "@/app/_actions/oss";
-import { Button } from "@/components/ui/button";
+import { addOSS } from '@/app/_actions/oss';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -18,16 +18,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import * as Icons from "@/components/ui/icons";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { ossSchema } from "@/lib/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+} from '@/components/ui/form';
+import * as Icons from '@/components/ui/icons';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { ossSchema } from '@/lib/schemas';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 import { catchError, manualDialogClose } from '../../../../lib/utils';
 
 type Inputs = z.infer<typeof ossSchema>;
@@ -35,9 +35,9 @@ type Inputs = z.infer<typeof ossSchema>;
 const AddOSS = () => {
   const form = useForm<Inputs>({
     resolver: zodResolver(ossSchema),
-    defaultValues:{
-      tags:[]
-    }
+    defaultValues: {
+      tags: [],
+    },
   });
 
   const [isPending, startTransition] = useTransition();
@@ -55,16 +55,16 @@ const AddOSS = () => {
             }
           }),
           {
-            loading: "Saving contribution...",
-            success: "Contribution added successfully!",
-            error: "Failed to add contribution.",
-          },
-          );
-          form.reset();
-          manualDialogClose()
-        } catch (err) {
-          catchError(err)
-        }
+            loading: 'Saving contribution...',
+            success: 'Contribution added successfully!',
+            error: 'Failed to add contribution.',
+          }
+        );
+        form.reset();
+        manualDialogClose();
+      } catch (err) {
+        catchError(err);
+      }
     });
   }
 
@@ -120,7 +120,7 @@ const AddOSS = () => {
                   <FormControl>
                     <Textarea
                       rows={4}
-                      placeholder="Infisical opened an issue to have the ability to create multiple organizations under the same account and switch between them seamlessly without logging in to different accounts, So shot a PR adding that feature within day and got it merged!"
+                      placeholder="Infisical opened an issue to have the ability to create multiple organizations under the same account and switch between them seamlessly without logging in to different accounts, So shot a PR adding that feature within a day and got it merged!"
                       {...field}
                     />
                   </FormControl>
