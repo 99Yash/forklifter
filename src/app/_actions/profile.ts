@@ -42,6 +42,7 @@ export async function updateProfile({
     }
   }
 
+  //TODO: if username is changed from a to b -> erase all analytics data for a??? or fetch it from the date when the user updated the username???
   await prisma.user.update({
     data: {
       name: displayName,

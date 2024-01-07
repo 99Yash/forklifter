@@ -41,7 +41,7 @@ ProjectCard.Skeleton = function ProjectCardSkeleton(props: {
       <div
         className={cn(
           'bg-muted',
-          isAnalyticsCard ? 'h-[72px]' : 'h-32',
+          isAnalyticsCard ? 'h-10' : 'h-32',
           pulse && 'animate-pulse'
         )}
       />

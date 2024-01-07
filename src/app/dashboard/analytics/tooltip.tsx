@@ -16,8 +16,12 @@ export const Tip = ({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent>{tip}</TooltipContent>
+        <TooltipTrigger className="cursor-pointer" asChild>
+          {children}
+        </TooltipTrigger>
+        <TooltipContent className="bg-gray-900 text-foreground border border-border">
+          {tip}
+        </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   );

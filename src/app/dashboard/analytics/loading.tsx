@@ -25,7 +25,8 @@ const page = async () => {
       </div>
 
       <div className="relative">
-        <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
+        <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-4">
+          <ProjectCard.Skeleton isAnalyticsCard />
           <ProjectCard.Skeleton isAnalyticsCard />
           <ProjectCard.Skeleton isAnalyticsCard />
           <ProjectCard.Skeleton isAnalyticsCard />
