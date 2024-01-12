@@ -38,8 +38,8 @@ export const profileFormSchema = z.object({
     .min(1, {
       message: 'Please enter a bio.',
     })
-    .max(80, {
-      message: 'Max character length (80) exceeded.',
+    .max(300, {
+      message: 'Max character length (300) exceeded.',
     }),
 });
 

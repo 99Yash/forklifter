@@ -1,6 +1,11 @@
 import { prisma } from '@/lib/db';
 import type { Metadata, ResolvingMetadata } from 'next';
+
 import Link from 'next/link';
+import Nav from './nav';
+import Hero from './hero';
+import About from './about';
+import { notFound, redirect } from 'next/navigation';
 
 type Props = {
   params: { username: string };
@@ -22,23 +27,15 @@ export async function generateMetadata(
 
   if (!user) {
     return {
-      title: 'User not found',
+      title: 'Error',
       description: 'User not found',
     };
   }
 
   return {
-    title: `${user.name}'s Website`,
+    title: `${user.name}`,
     description: `${user.bio}`,
   };
-}
-
-function getInitials(name: string) {
-  const words = name.split(' ');
-  const firstNameInitial = words[0] ? words[0][0] : '';
-  const lastNameInitial = words.length > 1 ? words[words.length - 1][0] : '';
-
-  return `${firstNameInitial}${lastNameInitial}`;
 }
 
 export default async function Website({
@@ -46,7 +43,7 @@ export default async function Website({
 }: {
   params: { username: string };
 }) {
-  const details = await prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: { username: params.username },
     include: {
       projects: {
@@ -89,52 +86,36 @@ export default async function Website({
     },
   });
 
+  if (!user) redirect(notFound());
+
+  function getInitials(name: string) {
+    const words = name.split(' ');
+    const firstNameInitial = words[0] ? words[0][0] : '';
+    const lastNameInitial = words.length > 1 ? words[words.length - 1][0] : '';
+
+    return `${firstNameInitial}${lastNameInitial}`;
+  }
+
   return (
-    <div className="min-h-screen w-full flex flex-col items-center bg-gradient-to-r from-black to-[#320d45]">
-      <section className="flex w-full justify-between px-12 py-6">
-        <span className="text-3xl text-white font-bold">
-          {/* initials of the user */}
-          {getInitials(details?.name!)}
-        </span>
-        <nav className="flex gap-6 text-md">
-          <Link
-            className="font-bold hover:bg-slate-300/10 rounded-lg py-2 px-4 transition-colors duration-200"
-            href="#about"
-          >
-            About
-          </Link>
-          <Link
-            className="font-bold hover:bg-slate-300/10 rounded-lg py-2 px-4 transition-colors duration-200"
-            href="#experience"
-          >
-            Experience
-          </Link>
-          <Link
-            className="font-bold hover:bg-slate-300/10 rounded-lg py-2 px-4 transition-colors duration-200"
-            href="#oss"
-          >
-            Open Source
-          </Link>
-          <Link
-            className="font-bold hover:bg-slate-300/10 rounded-lg py-2 px-4 transition-colors duration-200"
-            href="#testimonials"
-          >
-            Testimonials
-          </Link>
-          <Link
-            className="font-bold hover:bg-slate-300/10 rounded-lg py-2 px-4 transition-colors duration-200"
-            href="#projects"
-          >
-            Projects
-          </Link>
-          <Link
-            className="font-bold hover:bg-slate-300/10 rounded-lg py-2 px-4 transition-colors duration-200"
-            href="#contact"
-          >
-            Contact
-          </Link>
-        </nav>
+    <div className="min-h-screen w-full flex flex-col gap-8 items-center bg-gradient-to-r from-black to-gradient">
+      <section className="flex w-full justify-between items-baseline sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8">
+        <Link
+          href={`/${user?.username}}`}
+          className="text-3xl cursor-pointer text-[#bd66fffc] font-semibold font-serif"
+        >
+          {getInitials(user?.name ?? '')}
+        </Link>
+        <Nav
+          experiences={!!(user?.experiences && user?.experiences.length > 0)}
+          contributions={
+            !!(user?.contributions && user?.contributions.length > 0)
+          }
+          testimonials={!!(user?.testimonials && user?.testimonials.length > 0)}
+          projects={!!(user?.projects && user?.projects.length > 0)}
+        />
       </section>
+      <Hero />
+      <About about={user?.bio!} />
     </div>
   );
 }
