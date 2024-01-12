@@ -115,7 +115,7 @@ export default async function Website({
         />
       </section>
       <Hero />
-      <About about={user?.bio!} />
+      <About about={user?.bio ?? ''} />
     </div>
   );
 }
