@@ -10,6 +10,7 @@ import Experience from './experiences';
 import Testimonials from './testimonials';
 import { getInitials } from '@/lib/utils';
 import OSS from './oss';
+import Projects from './projects';
 
 type Props = {
   params: { username: string };
@@ -115,6 +116,7 @@ export default async function Website({
       <Experience experiences={user.experiences} />
       <Testimonials testimonials={user.testimonials} />
       <OSS contributions={user.contributions} />
+      <Projects projects={user.projects} />
     </div>
   );
 }
