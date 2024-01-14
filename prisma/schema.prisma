@@ -88,7 +88,7 @@ model Contribution {
   orgUrl      String
   description String
   //OSSTags have been defined to be a specific set of Strings in constants.ts
-  tags        String[]
+  tags        String[] //add an enum for this
   // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
   url         String
   userId      String   @db.ObjectId

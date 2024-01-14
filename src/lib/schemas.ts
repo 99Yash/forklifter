@@ -61,7 +61,7 @@ export const extendedProjectSchema = projectSchema.extend({
 
 export const experienceSchema = z.object({
   position: z.string().min(1).max(255),
-  description: z.string().min(1).max(500),
+  description: z.string().min(1).max(1800),
   orgName: z.string().min(1).max(25),
   orgUrl: z
     .string()

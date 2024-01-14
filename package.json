@@ -19,6 +19,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@hookform/resolvers": "^3.3.1",
     "@loglib/tracker": "^0.8.0",
     "@next-auth/prisma-adapter": "^1.0.7",
