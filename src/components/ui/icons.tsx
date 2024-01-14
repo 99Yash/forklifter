@@ -1,11 +1,12 @@
-import type { LucideProps } from "lucide-react";
-import * as Lucide from "lucide-react";
+import type { LucideProps } from 'lucide-react';
+import * as Lucide from 'lucide-react';
 
 export type Icon = (props: LucideProps) => JSX.Element;
 
 export const Add = Lucide.Plus;
 export const Analytics = Lucide.Activity;
 export const ArrowRight = Lucide.ArrowRight;
+export const ArrowUpRight = Lucide.ArrowUpRight;
 export const Billing = Lucide.CreditCard;
 export const Building = Lucide.Building2;
 export const Cap = Lucide.GraduationCap;
@@ -16,6 +17,7 @@ export const ChevronRight = Lucide.ChevronRight;
 export const ChevronsUpDown = Lucide.ChevronsUpDown;
 export const Circle = Lucide.Circle;
 export const Close = Lucide.X;
+export const Code = Lucide.Code;
 export const Code2 = Lucide.Code2;
 export const Copy = Lucide.Copy;
 export const CopyDone = Lucide.ClipboardCheck;
@@ -33,6 +35,7 @@ export const Logo = Lucide.Zap;
 export const Logout = Lucide.LogOut;
 export const Mail = Lucide.Mail;
 export const Moon = Lucide.Moon;
+export const MousePointer = Lucide.MousePointer;
 export const Organization = Lucide.Building;
 export const Page = Lucide.File;
 export const Post = Lucide.FileText;
