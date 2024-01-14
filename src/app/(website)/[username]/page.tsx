@@ -6,6 +6,10 @@ import Nav from './nav';
 import Hero from './hero';
 import About from './about';
 import { notFound, redirect } from 'next/navigation';
+import Experience from './experiences';
+import Testimonials from './testimonials';
+import { getInitials } from '@/lib/utils';
+import OSS from './oss';
 
 type Props = {
   params: { username: string };
@@ -88,17 +92,9 @@ export default async function Website({
 
   if (!user) redirect(notFound());
 
-  function getInitials(name: string) {
-    const words = name.split(' ');
-    const firstNameInitial = words[0] ? words[0][0] : '';
-    const lastNameInitial = words.length > 1 ? words[words.length - 1][0] : '';
-
-    return `${firstNameInitial}${lastNameInitial}`;
-  }
-
   return (
-    <div className="min-h-screen w-full flex flex-col gap-8 items-center bg-gradient-to-r from-black to-gradient">
-      <section className="flex w-full justify-between items-baseline sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8">
+    <div className="bg-gradient-to-r from-black to-gradient overflow-hidden">
+      <section className="min-h-[10vh] flex w-full justify-between items-baseline sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8">
         <Link
           href={`/${user?.username}}`}
           className="text-3xl cursor-pointer text-[#bd66fffc] font-semibold font-serif"
@@ -116,6 +112,9 @@ export default async function Website({
       </section>
       <Hero />
       <About about={user?.bio ?? ''} />
+      <Experience experiences={user.experiences} />
+      <Testimonials testimonials={user.testimonials} />
+      <OSS contributions={user.contributions} />
     </div>
   );
 }

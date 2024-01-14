@@ -20,6 +20,19 @@ export function catchError(err: unknown) {
   }
 }
 
+export function formatDate(
+  date: Date | string | number,
+  options: Intl.DateTimeFormatOptions = {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  }
+) {
+  return new Intl.DateTimeFormat('en-US', {
+    ...options,
+  }).format(new Date(date));
+}
+
 export function manualDialogClose() {
   document.getElementById('dialog-close')?.click();
 }
