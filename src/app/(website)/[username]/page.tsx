@@ -11,6 +11,8 @@ import Testimonials from './testimonials';
 import { getInitials } from '@/lib/utils';
 import OSS from './oss';
 import Projects from './projects';
+import SocialLinks from '../utils/social-links';
+import Contact from './contact';
 
 type Props = {
   params: { username: string };
@@ -117,6 +119,12 @@ export default async function Website({
       <Testimonials testimonials={user.testimonials} />
       <OSS contributions={user.contributions} />
       <Projects projects={user.projects} />
+      <SocialLinks
+        github={user.githubUrl}
+        linkedIn={user.linkedinUrl}
+        twitter={user.twitterUrl}
+      />
+      <Contact mail={user.email} />
     </div>
   );
 }
