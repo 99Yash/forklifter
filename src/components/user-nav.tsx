@@ -87,7 +87,7 @@ export function UserNav({ user }: { user: User }) {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild className="cursor-pointer">
-          <Link href={`/${user.username}`}>
+          <Link target="_blank" rel="noreferrer" href={`/${user.username}`}>
             <Icons.Flame className="mr-2 h-4 w-4" aria-hidden="true" />
             View Site
             <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
