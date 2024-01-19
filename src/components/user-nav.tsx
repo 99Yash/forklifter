@@ -43,28 +43,56 @@ export function UserNav({ user }: { user: User }) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem className="cursor-pointer" asChild>
-            <Link href="/dashboard/account">
+            <Link href="/dashboard">
               <Icons.User className="mr-2 h-4 w-4" aria-hidden="true" />
-              Account
-              <DropdownMenuShortcut>⇧⌘A</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild className="cursor-pointer">
-            <Link href="/dashboard/stores">
-              <Icons.LineChart className="mr-2 h-4 w-4" aria-hidden="true" />
               Dashboard
               <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild disabled>
-            <Link href="/dashboard/settings">
-              <Icons.Settings className="mr-2 h-4 w-4" aria-hidden="true" />
-              Settings
+          <DropdownMenuItem asChild className="cursor-pointer">
+            <Link href="/dashboard/projects">
+              <Icons.Projects className="mr-2 h-4 w-4" aria-hidden="true" />
+              Projects
+              <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/experiences">
+              <Icons.Building className="mr-2 h-4 w-4" aria-hidden="true" />
+              Experiences
               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/testimonials">
+              <Icons.Quote className="mr-2 h-4 w-4" aria-hidden="true" />
+              Testimonials
+              <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/oss">
+              <Icons.GITMerge className="mr-2 h-4 w-4" aria-hidden="true" />
+              Contributions
+              <DropdownMenuShortcut>⌘O</DropdownMenuShortcut>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard/analytics">
+              <Icons.Analytics className="mr-2 h-4 w-4" aria-hidden="true" />
+              Analytics
+              <DropdownMenuShortcut>⌘A</DropdownMenuShortcut>
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link href={`/${user.username}`}>
+            <Icons.Flame className="mr-2 h-4 w-4" aria-hidden="true" />
+            View Site
+            <DropdownMenuShortcut>⇧⌘S</DropdownMenuShortcut>
+          </Link>
+        </DropdownMenuItem>
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link href="/signout">
             <Icons.Logout className="mr-2 h-4 w-4" aria-hidden="true" />

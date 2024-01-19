@@ -4,6 +4,7 @@ import axios from 'axios';
 import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import InsightCard from './card';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Analytics',
@@ -105,6 +106,13 @@ const page = async () => {
           <h2 className="text-xl font-bold">Analytics</h2>
           <p className="text-muted-foreground">
             Insights for the visits to your site.
+            <span className="text-xs">
+              {' '}
+              Powered by{' '}
+              <Link className="text-orange-300" href={'https://www.loglib.io'}>
+                Loglib
+              </Link>
+            </span>
           </p>
         </div>
       </div>
