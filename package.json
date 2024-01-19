@@ -6,7 +6,7 @@
   "author": {
     "name": "Yash Gourav Kar",
     "email": "yashgouravkar@gmail.com",
-    "url": "https://ygkr.vercel.app"
+    "url": "https://forklifter.vercel.app"
   },
   "description": "An open source application built using the new router, server actions and everything new in Next.js 14",
   "scripts": {
