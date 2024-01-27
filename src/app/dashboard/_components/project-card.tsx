@@ -51,7 +51,9 @@ ProjectCard.Skeleton = function ProjectCardSkeleton(props: {
             &nbsp;
           </span>
         </CardTitle>
-        <CardDescription className={cn('bg-muted', pulse && 'animate-pulse')}>
+        <CardDescription
+          className={cn('bg-muted line-clamp-1', pulse && 'animate-pulse')}
+        >
           &nbsp;
         </CardDescription>
       </CardHeader>
