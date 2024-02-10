@@ -1,18 +1,17 @@
 import * as Icons from '@/components/ui/icons';
+import { User } from 'next-auth';
+import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Button } from './ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
-import Link from 'next/link';
-import { Button } from './ui/button';
-import { User } from 'next-auth';
 
 export function UserNav({ user }: { user: User }) {
   const initials = `${user.name?.split(' ')[0]![0]}${
@@ -40,51 +39,6 @@ export function UserNav({ user }: { user: User }) {
             </p>
           </div>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer" asChild>
-            <Link href="/dashboard">
-              <Icons.User className="mr-2 h-4 w-4" aria-hidden="true" />
-              Dashboard
-              <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild className="cursor-pointer">
-            <Link href="/dashboard/projects">
-              <Icons.Projects className="mr-2 h-4 w-4" aria-hidden="true" />
-              Projects
-              <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard/experiences">
-              <Icons.Building className="mr-2 h-4 w-4" aria-hidden="true" />
-              Experiences
-              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard/testimonials">
-              <Icons.Quote className="mr-2 h-4 w-4" aria-hidden="true" />
-              Testimonials
-              <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard/oss">
-              <Icons.GITMerge className="mr-2 h-4 w-4" aria-hidden="true" />
-              Contributions
-              <DropdownMenuShortcut>⌘O</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/dashboard/analytics">
-              <Icons.Analytics className="mr-2 h-4 w-4" aria-hidden="true" />
-              Analytics
-              <DropdownMenuShortcut>⌘A</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild className="cursor-pointer">
           <Link target="_blank" rel="noreferrer" href={`/${user.username}`}>

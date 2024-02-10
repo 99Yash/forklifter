@@ -19,6 +19,7 @@ export const Circle = Lucide.Circle;
 export const Close = Lucide.X;
 export const Code = Lucide.Code;
 export const Code2 = Lucide.Code2;
+export const Columns = Lucide.Columns2;
 export const Copy = Lucide.Copy;
 export const CopyDone = Lucide.ClipboardCheck;
 export const Dashboard = Lucide.Activity;
