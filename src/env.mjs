@@ -24,6 +24,7 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     GITHUB_CLIENT_ID: z.string().min(1),
     GITHUB_CLIENT_SECRET: z.string().min(1),
+    LOGLIB_API_KEY: z.string().min(1),
   },
 
   /**
@@ -33,7 +34,6 @@ export const env = createEnv({
    */
   client: {},
   shared: {
-    LOGLIB_API_KEY: z.string().min(1),
     NODE_ENV: z.enum(['development', 'test', 'production']),
   },
   /**
