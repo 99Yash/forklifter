@@ -1,5 +1,5 @@
-'use client';
-import { Button } from '@/components/ui/button';
+"use client";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -8,19 +8,19 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import * as Icons from '@/components/ui/icons';
-import { toast } from 'sonner';
-import { profileFormSchema } from '@/lib/schemas';
-import { Textarea } from '@/components/ui/textarea';
-import { useTransition } from 'react';
-import { catchError } from '@/lib/utils';
-import { updateProfile } from '@/app/_actions/profile';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import * as Icons from "@/components/ui/icons";
+import { toast } from "sonner";
+import { profileFormSchema } from "@/lib/schemas";
+import { Textarea } from "@/components/ui/textarea";
+import { useTransition } from "react";
+import { catchError } from "@/lib/utils";
+import { updateProfile } from "@/app/_actions/profile";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -44,13 +44,13 @@ export function ProfileForm({
       displayName: user.name,
       username: user.username,
       email: user.email,
-      bio: user.bio ?? '',
-      oneLiner: user.oneLiner ?? '',
-      twitterUrl: user.twitterUrl ?? '',
-      githubUrl: user.githubUrl ?? '',
-      linkedinUrl: user.linkedinUrl ?? '',
+      bio: user.bio ?? "",
+      oneLiner: user.oneLiner ?? "",
+      twitterUrl: user.twitterUrl ?? "",
+      githubUrl: user.githubUrl ?? "",
+      linkedinUrl: user.linkedinUrl ?? "",
     },
-    mode: 'onChange',
+    mode: "onChange",
   });
 
   const [isPending, startTransition] = useTransition();
@@ -71,7 +71,7 @@ export function ProfileForm({
           return;
         }
         await updateProfile(data);
-        toast.success('Profile updated successfully!');
+        toast.success("Profile updated successfully!");
       } catch (error) {
         catchError(error);
       }
@@ -84,7 +84,7 @@ export function ProfileForm({
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <div className="flex flex-col w-full lg:flex-row gap-2">
+        <div className="flex flex-col lg:items-center w-full lg:flex-row gap-2">
           <FormField
             control={form.control}
             name="displayName"
@@ -92,7 +92,11 @@ export function ProfileForm({
               <FormItem className="flex-1">
                 <FormLabel>Display Name</FormLabel>
                 <FormControl>
-                  <Input autoComplete="off" placeholder="Yash" {...field} />
+                  <Input
+                    autoComplete="off"
+                    placeholder="Neil Donnelley"
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>
                   This is your public display name. It can be your real name or

@@ -1,5 +1,5 @@
-import type { LucideProps } from 'lucide-react';
-import * as Lucide from 'lucide-react';
+import type { LucideProps } from "lucide-react";
+import * as Lucide from "lucide-react";
 
 export type Icon = (props: LucideProps) => JSX.Element;
 
@@ -42,6 +42,7 @@ export const Page = Lucide.File;
 export const Post = Lucide.FileText;
 export const Projects = Lucide.Folders;
 export const Quote = Lucide.Quote;
+export const ScrollText = Lucide.ScrollText;
 export const Search = Lucide.Search;
 export const Settings = Lucide.Settings;
 export const Spinner = Lucide.Loader2;

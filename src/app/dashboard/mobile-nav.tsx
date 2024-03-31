@@ -1,16 +1,19 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import * as Icons from '@/components/ui/icons';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { siteConfig } from '@/config/site';
-import { workspaceItems } from '@/lib/constants';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import * as Icons from "@/components/ui/icons";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { siteConfig } from "@/config/site";
+import { workspaceItems } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const path = usePathname();
+  const pathname = path === "/dashboard" ? "/dashboard/" : path;
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -37,22 +40,37 @@ export default function MobileNav() {
             </Link>
           </div>
           <div className="flex flex-col gap-4 mt-4">
-            {workspaceItems?.map((item, index) =>
-              item.href ? (
-                <Link
-                  key={index}
-                  href={
-                    item.href === '/' ? '/dashboard' : `/dashboard${item.href}`
-                  }
-                  className={cn(
-                    'text-foreground/70 transition-colors hover:text-foreground'
-                  )}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.title}
-                </Link>
-              ) : null
-            )}
+            {workspaceItems?.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                item.href && (
+                  <Link
+                    key={index}
+                    href={
+                      item.href === "/"
+                        ? "/dashboard"
+                        : `/dashboard${item.href}`
+                    }
+                    className={cn(
+                      "text-foreground/70 transition-colors hover:text-foreground",
+                    )}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span
+                      className={cn(
+                        "flex min-w-full items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground",
+                        pathname === `/dashboard${item.href}`
+                          ? "text-primary"
+                          : "transparent",
+                      )}
+                    >
+                      <Icon className={`mr-2 h-4 w-4`} />
+                      <span>{item.title}</span>
+                    </span>
+                  </Link>
+                )
+              );
+            })}
           </div>
         </div>
       </SheetContent>

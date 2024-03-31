@@ -3,10 +3,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { getRandomPatternStyle } from '@/lib/random-pattern';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
+} from "@/components/ui/card";
+import { getRandomPatternStyle } from "@/lib/random-pattern";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export function ProjectCard(props: {
   primaryText: string;
@@ -15,6 +15,7 @@ export function ProjectCard(props: {
 }) {
   const { primaryText, secondaryText, id } = props;
   return (
+    //TODO change this line to open edit modal onClick
     <Link href={`/`}>
       <Card className="overflow-hidden">
         <div className="h-32" style={getRandomPatternStyle(id)} />
@@ -40,18 +41,18 @@ ProjectCard.Skeleton = function ProjectCardSkeleton(props: {
     <Card>
       <div
         className={cn(
-          'bg-muted',
-          isAnalyticsCard ? 'h-10' : 'h-32',
-          pulse && 'animate-pulse'
+          "bg-muted",
+          isAnalyticsCard ? "h-10" : "h-32",
+          pulse && "animate-pulse",
         )}
       />
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          <span className={cn('flex-1 bg-muted', pulse && 'animate-pulse')}>
+          <span className={cn("flex-1 bg-muted", pulse && "animate-pulse")}>
             &nbsp;
           </span>
         </CardTitle>
-        <CardDescription className={cn('bg-muted', pulse && 'animate-pulse')}>
+        <CardDescription className={cn("bg-muted", pulse && "animate-pulse")}>
           &nbsp;
         </CardDescription>
       </CardHeader>
