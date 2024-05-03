@@ -1,18 +1,18 @@
-import { siteConfig } from "@/config/site";
-import { type Metadata } from "next";
-import { redirect } from "next/navigation";
-import EmailSignIn from "./email-signin";
-import OAuthSignIn from "./oauth-signin";
-import { getCurrentUser } from "@/lib/auth-opts";
+import { siteConfig } from '@/config/site';
+import { getCurrentUser } from '@/lib/auth-opts';
+import { type Metadata } from 'next';
+import { redirect } from 'next/navigation';
+import EmailSignIn from './email-signin';
+import OAuthSignIn from './oauth-signin';
 
 export const metadata: Metadata = {
-  title: "Sign In",
+  title: 'Sign In',
   description: `Sign in to continue to ${siteConfig.name}`,
 };
 
 export default async function SignInPage() {
   const user = await getCurrentUser();
-  if (user) redirect("/dashboard");
+  if (user) redirect('/dashboard');
   return (
     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
       <div className="flex flex-col space-y-2 text-center">
