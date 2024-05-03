@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { getCurrentUser } from "@/lib/auth-opts";
-import { prisma } from "@/lib/db";
-import { projectSchema } from "@/lib/schemas";
-import { revalidatePath } from "next/cache";
-import { z } from "zod";
+import { getCurrentUser } from '@/lib/auth-opts';
+import { prisma } from '@/lib/db';
+import { projectSchema } from '@/lib/schemas';
+import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 
 export async function addProject(input: z.infer<typeof projectSchema>) {
   const user = await getCurrentUser();
@@ -14,7 +14,7 @@ export async function addProject(input: z.infer<typeof projectSchema>) {
       id: user?.id,
     },
   });
-  if (!dbUser) throw new Error("User not found");
+  if (!dbUser) throw new Error('User not found');
 
   await prisma.project.create({
     data: {
@@ -23,4 +23,5 @@ export async function addProject(input: z.infer<typeof projectSchema>) {
     },
   });
   revalidatePath(`/dashboard/projects`);
+  revalidatePath(`/${dbUser.username}`);
 }

@@ -33,14 +33,9 @@ export const profileFormSchema = z.object({
   twitterUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   linkedinUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   oneLiner: z.string().min(1).max(100),
-  bio: z
-    .string()
-    .min(1, {
-      message: 'Please enter a bio.',
-    })
-    .max(300, {
-      message: 'Max character length (300) exceeded.',
-    }),
+  bio: z.string().max(300, {
+    message: 'Max character length (300) exceeded.',
+  }),
 });
 
 export const projectSchema = z.object({

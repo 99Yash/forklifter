@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { getCurrentUser } from "@/lib/auth-opts";
-import { prisma } from "@/lib/db";
-import { testimonialSchema } from "@/lib/schemas";
-import { revalidatePath } from "next/cache";
-import { z } from "zod";
+import { getCurrentUser } from '@/lib/auth-opts';
+import { prisma } from '@/lib/db';
+import { testimonialSchema } from '@/lib/schemas';
+import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 
 export async function addTestimonial(input: z.infer<typeof testimonialSchema>) {
   const user = await getCurrentUser();
@@ -14,7 +14,7 @@ export async function addTestimonial(input: z.infer<typeof testimonialSchema>) {
       id: user?.id,
     },
   });
-  if (!dbUser) throw new Error("User not found");
+  if (!dbUser) throw new Error('User not found');
 
   await prisma.testimonial.create({
     data: {
@@ -23,4 +23,5 @@ export async function addTestimonial(input: z.infer<typeof testimonialSchema>) {
     },
   });
   revalidatePath(`/dashboard/testimonials`);
+  revalidatePath(`/${dbUser.username}`);
 }

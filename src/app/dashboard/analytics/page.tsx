@@ -1,11 +1,9 @@
-import { env } from '@/env.mjs';
 import { getCurrentUser } from '@/lib/auth-opts';
-import axios from 'axios';
 import { type Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import InsightCard from './card';
 import Link from 'next/link';
-import { fetchAnalytics } from '@/app/_actions/analytics';
+import { redirect } from 'next/navigation';
+import Balancer from 'react-wrap-balancer';
+import { ProjectCard } from '../_components/project-card';
 
 export const metadata: Metadata = {
   title: 'Analytics',
@@ -16,91 +14,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect('/');
 
-  const insights = await fetchAnalytics();
-
-  // const { data: insights } = await axios.get<{
-  //   insight: {
-  //     uniqueVisitors: {
-  //       current: number;
-  //       change: number; //this is a change from comparable time range in the past.
-  //     };
-  //     totalPageViews: {
-  //       current: number;
-  //       change: number;
-  //     };
-  //     averageTime: {
-  //       current: string;
-  //       change: number;
-  //     };
-  //     bounceRate: {
-  //       current: number;
-  //       change: number;
-  //     };
-  //     newVisitors: {
-  //       current: number;
-  //       change: number;
-  //     };
-  //     returningVisitor: {
-  //       current: number;
-  //       change: number;
-  //     };
-  //   };
-  //   data: {
-  //     pages: {
-  //       page: string;
-  //       visits: number;
-  //     }[];
-  //     devices: {
-  //       device: string;
-  //       visits: number;
-  //     }[];
-  //     referrer: {
-  //       referrer: string;
-  //       visits: number;
-  //       referrerDomain: string;
-  //     }[];
-  //     locations: {
-  //       city: {
-  //         location: string;
-  //         visits: number;
-  //         country: string;
-  //       }[];
-  //       country: {
-  //         location: string;
-  //         visits: number;
-  //       }[];
-  //     };
-  //     os: {
-  //       os: string;
-  //       visits: number;
-  //     }[];
-  //     browser: {
-  //       browser: string;
-  //       visits: number;
-  //     }[];
-  //     utmSources: {
-  //       utmSource: string;
-  //       visits: number;
-  //     }[];
-  //     utmCampaigns: {
-  //       utmCampaign: string;
-  //       visits: number;
-  //     }[];
-  //     onlineVisitors: number;
-  //   };
-  //   graph: {
-  //     uniqueVisitorsByDate: {
-  //       date: string;
-  //       visits: number;
-  //     }[];
-  //     uniqueSessionByDate: {
-  //       date: string;
-  //       visits: number;
-  //     }[];
-  //   };
-  // }>(`https://api.loglib.io/v1/insight?apiKey=${env.LOGLIB_API_KEY}`, {
-  //   withCredentials: false,
-  // });
+  // const insights = await fetchAnalytics();
 
   return (
     <div className="flex flex-col gap-4">
@@ -121,31 +35,22 @@ const page = async () => {
       </div>
 
       <div className="relative">
-        <ul className="grid select-none grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <InsightCard
-            title="Unique Visitors"
-            description="The total number of people who visited your site"
-            value={insights.insight.uniqueVisitors.current}
-          />
-
-          <InsightCard
-            title="Total Page Views"
-            description="The total number of pages viewed. Repeated views of a single page are counted."
-            value={insights.insight.totalPageViews.current}
-          />
-
-          <InsightCard
-            title="Avg. Time"
-            description="The average amount of time visitors spend on your website."
-            value={insights.insight.averageTime.current}
-          />
-
-          <InsightCard
-            title="Bounce Rate"
-            description="The percentage of visitors who quickly exit your website without exploring further."
-            value={`${insights.insight.bounceRate.current}%`}
-          />
+        <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
+          <ProjectCard.Skeleton isAnalyticsCard />
+          <ProjectCard.Skeleton isAnalyticsCard />
+          <ProjectCard.Skeleton isAnalyticsCard />
         </ul>
+        <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center space-y-2">
+          <h2 className="text-2xl font-bold text-orange-300">
+            <Balancer>Analytics is coming soon</Balancer>
+          </h2>
+          <p className="text-sm text-red-100 animate-pulse">
+            <Balancer>
+              Loglib API doesn{`'`}t support route based analytics. This will
+              ship soon!
+            </Balancer>
+          </p>
+        </div>
       </div>
     </div>
   );

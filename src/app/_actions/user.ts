@@ -1,5 +1,6 @@
 import { getCurrentUser } from '@/lib/auth-opts';
 import { prisma } from '@/lib/db';
+import { revalidatePath } from 'next/cache';
 
 export async function deleteUser() {
   const user = await getCurrentUser();
@@ -13,4 +14,5 @@ export async function deleteUser() {
       id: user.id,
     },
   });
+  revalidatePath(`/${user.username}`);
 }
