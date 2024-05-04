@@ -26,7 +26,10 @@ const page = async () => {
             <span className="text-xs">
               {' '}
               Powered by{' '}
-              <Link className="text-orange-300" href={'https://www.loglib.io'}>
+              <Link
+                className="text-orange-300 font-semibold"
+                href={'https://www.loglib.io'}
+              >
                 Loglib
               </Link>
             </span>
@@ -44,10 +47,10 @@ const page = async () => {
           <h2 className="text-2xl font-bold text-orange-300">
             <Balancer>Analytics is coming soon</Balancer>
           </h2>
-          <p className="text-sm text-red-100 animate-pulse">
+          <p className="text-sm font-semibold text-orange-200 animate-pulse">
             <Balancer>
-              Loglib API doesn{`'`}t support route based analytics. This will
-              ship soon!
+              Loglib API doesn{`'`}t support route based analytics. Stay tuned
+              as I figure out options
             </Balancer>
           </p>
         </div>

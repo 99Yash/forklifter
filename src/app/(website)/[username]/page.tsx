@@ -37,7 +37,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${user.name}`,
+    title: {
+      absolute: `
+      ${user.name}'s Website
+      `,
+    },
     description: `${user.bio}`,
   };
 }
@@ -111,12 +115,11 @@ export default async function Website({
         />
       </section>
       <Hero
-        bio={user.bio ?? ''}
         name={user.name ?? ''}
         oneLiner={user.oneLiner ?? ''}
         mail={user.email ?? ''}
       />
-      <About about={user?.bio ?? ''} />
+      {user.bio && user.bio.length !== 0 && <About about={user?.bio ?? ''} />}
       {user.experiences && user.experiences.length > 0 && (
         <Experience experiences={user.experiences} />
       )}
@@ -129,12 +132,12 @@ export default async function Website({
       {user.projects && user.projects.length > 0 && (
         <Projects projects={user.projects} />
       )}
+      <Contact mail={user.email} />
       <SocialLinks
         github={user.githubUrl}
         linkedIn={user.linkedinUrl}
         twitter={user.twitterUrl}
       />
-      <Contact mail={user.email} />
     </div>
   );
 }

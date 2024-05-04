@@ -42,7 +42,7 @@ export function SidebarNav() {
                 {item.title === 'Analytics' && (
                   <Badge
                     variant={'secondary'}
-                    className="border-orange-300/20 text-orange-400/80 ml-4"
+                    className="border-orange-300/20 bg-black hover:bg-black text-orange-400/80 ml-4"
                   >
                     Soon
                   </Badge>

@@ -15,7 +15,7 @@ export default function Testimonials({ testimonials }: Props) {
   return (
     <SectionWrapper>
       <div className="mb-16">
-        <SectionTitle title="Testimonials" number={3} showNumber />
+        <SectionTitle title="Testimonials" showNumber />
       </div>
       {testimonials.map((testimonial, index) => (
         <div key={index} className="flex gap-10 flex-col mb-10">

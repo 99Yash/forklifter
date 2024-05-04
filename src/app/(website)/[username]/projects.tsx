@@ -15,8 +15,8 @@ type Props = {
 export default function Projects({ projects }: Props) {
   return (
     <SectionWrapper>
-      <div className="mt-16">
-        <SectionTitle title="Projects" number={5} showNumber />
+      <div id="projects" className="mt-16">
+        <SectionTitle title="Projects" showNumber />
       </div>
       <div className="mb-40">
         {projects.map((project, i) => (

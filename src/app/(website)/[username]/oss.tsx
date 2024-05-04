@@ -17,8 +17,8 @@ type Props = {
 export default function OSS({ contributions }: Props) {
   return (
     <SectionWrapper>
-      <div className="mb-16">
-        <SectionTitle title={'Open Source'} number={4} showNumber />
+      <div id="contributions" className="mb-16">
+        <SectionTitle title={'Open Source'} showNumber />
       </div>
       <div className="mb-40">
         {contributions.map((contribution, idx) => (

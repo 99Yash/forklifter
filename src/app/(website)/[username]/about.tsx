@@ -1,11 +1,14 @@
-import SectionWrapper from '../utils/section-wrapper';
+'use client';
+
+import Globe from '../utils/globe';
 import SectionTitle from '../utils/section-title';
+import SectionWrapper from '../utils/section-wrapper';
 
 export default function About({ about }: { about: string }) {
   return (
     <SectionWrapper>
       <div className="mt-10">
-        <SectionTitle title="About" number={1} showNumber />
+        <SectionTitle title="About" showNumber />
       </div>
       <div className="flex flex-col lg:flex-row lg:max-w-2xl">
         <div className="flex-[1.3] mr-6">
@@ -14,6 +17,7 @@ export default function About({ about }: { about: string }) {
           </p>
         </div>
       </div>
+      <Globe />
     </SectionWrapper>
   );
 }

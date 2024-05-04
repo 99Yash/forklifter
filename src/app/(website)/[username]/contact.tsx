@@ -9,6 +9,7 @@ export default function Contact({ mail }: { mail: string }) {
           What&apos;s next?
         </h3>
         <h1 className="text-5xl font-semibold mb-4">Get in Touch</h1>
+        {/* //TODO replace this with some other pitch */}
         <p className="max-w-full md:max-w-[90%] lg:max-w-[80%] xl:max-w-[70%] 2xl:max-w-[60%] mx-auto text-gray-400 tracking-wide opacity-90 leading-relaxed">
           I&apos;m currently looking for a full-stack developer role, In a
           pre-series A startup. And work along side a highly focussed team that
