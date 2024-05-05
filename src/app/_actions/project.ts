@@ -25,3 +25,53 @@ export async function addProject(input: z.infer<typeof projectSchema>) {
   revalidatePath(`/dashboard/projects`);
   revalidatePath(`/${dbUser.username}`);
 }
+
+export async function updateProject(
+  projectId: string,
+  input: z.infer<typeof projectSchema>
+) {
+  const user = await getCurrentUser();
+  if (!user) throw new Error("You're not authenticated.");
+
+  const dbUser = await prisma.user.findUnique({
+    where: {
+      id: user?.id,
+    },
+  });
+
+  if (!dbUser) throw new Error('User not found');
+
+  await prisma.project.update({
+    where: {
+      id: projectId,
+      userId: dbUser.id,
+    },
+    data: input,
+  });
+
+  revalidatePath(`/dashboard/projects`);
+  revalidatePath(`/${dbUser.username}`);
+}
+
+export async function deleteProject(id: string) {
+  const user = await getCurrentUser();
+  if (!user) throw new Error("You're not authenticated.");
+
+  const dbUser = await prisma.user.findUnique({
+    where: {
+      id: user.id,
+    },
+  });
+
+  if (!dbUser) throw new Error('User not found');
+
+  await prisma.project.delete({
+    where: {
+      id,
+      userId: dbUser.id,
+    },
+  });
+
+  revalidatePath(`/dashboard/projects`);
+  revalidatePath(`/${dbUser.username}`);
+}

@@ -175,8 +175,12 @@ const AddProject = () => {
                             !field.value && 'text-muted-foreground'
                           )}
                         >
-                          {tech.find((t) => field.value.includes(t.value))
-                            ?.label ?? 'Select'}
+                          {field.value.length
+                            ? field.value[0] +
+                              (field.value.length > 1
+                                ? ' +' + (field.value.length - 1) + ' more'
+                                : '')
+                            : 'Select Tech Stack'}
                           <Icons.ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                       </FormControl>
@@ -191,7 +195,17 @@ const AddProject = () => {
                               value={t.label}
                               key={t.value}
                               onSelect={() => {
-                                form.setValue('techStack', [t.value]);
+                                form.setValue(
+                                  'techStack',
+                                  field.value.includes(t.value)
+                                    ? field.value.filter((v) => v !== t.value)
+                                    : [...field.value, t.value],
+                                  {
+                                    shouldValidate: true,
+                                    shouldDirty: true,
+                                    shouldTouch: true,
+                                  }
+                                );
                               }}
                             >
                               <Icons.Check

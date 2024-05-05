@@ -1,25 +1,35 @@
-import { getCurrentUser } from "@/lib/auth-opts";
-import { prisma } from "@/lib/db";
-import { type Metadata } from "next";
-import { redirect } from "next/navigation";
-import Balancer from "react-wrap-balancer";
-import ProjectForm from "../_components/forms/add-project";
-import { ProjectCard } from "../_components/project-card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { getCurrentUser } from '@/lib/auth-opts';
+import { prisma } from '@/lib/db';
+import { type Metadata } from 'next';
+import { redirect } from 'next/navigation';
+import Balancer from 'react-wrap-balancer';
+import ProjectForm from '../_components/forms/add-project';
+import { ProjectCard } from '../_components/project-card';
+import UpdateProject from '../_components/forms/update-project';
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: 'Projects',
   description: `List of projects.`,
 };
 
 const page = async () => {
   const user = await getCurrentUser();
-  if (!user) return redirect("/");
+  if (!user) return redirect('/');
 
   const projects = await prisma.project.findMany({
     where: {
       userId: user.id,
     },
   });
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -53,11 +63,24 @@ const page = async () => {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {projects.map((project) => (
             <li key={project.id}>
-              <ProjectCard
-                id={project.id}
-                primaryText={project.name}
-                secondaryText={project.description}
-              />
+              <Dialog>
+                <DialogTrigger asChild>
+                  <ProjectCard
+                    id={project.id}
+                    primaryText={project.name}
+                    secondaryText={project.description}
+                  />
+                </DialogTrigger>
+                <DialogContent className="max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Edit this Project</DialogTitle>
+                    <DialogDescription>
+                      Change details for this project.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <UpdateProject project={project} />
+                </DialogContent>
+              </Dialog>
             </li>
           ))}
         </ul>
