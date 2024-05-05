@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-import { useRouter } from "next/navigation";
-import { useTransition } from "react";
-import * as Icons from "@/components/ui/icons";
-import { signOut } from "next-auth/react";
+import * as Icons from '@/components/ui/icons';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useTransition } from 'react';
 
 export default function LogOutButtons() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function LogOutButtons() {
             try {
               await signOut();
             } catch (error) {
-              console.error("Error signing out", error);
+              console.error('Error signing out', error);
             }
           })
         }

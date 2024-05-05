@@ -1,11 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { useAutoAnimate } from '@formkit/auto-animate/react';
-import SectionWrapper from '../utils/section-wrapper';
-import SectionTitle from '../utils/section-title';
-import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
+import Link from 'next/link';
+import { useState } from 'react';
+import SectionTitle from '../utils/section-title';
+import SectionWrapper from '../utils/section-wrapper';
 
 type Props = {
   experiences: {
@@ -21,23 +20,22 @@ type Props = {
 
 export default function Experience({ experiences }: Props) {
   const [selectedOrg, setSelectedOrg] = useState<string>(
-    experiences[0].orgName
+    experiences.filter((exp) => exp.currentlyWorking === true || exp.endDate)[0]
+      .orgName
   );
-
-  const [parent] = useAutoAnimate();
 
   return (
     <SectionWrapper>
-      <div className="mb-16">
-        <SectionTitle title="Past Experiences" number={2} showNumber />
+      <div id="experience" className="mb-16">
+        <SectionTitle title="Past Experiences" showNumber />
       </div>
       <div className="flex flex-col lg:flex-row">
-        <div className="flex-1" ref={parent}>
+        <div className="flex-1">
           <ul className="list-none mx-0 mb-10 lg:mb-0 overflow-auto lg:overflow-hidden flex lg:block">
             {experiences.map((experience) => (
               <li key={experience.orgUrl} className="w-full font-mono">
                 <button
-                  className={`w-full flex text-left rounded-none border border-b-[1px] lg:border-none ${
+                  className={`w-full flex text-left font-semibold rounded-none border border-b-[1px] p-4 lg:border-none ${
                     selectedOrg === experience.orgName
                       ? 'bg-gradient text-[#bd66fffc] border border-gradient border-l-2'
                       : 'text-gray-500 bg-transparent border border-gray-600 border-l-[1px]'

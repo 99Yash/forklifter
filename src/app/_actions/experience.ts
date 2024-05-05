@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { getCurrentUser } from "@/lib/auth-opts";
-import { prisma } from "@/lib/db";
-import { experienceSchema } from "@/lib/schemas";
-import { revalidatePath } from "next/cache";
-import { z } from "zod";
+import { getCurrentUser } from '@/lib/auth-opts';
+import { prisma } from '@/lib/db';
+import { experienceSchema } from '@/lib/schemas';
+import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 
 export async function addExperience(input: z.infer<typeof experienceSchema>) {
   const user = await getCurrentUser();
@@ -14,7 +14,7 @@ export async function addExperience(input: z.infer<typeof experienceSchema>) {
       id: user?.id,
     },
   });
-  if (!dbUser) throw new Error("User not found");
+  if (!dbUser) throw new Error('User not found');
 
   await prisma.experience.create({
     data: {
@@ -29,4 +29,5 @@ export async function addExperience(input: z.infer<typeof experienceSchema>) {
     },
   });
   revalidatePath(`/dashboard/experiences`);
+  revalidatePath(`/${dbUser.username}`);
 }

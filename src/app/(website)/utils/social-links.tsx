@@ -9,7 +9,7 @@ type Props = {
 
 export default function SocialLinks({ github, linkedIn, twitter }: Props) {
   return (
-    <div className="absolute lg:fixed bottom-10 lg:bottom-0 w-full lg:w-auto flex lg:block">
+    <div className="lg:fixed bottom-10 lg:bottom-0 w-full lg:w-auto flex lg:block">
       <ul className="w-full ml-0 lg:ml-12 flex lg:block justify-center list-none">
         <li className="my-10 mx-10 lg:mx-0">
           {github && (

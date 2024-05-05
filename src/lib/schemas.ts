@@ -33,14 +33,9 @@ export const profileFormSchema = z.object({
   twitterUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   linkedinUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   oneLiner: z.string().min(1).max(100),
-  bio: z
-    .string()
-    .min(1, {
-      message: 'Please enter a bio.',
-    })
-    .max(300, {
-      message: 'Max character length (300) exceeded.',
-    }),
+  bio: z.string().max(400, {
+    message: 'Max character length (400) exceeded.',
+  }),
 });
 
 export const projectSchema = z.object({
@@ -86,7 +81,14 @@ export const ossSchema = z.object({
   orgUrl: z.string().url().min(1, {
     message: 'Org URL cannot be empty',
   }),
-  description: z.string().min(1).max(500),
+  description: z
+    .string()
+    .min(1, {
+      message: 'Description cannot be empty',
+    })
+    .max(400, {
+      message: 'Description should not exceed 400 characters',
+    }),
   tags: z.array(
     z.enum([
       'Feature',

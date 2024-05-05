@@ -59,4 +59,5 @@ export async function updateProfile({
     },
   });
   revalidatePath(`/dashboard`);
+  revalidatePath(`/${dbUser.username}`);
 }

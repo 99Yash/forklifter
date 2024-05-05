@@ -1,11 +1,22 @@
-import { data, features } from "@/config/marketing";
-import ReactWrapBalancer from "react-wrap-balancer";
+import { data, features } from '@/config/marketing';
+import Image from 'next/image';
+import GlowTop from '../../../../public/glow-top.svg';
+import ReactWrapBalancer from 'react-wrap-balancer';
 
 const Features = () => {
   return (
     <section
       className={`flex flex-col flex-wrap items-center justify-center gap-3 px-4 text-center lg:text-left `}
     >
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10">
+        <Image
+          src={GlowTop}
+          className="max-w-none"
+          width={1404}
+          height={658}
+          alt="Features Illustration"
+        />
+      </div>
       <p className={`text-lg font-medium text-blue-400 lg:self-center `}>
         {data.middle.highlight}
       </p>

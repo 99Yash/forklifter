@@ -1,22 +1,22 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import GithubProvider from 'next-auth/providers/github';
+import GoogleProvider from 'next-auth/providers/google';
 
-import { env } from "@/env.mjs";
+import { env } from '@/env.mjs';
 import {
   DefaultSession,
   getServerSession,
   type NextAuthOptions,
-} from "next-auth";
-import { prisma } from "./db";
+} from 'next-auth';
+import { prisma } from './db';
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface User {
     username: string;
     id: string;
   }
   interface Session extends DefaultSession {
-    user: User & DefaultSession["user"];
+    user: User & DefaultSession['user'];
   }
 }
 
@@ -33,7 +33,8 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/sign-in",
+    signIn: '/sign-in',
+    signOut: '/sign-out',
   },
   secret: env.NEXTAUTH_SECRET,
   callbacks: {
@@ -46,10 +47,10 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     redirect() {
-      return "/dashboard";
+      return '/dashboard';
     },
   },
-  debug: env.NODE_ENV === "development",
+  debug: env.NODE_ENV === 'development',
 };
 
 export const getAuthSession = () => getServerSession(authOptions);

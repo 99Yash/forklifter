@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/db';
-import type { Metadata, ResolvingMetadata } from 'next';
+import type { Metadata } from 'next';
 
 import Link from 'next/link';
 import Nav from './nav';
@@ -18,10 +18,7 @@ type Props = {
   params: { username: string };
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const username = params.username;
 
   const user = await prisma.user.findUnique({
@@ -40,7 +37,11 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${user.name}`,
+    title: {
+      absolute: `
+      ${user.name}'s Website
+      `,
+    },
     description: `${user.bio}`,
   };
 }
@@ -105,26 +106,38 @@ export default async function Website({
           {getInitials(user?.name ?? '')}
         </Link>
         <Nav
-          experiences={!!(user?.experiences && user?.experiences.length > 0)}
+          experiences={!!(user.experiences && user.experiences.length > 0)}
           contributions={
-            !!(user?.contributions && user?.contributions.length > 0)
+            !!(user.contributions && user.contributions.length > 0)
           }
-          testimonials={!!(user?.testimonials && user?.testimonials.length > 0)}
-          projects={!!(user?.projects && user?.projects.length > 0)}
+          testimonials={!!(user.testimonials && user.testimonials.length > 0)}
+          projects={!!(user.projects && user.projects.length > 0)}
         />
       </section>
-      <Hero />
-      <About about={user?.bio ?? ''} />
-      <Experience experiences={user.experiences} />
-      <Testimonials testimonials={user.testimonials} />
-      <OSS contributions={user.contributions} />
-      <Projects projects={user.projects} />
+      <Hero
+        name={user.name ?? ''}
+        oneLiner={user.oneLiner ?? ''}
+        mail={user.email ?? ''}
+      />
+      {user.bio && user.bio.length !== 0 && <About about={user?.bio ?? ''} />}
+      {user.experiences && user.experiences.length > 0 && (
+        <Experience experiences={user.experiences} />
+      )}
+      {user.testimonials && user.testimonials.length > 0 && (
+        <Testimonials testimonials={user.testimonials} />
+      )}
+      {user.contributions && user.contributions.length > 0 && (
+        <OSS contributions={user.contributions} />
+      )}
+      {user.projects && user.projects.length > 0 && (
+        <Projects projects={user.projects} />
+      )}
+      <Contact mail={user.email} />
       <SocialLinks
         github={user.githubUrl}
         linkedIn={user.linkedinUrl}
         twitter={user.twitterUrl}
       />
-      <Contact mail={user.email} />
     </div>
   );
 }

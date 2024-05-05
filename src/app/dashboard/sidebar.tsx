@@ -1,5 +1,6 @@
 'use client';
 
+import { Badge } from '@/components/ui/badge';
 import { workspaceItems } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -38,6 +39,14 @@ export function SidebarNav() {
               >
                 <Icon className={`mr-2 h-4 w-4`} />
                 <span>{item.title}</span>
+                {item.title === 'Analytics' && (
+                  <Badge
+                    variant={'secondary'}
+                    className="border-orange-300/20 bg-black hover:bg-black text-orange-400/80 ml-4"
+                  >
+                    Soon
+                  </Badge>
+                )}
               </span>
             </Link>
           )

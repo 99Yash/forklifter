@@ -6,7 +6,6 @@ import {
 } from '@/components/ui/card';
 import { getRandomPatternStyle } from '@/lib/random-pattern';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
 
 export function ProjectCard(props: {
   primaryText: string;
@@ -15,19 +14,19 @@ export function ProjectCard(props: {
 }) {
   const { primaryText, secondaryText, id } = props;
   return (
-    <Link href={`/`}>
-      <Card className="overflow-hidden">
-        <div className="h-32" style={getRandomPatternStyle(id)} />
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span>{primaryText}</span>
-          </CardTitle>
-          <CardDescription className="min-h-[2.5rem] max-h-[3rem]">
-            {secondaryText}
-          </CardDescription>
-        </CardHeader>
-      </Card>
-    </Link>
+    <Card className="overflow-hidden cursor-pointer">
+      <div className="h-32 line-clamp-3" style={getRandomPatternStyle(id)} />
+      <CardHeader>
+        <CardTitle className="flex items-center justify-between">
+          <span>{primaryText}</span>
+        </CardTitle>
+        <CardDescription
+          className={`min-h-[2.5rem] max-h-[2.8rem] line-clamp-3`}
+        >
+          {secondaryText}
+        </CardDescription>
+      </CardHeader>
+    </Card>
   );
 }
 

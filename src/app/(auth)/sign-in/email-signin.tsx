@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import * as Icons from "@/components/ui/icons";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import * as Icons from '@/components/ui/icons';
+import { Input } from '@/components/ui/input';
+import { useState } from 'react';
 
 export default function EmailSignIn() {
   const [isLoading, setIsLoading] = useState(false);

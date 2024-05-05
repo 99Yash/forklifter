@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { getCurrentUser } from "@/lib/auth-opts";
-import { prisma } from "@/lib/db";
-import { ossSchema } from "@/lib/schemas";
-import { revalidatePath } from "next/cache";
-import { z } from "zod";
+import { getCurrentUser } from '@/lib/auth-opts';
+import { prisma } from '@/lib/db';
+import { ossSchema } from '@/lib/schemas';
+import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 
 export async function addOSS(input: z.infer<typeof ossSchema>) {
   const user = await getCurrentUser();
@@ -14,12 +14,12 @@ export async function addOSS(input: z.infer<typeof ossSchema>) {
       id: user?.id,
     },
   });
-  if (!dbUser) throw new Error("User not found");
+  if (!dbUser) throw new Error('User not found');
 
   await prisma.contribution.create({
     data: {
       orgName: input.orgName,
-      orgUrl:input.orgUrl,
+      orgUrl: input.orgUrl,
       url: input.url,
       description: input.description,
       tags: input.tags,
@@ -27,4 +27,5 @@ export async function addOSS(input: z.infer<typeof ossSchema>) {
     },
   });
   revalidatePath(`/dashboard/oss`);
+  revalidatePath(`/${dbUser.username}`);
 }
