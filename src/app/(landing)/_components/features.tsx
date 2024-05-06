@@ -5,9 +5,9 @@ import GlowTop from '../../../../public/glow-top.svg';
 
 const Features = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between max-w-[90vw]">
       <section
-        className={`flex flex-col flex-wrap items-center justify-center gap-3 px-4 text-center max-w-6xl`}
+        className={`flex flex-col flex-wrap items-center gap-3 px-4 text-center max-w-6xl`}
       >
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10">
           <Image
@@ -32,7 +32,7 @@ const Features = () => {
         </div>
 
         <div className="flex flex-col gap-2 self-start">
-          <p className={`text-lg font-medium text-blue-400`}>
+          <p className={`text-lg font-semibold text-blue-400`}>
             {data.middle.highlight}
           </p>
           <h1
@@ -73,7 +73,7 @@ const Features = () => {
         </div>
       </section>
 
-      <div className="flex max-w-2xl mx-auto mt-16 md:w-5/12 lg:w-1/2 sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+      <div className="flex max-w-2xl mx-auto mt-16 md:w-5/12  sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
         <div className="z-10 flex-none max-w-3xl sm:max-w-5xl sm:hidden md:block lg:max-w-none">
           <Image
             src="/image.png"
