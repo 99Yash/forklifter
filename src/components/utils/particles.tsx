@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useRef, useEffect } from "react";
-import MousePosition from "../utils/mouse-position";
+import React, { useEffect, useRef } from 'react';
+import MousePosition from './mouse-position';
 
 interface ParticlesProps {
   className?: string;
@@ -15,7 +15,7 @@ interface ParticlesProps {
 }
 function hexToRgb(hex: string): number[] {
   // Remove the "#" character from the beginning of the hex color code
-  hex = hex.replace("#", "");
+  hex = hex.replace('#', '');
 
   // Convert the hex color code to an integer
   const hexInt = parseInt(hex, 16);
@@ -30,12 +30,12 @@ function hexToRgb(hex: string): number[] {
 }
 
 export const Particles: React.FC<ParticlesProps> = ({
-  className = "",
+  className = '',
   quantity = 30,
   staticity = 50,
   ease = 50,
   refresh = false,
-  color = "#ffffff",
+  color = '#ffffff',
   vx = 0,
   vy = 0,
 }) => {
@@ -46,18 +46,18 @@ export const Particles: React.FC<ParticlesProps> = ({
   const mousePosition = MousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  const dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
   useEffect(() => {
     if (canvasRef.current) {
-      context.current = canvasRef.current.getContext("2d");
+      context.current = canvasRef.current.getContext('2d');
     }
     initCanvas();
     animate();
-    window.addEventListener("resize", initCanvas);
+    window.addEventListener('resize', initCanvas);
 
     return () => {
-      window.removeEventListener("resize", initCanvas);
+      window.removeEventListener('resize', initCanvas);
     };
   }, []);
 
@@ -147,7 +147,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       context.current.translate(translateX, translateY);
       context.current.beginPath();
       context.current.arc(x, y, size, 0, 2 * Math.PI);
-      context.current.fillStyle = `rgba(${rgb.join(", ")}, ${alpha})`;
+      context.current.fillStyle = `rgba(${rgb.join(', ')}, ${alpha})`;
       context.current.fill();
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 
@@ -163,7 +163,7 @@ export const Particles: React.FC<ParticlesProps> = ({
         0,
         0,
         canvasSize.current.w,
-        canvasSize.current.h,
+        canvasSize.current.h
       );
     }
   };
@@ -182,7 +182,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     start1: number,
     end1: number,
     start2: number,
-    end2: number,
+    end2: number
   ): number => {
     const remapped =
       ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
@@ -201,7 +201,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       ];
       const closestEdge = edge.reduce((a, b) => Math.min(a, b));
       const remapClosestEdge = parseFloat(
-        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2),
+        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2)
       );
       if (remapClosestEdge > 1) {
         circle.alpha += 0.02;
@@ -242,7 +242,7 @@ export const Particles: React.FC<ParticlesProps> = ({
             translateY: circle.translateY,
             alpha: circle.alpha,
           },
-          true,
+          true
         );
       }
     });
