@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { addTestimonial } from "@/app/_actions/testimonial";
-import { Button } from "@/components/ui/button";
+import { addTestimonial } from '@/app/_actions/testimonial';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -17,17 +17,17 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { testimonialSchema } from "@/lib/schemas";
-import { catchError, cn } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
-import * as Icons from "@/components/ui/icons";
-import { Textarea } from "@/components/ui/textarea";
+} from '@/components/ui/form';
+import * as Icons from '@/components/ui/icons';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { testimonialSchema } from '@/lib/schemas';
+import { catchError } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 type Inputs = z.infer<typeof testimonialSchema>;
 const AddTestimonial = () => {
@@ -50,10 +50,10 @@ const AddTestimonial = () => {
             }
           }),
           {
-            loading: "Saving testimonial...",
-            success: "Testimonial saved successfully!",
-            error: "Failed to add testimonial.",
-          },
+            loading: 'Saving testimonial...',
+            success: 'Testimonial saved successfully!',
+            error: 'Failed to add testimonial.',
+          }
         );
         form.reset();
       } catch (err) {
