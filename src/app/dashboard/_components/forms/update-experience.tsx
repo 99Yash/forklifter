@@ -161,7 +161,7 @@ const UpdateExperience = ({
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea {...field} />
+                <Textarea rows={4} className="scrollbar-hide" {...field} />
               </FormControl>
               <FormDescription>Highlight your work here.</FormDescription>
               <FormMessage />
