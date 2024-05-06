@@ -13,7 +13,8 @@ const Hero = () => {
     >
       <Particles
         ease={20}
-        color="#84ba8b"
+        // color="#84ba8b"
+        color="#ffffff"
         vy={-0.15}
         vx={-0.15}
         quantity={40}
