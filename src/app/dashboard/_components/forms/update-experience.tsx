@@ -289,7 +289,7 @@ const UpdateExperience = ({
               />
             )}
             Save
-            <span className="sr-only">Add Experience</span>
+            <span className="sr-only">Edit Experience</span>
           </Button>
         </div>
       </form>

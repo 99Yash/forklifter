@@ -1,15 +1,14 @@
 import * as Icons from '@/components/ui/icons';
 
-export const OSSTAGS = {
-  FEATURE: 'Feature',
-  BUG: 'Bug',
-  ENHANCEMENT: 'Enhancement',
-  DOCUMENTATION: 'Documentation',
-  CHORE: 'Chore',
-  TEST: 'Test',
-  FIX: 'Fix',
-  OTHER: 'Other',
-} as const;
+export const OSSTAGS = [
+  'Feature',
+  'Bug',
+  'Documentation',
+  'Enhancement',
+  'Fix',
+  'Test',
+  'Other',
+] as const;
 
 export const workspaceItems = [
   {

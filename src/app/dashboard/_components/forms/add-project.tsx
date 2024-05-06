@@ -110,7 +110,7 @@ const AddProject = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Type Project name here." {...field} />
+                    <Input placeholder="Name of the project" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -123,10 +123,7 @@ const AddProject = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Type Project description here."
-                      {...field}
-                    />
+                    <Textarea placeholder="Project description." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -139,7 +136,7 @@ const AddProject = () => {
                 <FormItem>
                   <FormLabel>Code</FormLabel>
                   <FormControl>
-                    <Input placeholder="Type github URL here." {...field} />
+                    <Input placeholder="Source code URL." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -152,7 +149,7 @@ const AddProject = () => {
                 <FormItem>
                   <FormLabel>URL</FormLabel>
                   <FormControl>
-                    <Input placeholder="Type Project URL here." {...field} />
+                    <Input placeholder="Project URL." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
