@@ -25,7 +25,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
-import { tech } from '@/lib/constants';
+import { OSSTAGS } from '@/lib/constants';
 import { projectSchema } from '@/lib/schemas';
 import { catchError, cn, manualDialogClose } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -195,16 +195,16 @@ const UpdateProject = ({ project }: { project: Inputs & { id: string } }) => {
                     <CommandInput placeholder="Search / scroll..." />
                     <CommandEmpty>Nothing found.</CommandEmpty>
                     <CommandGroup>
-                      {tech.map((t) => (
+                      {OSSTAGS.map((t) => (
                         <CommandItem
-                          value={t.label}
-                          key={t.value}
+                          value={t}
+                          key={t}
                           onSelect={() => {
                             form.setValue(
                               'techStack',
-                              field.value.includes(t.value)
-                                ? field.value.filter((v) => v !== t.value)
-                                : [...field.value, t.value],
+                              field.value.includes(t)
+                                ? field.value.filter((v) => v !== t)
+                                : [...field.value, t],
                               {
                                 shouldValidate: true,
                                 shouldDirty: true,
@@ -216,12 +216,12 @@ const UpdateProject = ({ project }: { project: Inputs & { id: string } }) => {
                           <Icons.Check
                             className={cn(
                               'mr-2 h-4 w-4',
-                              field.value.includes(t.value)
+                              field.value.includes(t)
                                 ? 'opacity-100'
                                 : 'opacity-0'
                             )}
                           />
-                          {t.label}
+                          {t}
                         </CommandItem>
                       ))}
                     </CommandGroup>

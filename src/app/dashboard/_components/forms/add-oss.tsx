@@ -3,6 +3,13 @@
 import { addOSS } from '@/app/_actions/oss';
 import { Button } from '@/components/ui/button';
 import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/components/ui/command';
+import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -21,14 +28,20 @@ import {
 } from '@/components/ui/form';
 import * as Icons from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
+import { OSSTAGS } from '@/lib/constants';
 import { ossSchema } from '@/lib/schemas';
+import { catchError, cn, manualDialogClose } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
-import { catchError, manualDialogClose } from '../../../../lib/utils';
 
 type Inputs = z.infer<typeof ossSchema>;
 
@@ -120,7 +133,7 @@ const AddOSS = () => {
                   <FormControl>
                     <Textarea
                       rows={4}
-                      placeholder="Infisical opened an issue to have the ability to create multiple organizations under the same account and switch between them seamlessly without logging in to different accounts, So shot a PR adding that feature within a day and got it merged!"
+                      placeholder="<XYZ> opened an issue to have the ability to create multiple organizations under the same account and switch between them seamlessly without logging in to different accounts, So shot a PR adding that feature within a day and got it merged!"
                       {...field}
                     />
                   </FormControl>
@@ -143,6 +156,79 @@ const AddOSS = () => {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="tags"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Tech Stack</FormLabel>
+                  <Popover modal>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant="outline"
+                          role="combobox"
+                          className={cn(
+                            'w-[200px] justify-between',
+                            !field.value && 'text-muted-foreground'
+                          )}
+                        >
+                          {field.value && field.value.length > 0
+                            ? field.value[0] +
+                              (field.value.length > 1
+                                ? ' +' + (field.value.length - 1) + ' more'
+                                : '')
+                            : 'Select Tech Stack'}
+                          <Icons.ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[200px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
+                      <Command>
+                        <CommandInput placeholder="Search / scroll..." />
+                        <CommandEmpty>Nothing found.</CommandEmpty>
+                        <CommandGroup>
+                          {OSSTAGS.map((t) => (
+                            <CommandItem
+                              value={t}
+                              key={t}
+                              onSelect={() => {
+                                form.setValue(
+                                  'tags',
+                                  field.value.includes(t)
+                                    ? field.value.filter((v) => v !== t)
+                                    : [...field.value, t],
+                                  {
+                                    shouldValidate: true,
+                                    shouldDirty: true,
+                                    shouldTouch: true,
+                                  }
+                                );
+                              }}
+                            >
+                              <Icons.Check
+                                className={cn(
+                                  'mr-2 h-4 w-4',
+                                  field.value.includes(t)
+                                    ? 'opacity-100'
+                                    : 'opacity-0'
+                                )}
+                              />
+                              {t}
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>
+                    This is the tech stack that will be shown next to this
+                    project.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

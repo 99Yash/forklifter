@@ -70,14 +70,10 @@ model User {
 
 model Testimonial {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
-  // Name of the employer / client (eg. Robert Crawford)
-  author      String
-  // LinkedIn or Twitter or anything for the contact of the Author
-  authorUrl   String
-  // Designation of the employer / client (eg. Ex-Engineering Manager & Sr. Computer Scientist @ Adobe California)
-  designation String
-  // Message from the employer / client
-  message     String
+  author      String // Name of the employer / client (eg. Robert Crawford)
+  authorUrl   String   // LinkedIn or Twitter or anything for the contact of the Author
+  designation String // Designation of the employer / client (eg. Ex-Engineering Manager & Sr. Computer Scientist @ Adobe California)
+  message     String 
   userId      String @db.ObjectId
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -87,13 +83,23 @@ model Contribution {
   orgName     String
   orgUrl      String
   description String
-  //OSSTags have been defined to be a specific set of Strings in constants.ts
-  tags        String[] //add an enum for this
-  // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
-  url         String
+  tags        Tag[] 
+  url         String // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
   userId      String   @db.ObjectId
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+enum Tag {
+  Feature
+  Bug
+  Enhancement
+  Documentation
+  Chore
+  Test
+  Fix
+  Other
+}
+
 
 model Project {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
