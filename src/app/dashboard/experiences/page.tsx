@@ -1,19 +1,28 @@
-import { getCurrentUser } from "@/lib/auth-opts";
-import { prisma } from "@/lib/db";
-import { type Metadata } from "next";
-import { redirect } from "next/navigation";
-import Balancer from "react-wrap-balancer";
-import AddExperience from "../_components/forms/add-experience";
-import { ProjectCard } from "../_components/project-card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { getCurrentUser } from '@/lib/auth-opts';
+import { prisma } from '@/lib/db';
+import { type Metadata } from 'next';
+import { redirect } from 'next/navigation';
+import Balancer from 'react-wrap-balancer';
+import AddExperience from '../_components/forms/add-experience';
+import UpdateExperience from '../_components/forms/update-experience';
+import { ProjectCard } from '../_components/project-card';
 
 export const metadata: Metadata = {
-  title: "Experiences",
+  title: 'Experiences',
   description: `Add experiences here.`,
 };
 
 const page = async () => {
   const user = await getCurrentUser();
-  if (!user) return redirect("/");
+  if (!user) return redirect('/');
 
   const experiences = await prisma.experience.findMany({
     where: {
@@ -56,11 +65,24 @@ const page = async () => {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {experiences.map((experience) => (
             <li key={experience.id}>
-              <ProjectCard
-                id={experience.id}
-                primaryText={experience.position}
-                secondaryText={experience.orgName}
-              />
+              <Dialog>
+                <DialogTrigger asChild>
+                  <ProjectCard
+                    id={experience.id}
+                    primaryText={experience.position}
+                    secondaryText={experience.orgName}
+                  />
+                </DialogTrigger>
+                <DialogContent className="max-w-[550px]">
+                  <DialogHeader>
+                    <DialogTitle>Edit this Experience</DialogTitle>
+                    <DialogDescription>
+                      Change details for this experience
+                    </DialogDescription>
+                  </DialogHeader>
+                  <UpdateExperience experience={experience} />
+                </DialogContent>
+              </Dialog>
             </li>
           ))}
         </ul>

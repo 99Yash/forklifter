@@ -11,16 +11,16 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import * as Icons from '@/components/ui/icons';
-import { toast } from 'sonner';
-import { profileFormSchema } from '@/lib/schemas';
-import { Textarea } from '@/components/ui/textarea';
-import { useTransition } from 'react';
-import { catchError } from '@/lib/utils';
 import { updateProfile } from '@/app/_actions/profile';
+import * as Icons from '@/components/ui/icons';
+import { Textarea } from '@/components/ui/textarea';
+import { profileFormSchema } from '@/lib/schemas';
+import { catchError } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -84,7 +84,7 @@ export function ProfileForm({
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <div className="flex flex-col w-full lg:flex-row gap-2">
+        <div className="flex flex-col w-full md:flex-row gap-2">
           <FormField
             control={form.control}
             name="displayName"
@@ -109,7 +109,7 @@ export function ProfileForm({
               <FormItem className="flex-1">
                 <FormLabel className="flex gap-2 items-end">
                   Email
-                  <Icons.Mail className="h-4 w-4 text-gray-500" />
+                  <Icons.MailSearch className="h-4 w-4 text-gray-500" />
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -126,7 +126,7 @@ export function ProfileForm({
             )}
           />
         </div>
-        <div className="flex flex-col lg:flex-row gap-2 lg:items-center">
+        <div className="flex flex-col md:flex-row gap-2 lg:items-center">
           <FormField
             control={form.control}
             name="username"

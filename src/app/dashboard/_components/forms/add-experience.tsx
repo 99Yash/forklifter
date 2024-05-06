@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { addExperience } from "@/app/_actions/experience";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import { addExperience } from '@/app/_actions/experience';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
@@ -19,24 +19,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import * as Icons from "@/components/ui/icons";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import * as Icons from '@/components/ui/icons';
+import { Input } from '@/components/ui/input';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Textarea } from "@/components/ui/textarea";
-import { experienceSchema } from "@/lib/schemas";
-import { catchError, cn, manualDialogClose } from "@/lib/utils";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { add, format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
-import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { z } from "zod";
+} from '@/components/ui/popover';
+import { Textarea } from '@/components/ui/textarea';
+import { experienceSchema } from '@/lib/schemas';
+import { catchError, cn, manualDialogClose } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { add, format } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
+import { useState, useTransition } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 type Inputs = z.infer<typeof experienceSchema>;
 
@@ -63,16 +63,16 @@ const AddExperience = () => {
             }
           }),
           {
-            loading: "Adding experience...",
-            success: "Experience added successfully!",
-            error: "Failed to add experience.",
-          },
-          );
-          form.reset();
-          manualDialogClose()
-        } catch (err) {
-          catchError(err)
-        }
+            loading: 'Adding experience...',
+            success: 'Experience added successfully!',
+            error: 'Failed to add experience.',
+          }
+        );
+        form.reset();
+        manualDialogClose();
+      } catch (err) {
+        catchError(err);
+      }
     });
   }
 
@@ -144,9 +144,7 @@ const AddExperience = () => {
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
-                  <FormDescription>
-                    Highlight your work here.
-                  </FormDescription>
+                  <FormDescription>Highlight your work here.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -158,18 +156,22 @@ const AddExperience = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Joined</FormLabel>
-                    <Popover modal open={startDatePickerOpen} onOpenChange={setStartDatePickerOpen}>
+                    <Popover
+                      modal
+                      open={startDatePickerOpen}
+                      onOpenChange={setStartDatePickerOpen}
+                    >
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
-                            variant={"outline"}
+                            variant={'outline'}
                             className={cn(
-                              "w-[240px] pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground",
+                              'w-[240px] pl-3 text-left font-normal',
+                              !field.value && 'text-muted-foreground'
                             )}
                           >
                             {field.value ? (
-                              format(field.value, "PPP")
+                              format(field.value, 'PPP')
                             ) : (
                               <span>Pick a date</span>
                             )}
@@ -177,19 +179,18 @@ const AddExperience = () => {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="fixed w-auto p-0" align="start">
+                      <PopoverContent
+                        className="fixed w-auto p-0"
+                        align="start"
+                      >
                         <Calendar
                           mode="single"
                           selected={field.value}
-                          onSelect={
-                            (date) => {
-                              field.onChange(date);
-                              setStartDatePickerOpen(false);
-                            }
-                          }
-                          disabled={(date) =>
-                            date > new Date()
-                          }
+                          onSelect={(date) => {
+                            field.onChange(date);
+                            setStartDatePickerOpen(false);
+                          }}
+                          disabled={(date) => date > new Date()}
                         />
                       </PopoverContent>
                     </Popover>
@@ -203,18 +204,21 @@ const AddExperience = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Left</FormLabel>
-                    <Popover open={endDatePickerOpen} onOpenChange={setEndDatePickerOpen}>
+                    <Popover
+                      open={endDatePickerOpen}
+                      onOpenChange={setEndDatePickerOpen}
+                    >
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
-                            variant={"outline"}
+                            variant={'outline'}
                             className={cn(
-                              "w-[240px] pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground",
+                              'w-[240px] pl-3 text-left font-normal',
+                              !field.value && 'text-muted-foreground'
                             )}
                           >
                             {field.value ? (
-                              format(field.value, "PPP")
+                              format(field.value, 'PPP')
                             ) : (
                               <span>Pick a date</span>
                             )}
@@ -222,25 +226,26 @@ const AddExperience = () => {
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
-                      <PopoverContent className="fixed w-auto p-0" align="start">
+                      <PopoverContent
+                        className="fixed w-auto p-0"
+                        align="start"
+                      >
                         <Calendar
                           mode="single"
                           selected={field.value}
-                          onSelect={
-                            (date) => {
-                              field.onChange(date);
-                              setEndDatePickerOpen(false);
-                            }
-                          }
+                          onSelect={(date) => {
+                            field.onChange(date);
+                            setEndDatePickerOpen(false);
+                          }}
                           disabled={(date) =>
-                      // future dates up to 6 months, in case employee knows he'll be leaving in advance
-                      date > add(new Date(), { months: 6 })
-                    }
+                            // future dates up to 6 months, in case employee knows he'll be leaving in advance
+                            date > add(new Date(), { months: 6 })
+                          }
                         />
                       </PopoverContent>
                     </Popover>
                     <FormDescription>
-Leave untouched if you&apos;re still working.
+                      Leave untouched if you&apos;re still working.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
