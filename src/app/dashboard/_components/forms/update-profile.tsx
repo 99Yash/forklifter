@@ -24,6 +24,8 @@ import { z } from 'zod';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
+const timezones = Intl.supportedValuesOf('timeZone');
+
 export function ProfileForm({
   user,
 }: {
@@ -38,6 +40,8 @@ export function ProfileForm({
     linkedinUrl: string | null;
   };
 }) {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -53,23 +57,10 @@ export function ProfileForm({
     mode: 'onChange',
   });
 
-  const [isPending, startTransition] = useTransition();
-
   function onSubmit(data: ProfileFormValues) {
     startTransition(async () => {
       try {
-        if (
-          data.displayName === user.name &&
-          data.username === user.username &&
-          data.email === user.email &&
-          data.bio === user.bio &&
-          data.oneLiner === user.oneLiner &&
-          data.twitterUrl === user.twitterUrl &&
-          data.githubUrl === user.githubUrl &&
-          data.linkedinUrl === user.linkedinUrl
-        ) {
-          return;
-        }
+        if (!form.formState.isDirty) return;
         await updateProfile(data);
         toast.success('Profile updated successfully!');
       } catch (error) {
@@ -84,7 +75,7 @@ export function ProfileForm({
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-6"
       >
-        <div className="flex flex-col w-full md:flex-row gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full gap-2">
           <FormField
             control={form.control}
             name="displayName"
@@ -107,7 +98,7 @@ export function ProfileForm({
             name="email"
             render={({ field }) => (
               <FormItem className="flex-1">
-                <FormLabel className="flex gap-2 items-end">
+                <FormLabel className="flex items-center gap-2">
                   Email
                   <Icons.MailSearch className="h-4 w-4 text-gray-500" />
                 </FormLabel>
@@ -131,7 +122,7 @@ export function ProfileForm({
             control={form.control}
             name="username"
             render={({ field }) => (
-              <FormItem className="flex-1">
+              <FormItem className="flex-1 shrink">
                 <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Input autoComplete="off" placeholder="ygkr" {...field} />
@@ -159,14 +150,14 @@ export function ProfileForm({
                 </FormControl>
                 <FormDescription className="flex gap-2 items-center">
                   <Icons.Info className="h-4 w-4" />
-                  Keep this really short.
+                  Keep this short.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        <div className="grid gap-2 grid-cols-3">
+        <div className="grid gap-2 grid-cols-1 md:grid-cols-3">
           <FormField
             control={form.control}
             name="linkedinUrl"
@@ -239,7 +230,7 @@ export function ProfileForm({
               <FormLabel>Bio</FormLabel>
               <FormControl>
                 <Textarea
-                  rows={4}
+                  rows={5}
                   placeholder="Hi, my name is Yash. I'm a full-stack developer building apps with TRPC and the new NextJS router."
                   {...field}
                 />

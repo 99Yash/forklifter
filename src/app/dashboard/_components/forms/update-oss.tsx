@@ -181,7 +181,7 @@ const UpdateOSS = ({ oss }: { oss: Inputs & { id: string } }) => {
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        'w-[200px] justify-between',
+                        'w-[400px] justify-between',
                         !field.value && 'text-muted-foreground'
                       )}
                     >
@@ -195,7 +195,7 @@ const UpdateOSS = ({ oss }: { oss: Inputs & { id: string } }) => {
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-[200px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
+                <PopoverContent className="w-[400px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
                   <Command>
                     <CommandInput placeholder="Search / scroll..." />
                     <CommandEmpty>Nothing found.</CommandEmpty>

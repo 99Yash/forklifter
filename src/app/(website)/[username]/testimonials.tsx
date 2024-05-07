@@ -1,6 +1,6 @@
-import SectionWrapper from '../utils/section-wrapper';
-import SectionTitle from '../utils/section-title';
 import Link from 'next/link';
+import SectionTitle from '../utils/section-title';
+import SectionWrapper from '../utils/section-wrapper';
 
 type Props = {
   testimonials: {
@@ -14,7 +14,7 @@ type Props = {
 export default function Testimonials({ testimonials }: Props) {
   return (
     <SectionWrapper>
-      <div className="mb-16">
+      <div id="testimonials" className="mb-16">
         <SectionTitle title="Testimonials" showNumber />
       </div>
       {testimonials.map((testimonial, index) => (

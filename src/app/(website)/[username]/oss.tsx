@@ -1,8 +1,7 @@
-import { Badge } from '@/components/ui/badge';
-import SectionTitle from '../utils/section-title';
-import SectionWrapper from '../utils/section-wrapper';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import SectionTitle from '../utils/section-title';
+import SectionWrapper from '../utils/section-wrapper';
 
 type Props = {
   contributions: {
@@ -59,6 +58,8 @@ export default function OSS({ contributions }: Props) {
                       }`}
                     >
                       {tag === 'Feature' && '✨ '}
+                      {tag === 'Documentation' && '📜 '}
+                      {tag === 'Fix' && '🔧 '}
                       {tag}
                     </p>
                   ))}
@@ -94,6 +95,8 @@ export default function OSS({ contributions }: Props) {
                       }`}
                     >
                       {tag === 'Feature' && '✨ '}
+                      {tag === 'Documentation' && '📜 '}
+                      {tag === 'Fix' && '🔧 '}
                       {tag}
                     </p>
                   ))}
