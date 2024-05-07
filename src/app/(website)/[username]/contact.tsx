@@ -4,7 +4,7 @@ import SectionWrapper from '../utils/section-wrapper';
 export default function Contact({ mail }: { mail: string }) {
   return (
     <SectionWrapper>
-      <div className="text-center">
+      <div id="contact" className="text-center">
         <h3 className="text-lg text-[#bd66fffc] font-mono mb-4">
           What&apos;s next?
         </h3>

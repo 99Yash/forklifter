@@ -6,16 +6,16 @@ type Props = {
 
 export default function Hero({ name, oneLiner, mail }: Props) {
   return (
-    <section className="mx-auto max-w-[90%] md:max-w-[80%] lg:max-w-[70%] flex flex-col justify-center h-[90vh]">
+    <section className="animate-fade-down mx-auto max-w-[90%] md:max-w-[80%] lg:max-w-[70%] flex flex-col gap-4 justify-center h-[90vh]">
       <div className="sm:ml-1 lg:ml-2">
-        <h1 className="font-mono sm:text-base lg:text-lg xl:text-xl font-light leading-[1.5] text-[#bd66fffc]">
+        <h1 className="font-mono sm:text-base lg:text-lg xl:text-xl font-light text-[#bd66fffc]">
           Hi, my name is
         </h1>
       </div>
-      <h1 className="sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl bg-gradient-to-l from-[#bd66fffc] to-gray-300 bg-clip-text text-transparent tracking-tighter font-semibold leading-[1.2]">
+      <h1 className="sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl bg-gradient-to-l from-[#bd66fffc] to-gray-300 bg-clip-text text-transparent tracking-tighter font-semibold">
         {name}
       </h1>
-      <h1 className="text-4xl lg:text-5xl md:w-4/5 font-semibold leading-[1.2] text-gray-400">
+      <h1 className="text-4xl lg:text-5xl md:w-4/5 font-semibold text-gray-400">
         {oneLiner}
       </h1>
       <div className="my-12">

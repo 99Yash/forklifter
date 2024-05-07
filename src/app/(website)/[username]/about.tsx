@@ -7,7 +7,7 @@ import SectionWrapper from '../utils/section-wrapper';
 export default function About({ about }: { about: string }) {
   return (
     <SectionWrapper>
-      <div className="mt-10">
+      <div id="about" className="mt-10">
         <SectionTitle title="About" showNumber />
       </div>
       <div className="flex flex-col lg:flex-row lg:max-w-2xl">
