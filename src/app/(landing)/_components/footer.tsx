@@ -1,5 +1,5 @@
-import { siteConfig } from "@/config/site";
-import Link from "next/link";
+import { siteConfig } from '@/config/site';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
           <div className="mt-8 hidden gap-2 md:order-1 md:mt-0 md:flex">
             <p className="text-center text-xs leading-6 text-gray-400">
-              &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
+              &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{' '}
               <Link
                 className="font-semibold text-blue-400"
                 href={siteConfig.links.twitter}
@@ -44,30 +44,30 @@ export default function Footer() {
               </Link>
             </p>
             <p className="text-center text-xs leading-6 text-gray-400">
-              Inspired by{" "}
+              Inspired by{' '}
               <Link
                 target="_blank"
                 className=" text-pink-300"
-                href={"https://acme-corp.jumr.dev"}
+                href={'https://acme-corp.jumr.dev'}
               >
                 Acme
-              </Link>{" "}
-              and{" "}
+              </Link>{' '}
+              and{' '}
               <Link
                 target="_blank"
                 className=" text-pink-300"
-                href={"https://highstorm.app/"}
+                href={'https://highstorm.app/'}
               >
                 Highstorm
               </Link>
               .
             </p>
             <p className="text-center text-xs leading-6 text-gray-400">
-              Components by{" "}
+              Components by{' '}
               <Link
                 target="_blank"
                 className="text-blue-400"
-                href={"https://twitter.com/shadcn"}
+                href={'https://twitter.com/shadcn'}
               >
                 shadcn
               </Link>
@@ -76,34 +76,34 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-4 text-xs text-gray-400 md:hidden">
-          &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{" "}
+          &copy; {new Date().getUTCFullYear()} All rights reserved. Built by{' '}
           <Link
             className="font-semibold text-blue-400"
             href={siteConfig.links.twitter}
           >
             Yash.
-          </Link>{" "}
-          Inspired by{" "}
+          </Link>{' '}
+          Inspired by{' '}
           <Link
             target="_blank"
             className=" text-pink-300"
-            href={"https://acme-corp.jumr.dev"}
+            href={'https://acme-corp.jumr.dev'}
           >
             Acme
-          </Link>{" "}
-          and{" "}
+          </Link>{' '}
+          and{' '}
           <Link
             target="_blank"
             className=" text-pink-300"
-            href={"https://highstorm.app/"}
+            href={'https://highstorm.app/'}
           >
             Highstorm
           </Link>
-          . Components by{" "}
+          . Components by{' '}
           <Link
             target="_blank"
             className="text-blue-400"
-            href={"https://twitter.com/shadcn"}
+            href={'https://twitter.com/shadcn'}
           >
             shadcn
           </Link>

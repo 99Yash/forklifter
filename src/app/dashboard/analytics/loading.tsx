@@ -17,7 +17,9 @@ const page = async () => {
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
         <div className="flex flex-col">
-          <h2 className="text-xl font-bold">{siteConfig.name} Analytics</h2>
+          <h2 className="text-xl font-bold font-title">
+            {siteConfig.name} Analytics
+          </h2>
           <p className="text-muted-foreground">
             Insights for the visits to your site.
           </p>

@@ -1,8 +1,8 @@
-import { type Metadata } from "next";
-import { ProjectCard } from "../_components/project-card";
+import { type Metadata } from 'next';
+import { ProjectCard } from '../_components/project-card';
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: 'Projects',
   description: `List of projects.`,
 };
 
@@ -10,7 +10,7 @@ const loading = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col">
-        <h2 className="text-xl font-bold">Account</h2>
+        <h2 className="text-xl font-bold font-title">Account</h2>
         <p className="text-muted-foreground">
           Manage you account details here.
         </p>

@@ -1,14 +1,14 @@
 'use client';
 
+import { env } from '@/env.mjs';
 import Balancer from 'react-wrap-balancer';
 import { ProjectCard } from './_components/project-card';
-import { env } from '@/env.mjs';
 
 export default function ErrorPage({ error }: { readonly error: Error }) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
-        <div className="flex flex-col">
+        <div className="flex flex-col font-title">
           <h2 className="text-xl font-bold text-red-400">
             Yash{`'`}s Workspace
           </h2>

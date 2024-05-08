@@ -1,6 +1,5 @@
 import { type Metadata } from 'next';
 import { ProjectCard } from '../_components/project-card';
-import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Open Source',
@@ -11,7 +10,7 @@ const loading = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col">
-        <h2 className="text-xl font-bold">Contributions</h2>
+        <h2 className="text-xl font-bold font-title">Contributions</h2>
         <p className="text-muted-foreground">
           Enlist your most important Open Source Contributions here.
         </p>

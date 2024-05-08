@@ -89,7 +89,7 @@ const AddProject = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="mt-4">Create a new Project</Button>
+        <Button className="mt-4">Add a new Project</Button>
       </DialogTrigger>
       <DialogContent className="max-w-[500px]">
         <DialogHeader>
@@ -123,7 +123,11 @@ const AddProject = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Project description." {...field} />
+                    <Textarea
+                      className="scrollbar-hide"
+                      placeholder="Project description."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

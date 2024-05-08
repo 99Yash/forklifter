@@ -132,6 +132,7 @@ const AddOSS = () => {
                   <FormLabel>Description</FormLabel>
                   <FormControl>
                     <Textarea
+                      className="scrollbar-hide"
                       rows={4}
                       placeholder="<XYZ> opened an issue to have the ability to create multiple organizations under the same account and switch between them seamlessly without logging in to different accounts, So shot a PR adding that feature within a day and got it merged!"
                       {...field}

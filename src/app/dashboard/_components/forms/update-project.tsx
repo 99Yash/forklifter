@@ -25,7 +25,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
-import { OSSTAGS } from '@/lib/constants';
+import { tech } from '@/lib/constants';
 import { projectSchema } from '@/lib/schemas';
 import { catchError, cn, manualDialogClose } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -129,6 +129,8 @@ const UpdateProject = ({ project }: { project: Inputs & { id: string } }) => {
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <Textarea
+                  className="scrollbar-hide"
+                  rows={6}
                   placeholder="Type Project description here."
                   {...field}
                 />
@@ -195,16 +197,16 @@ const UpdateProject = ({ project }: { project: Inputs & { id: string } }) => {
                     <CommandInput placeholder="Search / scroll..." />
                     <CommandEmpty>Nothing found.</CommandEmpty>
                     <CommandGroup>
-                      {OSSTAGS.map((t) => (
+                      {tech.map((t) => (
                         <CommandItem
-                          value={t}
-                          key={t}
+                          value={t.value}
+                          key={t.value}
                           onSelect={() => {
                             form.setValue(
                               'techStack',
-                              field.value.includes(t)
-                                ? field.value.filter((v) => v !== t)
-                                : [...field.value, t],
+                              field.value.includes(t.value)
+                                ? field.value.filter((v) => v !== t.value)
+                                : [...field.value, t.value],
                               {
                                 shouldValidate: true,
                                 shouldDirty: true,
@@ -216,12 +218,12 @@ const UpdateProject = ({ project }: { project: Inputs & { id: string } }) => {
                           <Icons.Check
                             className={cn(
                               'mr-2 h-4 w-4',
-                              field.value.includes(t)
+                              field.value.includes(t.value)
                                 ? 'opacity-100'
                                 : 'opacity-0'
                             )}
                           />
-                          {t}
+                          {t.label}
                         </CommandItem>
                       ))}
                     </CommandGroup>

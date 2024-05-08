@@ -148,6 +148,7 @@ const UpdateTestimonial = ({
               <FormLabel>Message</FormLabel>
               <FormControl>
                 <Textarea
+                  className="scrollbar-hide"
                   rows={7}
                   {...field}
                   placeholder="One of the best engineers I've worked with. I've never seen someone deliver multiple long-term features for our product at such an astonishing speed. He estimates tasks in hours, not days, which is a testament to his work ethic. He also has a keen eye for design and prioritizes the user's perspective before releasing anything to production. Despite the time zone difference, he consistently ensures that our working hours overlap..."

@@ -230,6 +230,7 @@ export function ProfileForm({
               <FormLabel>Bio</FormLabel>
               <FormControl>
                 <Textarea
+                  className="scrollbar-hide"
                   rows={5}
                   placeholder="Hi, my name is Yash. I'm a full-stack developer building apps with TRPC and the new NextJS router."
                   {...field}
@@ -239,7 +240,7 @@ export function ProfileForm({
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending || !form.formState.isDirty}>
           {isPending && (
             <Icons.Spinner
               className="mr-2 h-4 w-4 animate-spin"

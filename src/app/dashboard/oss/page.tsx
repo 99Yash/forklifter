@@ -34,7 +34,7 @@ const page = async () => {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
-          <h2 className="text-xl font-bold">Contributions</h2>
+          <h2 className="text-xl font-bold font-title">Contributions</h2>
           <p className="text-muted-foreground">
             Enlist your most important Open Source Contributions here.
           </p>

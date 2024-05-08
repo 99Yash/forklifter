@@ -142,7 +142,7 @@ const AddExperience = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Textarea {...field} />
+                    <Textarea className="scrollbar-hide" {...field} />
                   </FormControl>
                   <FormDescription>Highlight your work here.</FormDescription>
                   <FormMessage />

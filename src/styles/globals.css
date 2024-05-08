@@ -74,6 +74,6 @@
     @apply bg-background text-foreground;
   }
   ::selection {
-    @apply bg-teal-500/10 text-teal-300;
+    @apply bg-teal-500/10 text-teal-500;
   }
 }
