@@ -9,12 +9,18 @@ import LogLib from '@loglib/tracker/react';
 import { Analytics } from '@vercel/analytics/react';
 import { type Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import '../styles/globals.css';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
+});
+
+const calcom = localFont({
+  src: '../../public/fonts/CalSans-SemiBold.woff2',
+  variable: '--font-title',
 });
 
 export const metadata: Metadata = {
@@ -86,7 +92,11 @@ export default function RootLayout({
       </head>
 
       <body
-        className={cn('min-h-screen font-sans antialiased', inter.variable)}
+        className={cn(
+          'min-h-screen font-sans antialiased',
+          inter.variable,
+          calcom.variable
+        )}
       >
         <Providers>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

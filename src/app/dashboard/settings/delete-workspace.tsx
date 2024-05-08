@@ -1,28 +1,30 @@
-import { Button } from "@/components/ui/button";
-import * as Icons from "@/components/ui/icons";
+'use client';
+
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogClose,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
+import * as Icons from '@/components/ui/icons';
 
 const DeleteWorkspace = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{`Danger Zone`}</CardTitle>
+        <CardTitle className="font-title">{`Danger Zone`}</CardTitle>
         <CardDescription className="flex items-center">
           Delete Workspace
         </CardDescription>
@@ -30,11 +32,14 @@ const DeleteWorkspace = () => {
       <CardFooter className="flex justify-between">
         <Dialog>
           <DialogTrigger asChild>
-            <Button variant="destructive">{`Delete Workspace`}</Button>
+            <Button
+              variant="destructive"
+              className="font-title"
+            >{`Delete Workspace`}</Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{`Delete Workspace`}</DialogTitle>
+              <DialogTitle className="font-title">{`Delete Workspace`}</DialogTitle>
               <DialogDescription>{`Are you really sure? This is going to delete all data associated.`}</DialogDescription>
             </DialogHeader>
             <div className="flex items-center font-bold text-destructive">

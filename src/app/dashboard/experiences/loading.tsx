@@ -1,9 +1,9 @@
-import { getCurrentUser } from "@/lib/auth-opts";
-import { type Metadata } from "next";
-import { ProjectCard } from "../_components/project-card";
+import { getCurrentUser } from '@/lib/auth-opts';
+import { type Metadata } from 'next';
+import { ProjectCard } from '../_components/project-card';
 
 export const metadata: Metadata = {
-  title: "Experiences",
+  title: 'Experiences',
   description: `Add experiences here.`,
 };
 
@@ -13,7 +13,7 @@ const page = async () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col">
-        <h2 className="text-xl font-bold">Experiences</h2>
+        <h2 className="text-xl font-bold font-title">Experiences</h2>
         <p className="text-muted-foreground">
           Highlight previous work experiences here.
         </p>

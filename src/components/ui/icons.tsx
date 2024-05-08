@@ -27,6 +27,7 @@ export const Dashboard = Lucide.Activity;
 export const Ellipsis = Lucide.MoreVertical;
 export const Flame = Lucide.Flame;
 export const GITMerge = Lucide.GitMerge;
+export const Github = Lucide.Github;
 export const Help = Lucide.HelpCircle;
 export const Info = Lucide.Info;
 export const Key = Lucide.Key;

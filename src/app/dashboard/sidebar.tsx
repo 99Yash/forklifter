@@ -22,9 +22,9 @@ export function SidebarNav() {
               key={index}
               href={item.href === '/' ? '/dashboard' : `/dashboard${item.href}`}
               className={cn(
-                `flex min-w-full items-center gap-2 text-sm font-semibold text-muted-foreground duration-200 hover:text-accent-foreground ${
+                `group flex min-w-full items-center gap-2 text-sm font-semibold text-muted-foreground duration-200 hover:text-accent-foreground ${
                   pathname === `/dashboard${item.href}`
-                    ? 'text-accent-foreground '
+                    ? 'text-accent-foreground'
                     : 'transform hover:scale-105'
                 } `
               )}
@@ -37,7 +37,9 @@ export function SidebarNav() {
                     : 'transparent'
                 )}
               >
-                <Icon className={`mr-2 h-4 w-4`} />
+                <Icon
+                  className={`mr-2 h-4 w-4 group-hover:animate-spin-once`}
+                />
                 <span>{item.title}</span>
                 {item.title === 'Analytics' && (
                   <Badge

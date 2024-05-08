@@ -1,16 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ossSchema } from '@/lib/schemas';
 import Link from 'next/link';
+import { z } from 'zod';
 import SectionTitle from '../utils/section-title';
 import SectionWrapper from '../utils/section-wrapper';
 
 type Props = {
-  contributions: {
-    description: string;
-    orgName: string;
-    orgUrl: string;
-    tags: string[];
-    url: string;
-  }[];
+  contributions: z.infer<typeof ossSchema>[];
 };
 
 export default function OSS({ contributions }: Props) {

@@ -58,6 +58,23 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        shine: {
+          '0%': {
+            backgroundPosition: '0 0',
+            opacity: '0',
+          },
+          '1%': {
+            backgroundPosition: '0 0',
+            opacity: '1',
+          },
+          '80%': {
+            backgroundPosition: '180% 0',
+            opacity: '1',
+          },
+          '85%': {
+            opacity: '0',
+          },
+        },
         'fade-up': {
           '0%': {
             opacity: '0',
@@ -101,12 +118,17 @@ module.exports = {
           },
         },
       },
+      fontFamily: {
+        title: ['var(--font-title)'],
+      },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-down': 'fade-down 0.5s',
         'fade-up': 'fade-up 0.5s',
         'background-shine': 'background-shine 2s linear infinite',
+        'button-shine': 'shine .6s linear forwards',
+        'spin-once': 'spin .33s ease-in',
       },
     },
   },

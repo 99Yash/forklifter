@@ -1,3 +1,4 @@
+import { PrimaryButton, SecondaryButton } from '@/components/ui/button';
 import * as Icons from '@/components/ui/icons';
 import { data } from '@/config/marketing';
 import { siteConfig } from '@/config/site';
@@ -50,9 +51,13 @@ const Hero = () => {
       >
         <Link
           href={'/sign-in'}
-          className="flex items-center justify-center gap-2 rounded-md bg-gray-300 px-6 py-2 font-medium text-gray-900 hover:bg-slate-300/90 sm:mx-6 md:mx-0"
+          className="flex items-center justify-center gap-2 rounded-md sm:mx-6 md:mx-0"
         >
-          Get going <Icons.ArrowRight className="h-4 w-4" />
+          <PrimaryButton
+            shiny
+            label="Get Going"
+            IconRight={Icons.ChevronRight}
+          />
         </Link>
         <Link
           href={siteConfig.links.github}
@@ -60,7 +65,7 @@ const Hero = () => {
           rel="noopener noreferrer"
           className="flex flex-1 justify-center rounded-md px-4 py-2 text-gray-300"
         >
-          Star on GitHub
+          <SecondaryButton label="Star on GitHub" IconLeft={Icons.Github} />
         </Link>
       </div>
     </section>

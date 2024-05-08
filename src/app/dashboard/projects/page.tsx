@@ -12,8 +12,8 @@ import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import ProjectForm from '../_components/forms/add-project';
-import { ProjectCard } from '../_components/project-card';
 import UpdateProject from '../_components/forms/update-project';
+import { ProjectCard } from '../_components/project-card';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -34,7 +34,7 @@ const page = async () => {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
-          <h2 className="text-xl font-bold">Projects</h2>
+          <h2 className="text-xl font-bold font-title">Projects</h2>
           <p className="text-muted-foreground">
             All your projects show up here.
           </p>

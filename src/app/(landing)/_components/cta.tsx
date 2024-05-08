@@ -1,3 +1,4 @@
+import { PrimaryButton } from '@/components/ui/button';
 import * as Icons from '@/components/ui/icons';
 import { data } from '@/config/marketing';
 import Link from 'next/link';
@@ -28,9 +29,9 @@ const Cta = () => {
       </div>
       <Link
         href={'/sign-in'}
-        className="flex items-center justify-center gap-2 rounded-md bg-gray-300/90 px-6 py-2 font-medium text-gray-950 hover:bg-slate-300/90 "
+        className="flex items-center justify-center gap-2 rounded-md"
       >
-        Click this button <Icons.ArrowRight className="h-4 w-4" />
+        <PrimaryButton shiny label="Start Now" IconRight={Icons.ChevronRight} />
       </Link>
     </section>
   );
