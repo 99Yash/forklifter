@@ -33,8 +33,23 @@ export default async function Page() {
       twitterUrl: true,
       githubUrl: true,
       linkedinUrl: true,
+      techStack: true,
     },
   });
+
+  if (!prismaUser)
+    return (
+      <Card className="flex flex-col gap-4">
+        <CardHeader className="flex flex-col">
+          <CardTitle className="text-xl font-bold font-title">
+            {user.name?.split(' ')[0]}&apos;s Workspace
+          </CardTitle>
+          <CardDescription className="text-muted-foreground font-title">
+            Could not fetch data for your workspace
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    );
 
   return (
     <Card className="flex flex-col gap-4">
@@ -47,7 +62,7 @@ export default async function Page() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ProfileForm user={prismaUser!} />
+        <ProfileForm user={prismaUser} />
       </CardContent>
     </Card>
   );

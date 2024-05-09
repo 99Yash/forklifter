@@ -14,6 +14,7 @@ import * as Icons from '@/components/ui/icons';
 import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/config/site';
 import React from 'react';
+import { toast } from 'sonner';
 import { useCopyToClipboard } from '../utils/use-clipboard';
 
 type Groups = Array<{
@@ -77,17 +78,29 @@ export default function CommandMenu({
         {
           title: 'GitHub',
           icon: <Icons.Github className="mr-3 h-4 w-4" />,
-          onSelect: () => openLink(github),
+          onSelect: () => {
+            github.length > 0
+              ? openLink(github)
+              : toast.error('No GitHub link found');
+          },
         },
         {
           title: 'Linkedin',
           icon: <Icons.LinkedIn className="mr-3 h-4 w-4" />,
-          onSelect: () => openLink(linkedIn),
+          onSelect: () => {
+            linkedIn.length > 0
+              ? openLink(linkedIn)
+              : toast.error('No LinkedIn link found');
+          },
         },
         {
           title: 'Twitter',
           icon: <Icons.Twitter className="mr-3 h-4 w-4" />,
-          onSelect: () => openLink(twitter),
+          onSelect: () => {
+            twitter.length > 0
+              ? openLink(twitter)
+              : toast.error('No Twitter link found');
+          },
         },
       ],
     },

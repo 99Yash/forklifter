@@ -9,6 +9,7 @@ import { z } from 'zod';
 export async function addProject(input: z.infer<typeof projectSchema>) {
   const user = await getCurrentUser();
   if (!user) throw new Error("You're not authenticated.");
+
   const dbUser = await prisma.user.findUnique({
     where: {
       id: user?.id,

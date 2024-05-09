@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { stackl } from './constants';
 
 export const profileFormSchema = z.object({
   displayName: z
@@ -29,56 +30,7 @@ export const profileFormSchema = z.object({
       required_error: 'Please select an email to display.',
     })
     .email(),
-  stack: z
-    .array(
-      z.enum([
-        'Angular',
-        'AWS',
-        'Bun',
-        'CSS',
-        'Deno',
-        'DigitalOcean',
-        'Django',
-        'Docker',
-        'Drizzle',
-        'Express',
-        'ESLint',
-        'Fastify',
-        'Figma',
-        'Firebase',
-        'Flask',
-        'Framer',
-        'Gatsby',
-        'Go',
-        'GraphQL',
-        'HTML',
-        'JavaScript',
-        'Kubernetes',
-        'Laravel',
-        'MongoDB',
-        'MySQL',
-        'NestJS',
-        'NextJS',
-        'NodeJS',
-        'NuxtJS',
-        'PostgreSQL',
-        'Prisma',
-        'Python',
-        'React',
-        'Redis',
-        'Rust',
-        'Spring',
-        'SQLite',
-        'Svelte',
-        'TailwindCSS',
-        'TRPC',
-        'TypeScript',
-        'Vite',
-        'Vue',
-        'WebRTC',
-      ])
-    )
-    .default([]),
+  techStack: z.array(z.enum(stackl)).default([]),
   githubUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   twitterUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   linkedinUrl: z.string().url({ message: 'Please enter a valid URL.' }),

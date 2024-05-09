@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { stackl } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { motion, useInView } from 'framer-motion';
 import * as React from 'react';
@@ -23,9 +24,10 @@ type Props = {
   twitter: string;
   linkedin: string;
   github: string;
+  techStack: Array<(typeof stackl)[number]>;
 };
 
-const AboutMe = ({ bio, twitter, linkedin, github }: Props) => {
+const AboutMe = ({ bio, twitter, linkedin, github, techStack }: Props) => {
   const cardsRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(cardsRef, { once: true, margin: '-100px' });
 
@@ -57,7 +59,7 @@ const AboutMe = ({ bio, twitter, linkedin, github }: Props) => {
         About Me
       </motion.h2>
       <motion.div
-        className="mt-12 grid gap-4 md:grid-cols-2"
+        className="mt-12 grid gap-4 md:grid-cols-2 items-stretch"
         initial={{
           y: 40,
           opacity: 0,
@@ -73,14 +75,12 @@ const AboutMe = ({ bio, twitter, linkedin, github }: Props) => {
         {/* <div className="grid gap-4 "> */}
         {/* <LocationCard /> */}
         {/* </div> */}
-        <StacksCard />
-        <div className="grid gap-4">
-          <Connect twitter={twitter} linkedin={linkedin} github={github} />
-          {/* <div className='grid gap-4 [@media(min-width:450px)]:grid-cols-2'>
+        <StacksCard stacks={techStack} />
+        <Connect twitter={twitter} linkedin={linkedin} github={github} />
+        {/* <div className='grid gap-4 [@media(min-width:450px)]:grid-cols-2'>
             <CodingHours />
             <FavouriteFramework />
           </div> */}
-        </div>
       </motion.div>
       <div className="my-8 flex items-center justify-center">
         <Button variant={'outline'} className={cn('rounded-xl')}>
