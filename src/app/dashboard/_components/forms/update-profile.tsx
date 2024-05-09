@@ -9,18 +9,18 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-
-import { updateProfile } from '@/app/_actions/profile';
 import * as Icons from '@/components/ui/icons';
+import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { profileFormSchema } from '@/lib/schemas';
 import { catchError } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
+
+import { updateProfile } from '@/app/_actions/profile';
+import { profileFormSchema } from '@/lib/schemas';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -53,6 +53,8 @@ export function ProfileForm({
       twitterUrl: user.twitterUrl ?? '',
       githubUrl: user.githubUrl ?? '',
       linkedinUrl: user.linkedinUrl ?? '',
+      //TODO change to techStack
+      stack: [],
     },
     mode: 'onChange',
   });
@@ -116,6 +118,77 @@ export function ProfileForm({
               </FormItem>
             )}
           />
+          {/* <FormField
+            control={form.control}
+            name="stack"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Tech Stack</FormLabel>
+                <Popover modal>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        className={cn(
+                          'w-[200px] justify-between',
+                          !field.value && 'text-muted-foreground'
+                        )}
+                      >
+                        {field.value.length
+                          ? field.value[0] +
+                            (field.value.length > 1
+                              ? ' +' + (field.value.length - 1) + ' more'
+                              : '')
+                          : 'Select Tech Stack'}
+                        <Icons.ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[200px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
+                    <Command>
+                      <CommandInput
+                        placeholder={`Search ${tech.length} stacks`}
+                      />
+                      <CommandEmpty>Nothing found.</CommandEmpty>
+                      <CommandGroup>
+                        {profileFormSchema.shape.stack.e.map((t) => (
+                          <CommandItem
+                            value={t.value}
+                            key={t.value}
+                            onSelect={() => {
+                              form.setValue(
+                                'stack',
+                                field.value.includes(t.value)
+                                  ? field.value.filter((v) => v !== t.value)
+                                  : [...field.value, t.value],
+                                {
+                                  shouldValidate: true,
+                                  shouldDirty: true,
+                                  shouldTouch: true,
+                                }
+                              );
+                            }}
+                          >
+                            <Icons.Check
+                              className={cn(
+                                'mr-2 h-4 w-4',
+                                field.value.includes(t.value)
+                                  ? 'opacity-100'
+                                  : 'opacity-0'
+                              )}
+                            />
+                            {t.label}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <FormMessage />
+              </FormItem>
+            )}
+          /> */}
         </div>
         <div className="flex flex-col md:flex-row gap-2 lg:items-center">
           <FormField

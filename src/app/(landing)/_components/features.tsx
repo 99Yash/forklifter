@@ -1,7 +1,6 @@
 import { data, features } from '@/config/marketing';
 import Image from 'next/image';
 import ReactWrapBalancer from 'react-wrap-balancer';
-import GlowTop from '../../../../public/glow-top.svg';
 
 const Features = () => {
   return (
@@ -9,15 +8,6 @@ const Features = () => {
       <section
         className={`flex flex-col flex-wrap items-center gap-3 px-4 text-center max-w-6xl`}
       >
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10">
-          <Image
-            src={GlowTop}
-            className="max-w-none"
-            width={1404}
-            height={658}
-            alt="Glow Top"
-          />
-        </div>
         <div className="flex max-w-2xl mx-auto mt-16 md:w-5/12 lg:w-1/2 sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="z-10 flex-none max-w-3xl sm:max-w-5xl sm:block md:hidden lg:max-w-none">
             <Image

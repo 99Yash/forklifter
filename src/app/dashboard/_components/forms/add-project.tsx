@@ -188,7 +188,9 @@ const AddProject = () => {
                     </PopoverTrigger>
                     <PopoverContent className="w-[200px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
                       <Command>
-                        <CommandInput placeholder="Search / scroll..." />
+                        <CommandInput
+                          placeholder={`Search ${tech.length} stacks`}
+                        />
                         <CommandEmpty>Nothing found.</CommandEmpty>
                         <CommandGroup>
                           {tech.map((t) => (
