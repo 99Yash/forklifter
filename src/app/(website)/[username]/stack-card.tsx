@@ -10,8 +10,12 @@ type Props = {
 };
 
 const StacksCard = ({ stacks }: Props) => {
-  const firstHalf = stacksArr.slice(0, Math.ceil(stacks.length / 2));
-  const secondHalf = stacksArr.slice(Math.ceil(stacks.length / 2));
+  const firstHalf = stacksArr
+    .filter((stack, i) => stacks.includes(stack.label))
+    .slice(0, Math.ceil(stacks.length / 2));
+  const secondHalf = stacksArr
+    .filter((stack, i) => stacks.includes(stack.label))
+    .slice(Math.ceil(stacks.length / 2), stacks.length);
 
   return (
     <div className="flex flex-col gap-2 overflow-hidden rounded-xl p-4 shadow-feature-card-dark lg:p-6">
@@ -30,7 +34,7 @@ const StacksCard = ({ stacks }: Props) => {
       >
         {firstHalf.map((stack, i) => {
           const Icon = stack.icon;
-          return <Icon key={i} className="h-7 w-7 opacity-70" />;
+          return <Icon key={stack.label} className="h-7 w-7 opacity-70" />;
         })}
       </Marquee>
       <Marquee
@@ -42,10 +46,9 @@ const StacksCard = ({ stacks }: Props) => {
       >
         {secondHalf.map((stack, i) => {
           const Icon = stack.icon;
-          return <Icon className="h-7 w-7 opacity-70" key={stack.label} />;
+          return <Icon key={stack.label} className="h-7 w-7 opacity-70" />;
         })}
       </Marquee>
-      {stacks.length},{firstHalf.length},{secondHalf.length}
     </div>
   );
 };
