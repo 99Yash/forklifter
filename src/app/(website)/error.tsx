@@ -24,7 +24,7 @@ const Error = ({ error }: { readonly error: Error }) => {
         priority
       />
       <div className="space-y-4 px-2 py-8">
-        <h1 className="text-2xl font-bold">Something went wrong!</h1>
+        <h1 className="text-2xl font-bold font-title">Something went wrong!</h1>
         {env.NODE_ENV === 'development' && (
           <p className="break-words p-4">{error.message}</p>
         )}

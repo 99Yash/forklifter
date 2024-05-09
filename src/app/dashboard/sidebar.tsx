@@ -9,12 +9,11 @@ import { usePathname } from 'next/navigation';
 export function SidebarNav() {
   const path = usePathname();
 
-  const items = workspaceItems;
   const pathname = path === '/dashboard' ? '/dashboard/' : path;
 
   return (
     <nav className="flex flex-col items-start gap-2">
-      {items.map((item, index) => {
+      {workspaceItems.map((item, index) => {
         const Icon = item.icon;
         return (
           item.href && (

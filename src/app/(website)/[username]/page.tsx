@@ -1,18 +1,13 @@
 import { prisma } from '@/lib/db';
 import type { Metadata } from 'next';
 
-import Link from 'next/link';
-import Nav from './nav';
-import Hero from './hero';
-import About from './about';
+import { siteConfig } from '@/config/site';
+import { env } from '@/env.mjs';
 import { notFound, redirect } from 'next/navigation';
-import Experience from './experiences';
-import Testimonials from './testimonials';
-import { getInitials } from '@/lib/utils';
-import OSS from './oss';
-import Projects from './projects';
-import SocialLinks from '../utils/social-links';
-import Contact from './contact';
+import AboutMe from './about-me';
+import FeaturedProjects from './featured-projects';
+import Header from './header';
+import Hero from './hero';
 
 type Props = {
   params: { username: string };
@@ -39,10 +34,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: {
       absolute: `
-      ${user.name}'s Website
-      `,
+      ${user.name} • ${siteConfig.name}`,
     },
     description: `${user.bio}`,
+    metadataBase: new URL(
+      env.NODE_ENV === 'development'
+        ? `http://localhost:3000/${username}`
+        : `https://${siteConfig.url}${username}`
+    ),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    keywords: [
+      `${user.name}`,
+      `${user.bio}`,
+      'Website',
+      `${siteConfig.name}`,
+      'Developer',
+    ],
   };
 }
 
@@ -97,47 +114,36 @@ export default async function Website({
   if (!user) redirect(notFound());
 
   return (
-    <div className="bg-gradient-to-r from-black to-gradient overflow-hidden">
-      <section className="min-h-[10vh] flex w-full justify-between items-baseline sm:px-6 md:px-8 lg:px-10 xl:px-12 py-8">
-        <Link
-          href={`/${user?.username}}`}
-          className="text-3xl cursor-pointer text-[#bd66fffc] font-semibold font-serif"
-        >
-          {getInitials(user?.name ?? '')}
-        </Link>
-        <Nav
-          experiences={!!(user.experiences && user.experiences.length > 0)}
-          contributions={
-            !!(user.contributions && user.contributions.length > 0)
-          }
-          testimonials={!!(user.testimonials && user.testimonials.length > 0)}
-          projects={!!(user.projects && user.projects.length > 0)}
+    <>
+      <Header
+        experiences={user.experiences && user.experiences.length > 0}
+        contributions={user.contributions && user.contributions.length > 0}
+        testimonials={user.testimonials && user.testimonials.length > 0}
+        projects={user.projects && user.projects.length > 0}
+        name={user.name}
+        github={user.githubUrl ?? ''}
+        linkedIn={user.linkedinUrl ?? ''}
+        twitter={user.twitterUrl ?? ''}
+      />
+      <section
+        id="skip-nav"
+        className="mx-auto mb-16 max-w-5xl px-5 py-24 sm:px-8 space-y-24"
+      >
+        <Hero
+          mail={user.email}
+          name={user.name}
+          oneLiner={user.oneLiner ?? ''}
+        />
+        {user.projects && user.projects.length > 0 && (
+          <FeaturedProjects projects={user.projects} />
+        )}
+        <AboutMe
+          bio={user.bio ?? ''}
+          twitter={user.twitterUrl ?? ''}
+          linkedin={user.linkedinUrl ?? ''}
+          github={user.githubUrl ?? ''}
         />
       </section>
-      <Hero
-        name={user.name ?? ''}
-        oneLiner={user.oneLiner ?? ''}
-        mail={user.email ?? ''}
-      />
-      {user.bio && user.bio.length !== 0 && <About about={user?.bio ?? ''} />}
-      {user.experiences && user.experiences.length > 0 && (
-        <Experience experiences={user.experiences} />
-      )}
-      {user.testimonials && user.testimonials.length > 0 && (
-        <Testimonials testimonials={user.testimonials} />
-      )}
-      {user.contributions && user.contributions.length > 0 && (
-        <OSS contributions={user.contributions} />
-      )}
-      {user.projects && user.projects.length > 0 && (
-        <Projects projects={user.projects} />
-      )}
-      <Contact mail={user.email} />
-      <SocialLinks
-        github={user.githubUrl}
-        linkedIn={user.linkedinUrl}
-        twitter={user.twitterUrl}
-      />
-    </div>
+    </>
   );
 }
