@@ -21,14 +21,14 @@ export async function updateProfile({
 
   const dbUser = await prisma.user.findUnique({
     where: {
-      id: user?.id,
+      id: user.id,
     },
   });
 
   if (!dbUser) throw new Error('User not found');
 
   if (dbUser.username !== username) {
-    if (username === 'dashboard')
+    if (username === 'dashboard' || username.includes('dashboard/'))
       throw new Error('Username cannot be set as "dashboard"');
 
     const usernameExists = await prisma.user.findUnique({

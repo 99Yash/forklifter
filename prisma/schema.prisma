@@ -58,7 +58,7 @@ model User {
   twitterUrl    String?
   githubUrl     String?
   linkedinUrl   String?
-  // techStack     Stack[]      @default([])
+  techStack     Stack[]      @default([])
   accounts      Account[]
   sessions      Session[]
   experiences   Experience[]
@@ -69,52 +69,52 @@ model User {
   updatedAt     DateTime       @updatedAt
 }
 
-// enum Stack {
-//   Angular
-//   AWS
-//   Bun
-//   CSS
-//   Deno
-//   DigitalOcean
-//   Django
-//   Docker
-//   Drizzle
-//   Express
-//   ESLint
-//   Fastify
-//   Figma
-//   Firebase
-//   Flask 
-//   Framer
-//   Gatsby
-//   Go
-//   GraphQL
-//   HTML
-//   JavaScript
-//   Kubernetes
-//   Laravel
-//   MongoDB
-//   MySQL
-//   NestJS
-//   NextJS
-//   NodeJS
-//   NuxtJS
-//   PostgreSQL
-//   Prisma
-//   Python
-//   React
-//   Redis
-//   Rust
-//   Spring
-//   SQLite
-//   Svelte
-//   TailwindCSS
-//   TRPC
-//   TypeScript
-//   Vite
-//   Vue
-//   WebRTC
-// }
+enum Stack {
+  Angular
+  AWS
+  Bun
+  CSS
+  Deno
+  DigitalOcean
+  Django
+  Docker
+  Drizzle
+  Express
+  ESLint
+  Fastify
+  Figma
+  Firebase
+  Flask 
+  Framer
+  Gatsby
+  Go
+  GraphQL
+  HTML
+  JavaScript
+  Kubernetes
+  Laravel
+  MongoDB
+  MySQL
+  NestJS
+  NextJS
+  NodeJS
+  NuxtJS
+  PostgreSQL
+  Prisma
+  Python
+  React
+  Redis
+  Rust
+  Spring
+  SQLite
+  Svelte
+  TailwindCSS
+  TRPC
+  TypeScript
+  Vite
+  Vue
+  WebRTC
+}
 
 model Testimonial {
   id          String @id @default(auto()) @map("_id") @db.ObjectId

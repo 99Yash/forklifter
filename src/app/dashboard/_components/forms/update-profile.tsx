@@ -1,4 +1,5 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -12,7 +13,7 @@ import {
 import * as Icons from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { catchError } from '@/lib/utils';
+import { catchError, cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
@@ -20,6 +21,19 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { updateProfile } from '@/app/_actions/profile';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/components/ui/command';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { stackl } from '@/lib/constants';
 import { profileFormSchema } from '@/lib/schemas';
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -38,6 +52,7 @@ export function ProfileForm({
     twitterUrl: string | null;
     githubUrl: string | null;
     linkedinUrl: string | null;
+    techStack: Array<(typeof stackl)[number]>;
   };
 }) {
   const [isPending, startTransition] = useTransition();
@@ -53,8 +68,7 @@ export function ProfileForm({
       twitterUrl: user.twitterUrl ?? '',
       githubUrl: user.githubUrl ?? '',
       linkedinUrl: user.linkedinUrl ?? '',
-      //TODO change to techStack
-      stack: [],
+      techStack: [],
     },
     mode: 'onChange',
   });
@@ -118,77 +132,6 @@ export function ProfileForm({
               </FormItem>
             )}
           />
-          {/* <FormField
-            control={form.control}
-            name="stack"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>Tech Stack</FormLabel>
-                <Popover modal>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        className={cn(
-                          'w-[200px] justify-between',
-                          !field.value && 'text-muted-foreground'
-                        )}
-                      >
-                        {field.value.length
-                          ? field.value[0] +
-                            (field.value.length > 1
-                              ? ' +' + (field.value.length - 1) + ' more'
-                              : '')
-                          : 'Select Tech Stack'}
-                        <Icons.ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-[200px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
-                    <Command>
-                      <CommandInput
-                        placeholder={`Search ${tech.length} stacks`}
-                      />
-                      <CommandEmpty>Nothing found.</CommandEmpty>
-                      <CommandGroup>
-                        {profileFormSchema.shape.stack.e.map((t) => (
-                          <CommandItem
-                            value={t.value}
-                            key={t.value}
-                            onSelect={() => {
-                              form.setValue(
-                                'stack',
-                                field.value.includes(t.value)
-                                  ? field.value.filter((v) => v !== t.value)
-                                  : [...field.value, t.value],
-                                {
-                                  shouldValidate: true,
-                                  shouldDirty: true,
-                                  shouldTouch: true,
-                                }
-                              );
-                            }}
-                          >
-                            <Icons.Check
-                              className={cn(
-                                'mr-2 h-4 w-4',
-                                field.value.includes(t.value)
-                                  ? 'opacity-100'
-                                  : 'opacity-0'
-                              )}
-                            />
-                            {t.label}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
         </div>
         <div className="flex flex-col md:flex-row gap-2 lg:items-center">
           <FormField
@@ -202,8 +145,7 @@ export function ProfileForm({
                 </FormControl>
                 <FormDescription className="flex gap-2 items-center text-yellow-600">
                   <Icons.Warning className="h-4 w-4" />
-                  Existing links wont redirect you to a new page on changing the
-                  username.
+                  Your Analytics will be affected
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -230,7 +172,7 @@ export function ProfileForm({
             )}
           />
         </div>
-        <div className="grid gap-2 grid-cols-1 md:grid-cols-3">
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
           <FormField
             control={form.control}
             name="linkedinUrl"
@@ -290,6 +232,77 @@ export function ProfileForm({
                 <FormDescription className="flex gap-2 items-center">
                   Link to your Github profile.
                 </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="techStack"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Tech Stack</FormLabel>
+                <Popover modal>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        className={cn(
+                          'w-[200px] justify-between',
+                          !field.value && 'text-muted-foreground'
+                        )}
+                      >
+                        {field.value.length
+                          ? field.value[0] +
+                            (field.value.length > 1
+                              ? ' +' + (field.value.length - 1) + ' more'
+                              : '')
+                          : 'Select Tech Stack'}
+                        <Icons.ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[200px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
+                    <Command>
+                      <CommandInput
+                        placeholder={`Search ${stackl.length} stacks`}
+                      />
+                      <CommandEmpty>Nothing found.</CommandEmpty>
+                      <CommandGroup>
+                        {stackl.map((t) => (
+                          <CommandItem
+                            value={t}
+                            key={Math.random()}
+                            onSelect={() => {
+                              form.setValue(
+                                'techStack',
+                                field.value.includes(t)
+                                  ? field.value.filter((v) => v !== t)
+                                  : [...field.value, t],
+                                {
+                                  shouldValidate: true,
+                                  shouldDirty: true,
+                                  shouldTouch: true,
+                                }
+                              );
+                            }}
+                          >
+                            <Icons.Check
+                              className={cn(
+                                'mr-2 h-4 w-4',
+                                field.value.includes(t)
+                                  ? 'opacity-100'
+                                  : 'opacity-0'
+                              )}
+                            />
+                            {t}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
                 <FormMessage />
               </FormItem>
             )}

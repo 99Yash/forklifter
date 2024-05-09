@@ -137,12 +137,15 @@ export default async function Website({
         {user.projects && user.projects.length > 0 && (
           <FeaturedProjects projects={user.projects} />
         )}
-        <AboutMe
-          bio={user.bio ?? ''}
-          twitter={user.twitterUrl ?? ''}
-          linkedin={user.linkedinUrl ?? ''}
-          github={user.githubUrl ?? ''}
-        />
+        {user.bio && user.twitterUrl && user.githubUrl && user.linkedinUrl && (
+          <AboutMe
+            bio={user.bio}
+            techStack={user.techStack}
+            twitter={user.twitterUrl}
+            linkedin={user.linkedinUrl}
+            github={user.githubUrl}
+          />
+        )}
       </section>
     </>
   );

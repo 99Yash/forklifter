@@ -14,7 +14,7 @@ const Connect = ({ twitter, linkedin, github }: Props) => {
         <Icons.Link className="h-[18px] w-[18px]" />
         <h2 className="text-sm font-title">Connect</h2>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-2 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-2 h-full">
         {[twitter, linkedin, github].map((link, i) => {
           return (
             <Link
