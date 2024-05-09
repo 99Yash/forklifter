@@ -68,7 +68,7 @@ export function ProfileForm({
       twitterUrl: user.twitterUrl ?? '',
       githubUrl: user.githubUrl ?? '',
       linkedinUrl: user.linkedinUrl ?? '',
-      techStack: [],
+      techStack: user.techStack,
     },
     mode: 'onChange',
   });

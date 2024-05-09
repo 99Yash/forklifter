@@ -15,6 +15,7 @@ export async function updateProfile({
   githubUrl,
   twitterUrl,
   username,
+  techStack,
 }: z.infer<typeof profileFormSchema>) {
   const user = await getCurrentUser();
   if (!user) throw new Error("You're not authenticated.");
@@ -52,6 +53,7 @@ export async function updateProfile({
       twitterUrl,
       githubUrl,
       bio,
+      techStack,
     },
     where: {
       id: user.id,
