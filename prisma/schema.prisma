@@ -58,7 +58,7 @@ model User {
   twitterUrl    String?
   githubUrl     String?
   linkedinUrl   String?
-  techStack     Stack[]      
+  techStack     Stack[]      @default([])
   accounts      Account[]
   sessions      Session[]
   experiences   Experience[]
