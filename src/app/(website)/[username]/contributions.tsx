@@ -8,8 +8,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import * as Icons from '@/components/ui/icons';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { motion, useInView } from 'framer-motion';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { z } from 'zod';
+import { ossSchema } from '../../../lib/schemas';
 import { BlurImage } from '../utils/blur-image';
 import { placeholderImgs } from '../utils/placeholder-images';
 
@@ -25,61 +35,27 @@ const variants = {
 };
 
 type Props = {
-  projects: {
-    name: string;
-    githubUrl: string;
-    description: string;
-    webUrl: string;
-    techStack: string[];
-  }[];
+  contributions: Array<z.infer<typeof ossSchema>>;
 };
 
-export default function FeaturedProjects({ projects }: Props) {
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(projectsRef, {
+export default function Contributions({ contributions: oss }: Props) {
+  const ossRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ossRef, {
     once: false,
     margin: '-100px',
   });
   const [ogImageUrls, setOgImageUrls] = useState<Array<string>>([]);
-
-  // useEffect(() => {
-  //   const fetchOgImages = async () => {
-  //     const usedPlaceholders = new Set<string>();
-  //     for (const project of projects) {
-  //       let ogImageUrl =
-  //         (await getOgImageUrl(project.webUrl)) ??
-  //         (await getOgImageUrl(project.githubUrl));
-  //       if (!ogImageUrl) {
-  //         let placeholderUrl: string | null = null;
-  //         do {
-  //           placeholderUrl =
-  //             placeholderImgs[
-  //               Math.floor(Math.random() * placeholderImgs.length)
-  //             ];
-  //         } while (usedPlaceholders.has(placeholderUrl));
-
-  //         if (placeholderUrl) {
-  //           usedPlaceholders.add(placeholderUrl);
-  //           ogImageUrl = placeholderUrl;
-  //         }
-  //         setOgImageUrls((prev) => [...prev, placeholderUrl]);
-  //       }
-  //     }
-  //     setOgImageUrls((prev) => [...prev, ogImageUrl]);
-  //   };
-
-  //   fetchOgImages();
-  // }, [projects]);
 
   return (
     <motion.div
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
-      ref={projectsRef}
+      ref={ossRef}
       transition={{
         duration: 0.5,
       }}
+      id="contributions"
       className="relative my-24 will-change-[transform,opacity]"
     >
       <motion.h2
@@ -96,7 +72,7 @@ export default function FeaturedProjects({ projects }: Props) {
           duration: 0.3,
         }}
       >
-        Featured Projects
+        Open Source
       </motion.h2>
       <motion.div
         className="mt-12 gap-4 grid md:grid-cols-2"
@@ -112,7 +88,7 @@ export default function FeaturedProjects({ projects }: Props) {
           duration: 0.3,
         }}
       >
-        {projects.map((project, i) => (
+        {oss.map((contro, i) => (
           <div
             key={i}
             className="group rounded-xl px-2 py-4 shadow-feature-card-dark"
@@ -133,15 +109,51 @@ export default function FeaturedProjects({ projects }: Props) {
             />
             <div className="flex-1 px-2 py-4 flex flex-col justify-between gap-3">
               <div className="space-y-2 flex flex-col justify-between">
-                <h2 className="text-2xl font-bold bg-gradient-to-br from-slate-200 to-slate-700 bg-clip-text text-transparent">
-                  {project.name}
-                </h2>
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl items-center font-bold bg-gradient-to-br from-slate-200 to-slate-700 bg-clip-text text-transparent">
+                    {contro.orgName}
+                  </h2>
+                  <div className="self-end flex items-center gap-2">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Link
+                            target="_blank"
+                            className="p-2"
+                            href={contro.url}
+                          >
+                            <Icons.GitPr className="h-4 w-4 mr-2 text-slate-200" />
+                          </Link>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-slate-800 text-slate-300">
+                          <p>Go to PR</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Link
+                            target="_blank"
+                            className="p-2"
+                            href={contro.orgUrl}
+                          >
+                            <Icons.ExternalLink className="h-4 w-4 mr-2 text-slate-200" />
+                          </Link>
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-slate-800 text-slate-300">
+                          <p>Go to {contro.orgName}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
                 <p className="text-muted-foreground text-sm font-medium">
-                  {project.description}
+                  {contro.description}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
-                {project.techStack
+                {contro.tags
                   .sort((a, b) => a.localeCompare(b))
                   .map((t, index) => {
                     if (index < 5) {
@@ -154,7 +166,7 @@ export default function FeaturedProjects({ projects }: Props) {
                         </div>
                       );
                     } else if (index === 5) {
-                      const remaining = project.techStack.length - 5;
+                      const remaining = contro.tags.length - 5;
                       return (
                         <Dialog key={Math.random()}>
                           <DialogTrigger asChild>
@@ -168,11 +180,11 @@ export default function FeaturedProjects({ projects }: Props) {
                                 Tech Stack
                               </DialogTitle>
                               <DialogDescription>
-                                All Tech used for {project.name}
+                                Tags set for this contribution
                               </DialogDescription>
                             </DialogHeader>
                             <div className="flex flex-wrap gap-2">
-                              {project.techStack.map((t, index) => {
+                              {contro.tags.map((tag, index) => {
                                 return (
                                   <div
                                     key={Math.random()}

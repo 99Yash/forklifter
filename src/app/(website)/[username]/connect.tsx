@@ -30,7 +30,7 @@ const Connect = ({ twitter, linkedin, github }: Props) => {
                   <Icons.LinkedIn className="sm:h-10 sm:w-10 md:h-6 md:w-6" />
                 )}
                 {i === 2 && (
-                  <Icons.GitHub className="sm:h-10 sm:w-10 md:h-6 md:w-6" />
+                  <Icons.Github className="sm:h-10 sm:w-10 md:h-6 md:w-6" />
                 )}
               </div>
             </Link>

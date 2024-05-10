@@ -150,7 +150,7 @@ const AddOSS = () => {
               name="url"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Contribution URLs</FormLabel>
+                  <FormLabel>Contribution URL</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="https://github.com/org/repo/pulls/yourgithubusername"
@@ -166,7 +166,7 @@ const AddOSS = () => {
               name="tags"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Tech Stack</FormLabel>
+                  <FormLabel>Tags</FormLabel>
                   <Popover modal>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -183,7 +183,7 @@ const AddOSS = () => {
                               (field.value.length > 1
                                 ? ' +' + (field.value.length - 1) + ' more'
                                 : '')
-                            : 'Select Tech Stack'}
+                            : 'Pick Tags'}
                           <Icons.ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                       </FormControl>

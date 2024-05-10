@@ -71,7 +71,7 @@ const Header = ({
     >
       <Link href={'#'} className="flex items-center justify-center gap-1">
         <span className="sr-only">Homepage</span>
-        <h1 className="text-2xl font-serif font-semibold bg-gradient-to-b from-slate-200 to-slate-950 bg-clip-text text-transparent">
+        <h1 className="text-2xl font-serif font-semibold bg-gradient-to-b from-zinc-200 to-zinc-950 bg-clip-text text-transparent">
           {name ? getInitials(name) : '❖'}
         </h1>
       </Link>
@@ -87,6 +87,7 @@ const Header = ({
               ) {
                 return null;
               }
+              //  TODO change this to be reflected based on view position
               const isActive = link.hash.substring(1) === hashname;
 
               return (

@@ -7,11 +7,6 @@ type HeaderLinks = Array<{
 
 export const HEADER_LINKS: HeaderLinks = [
   {
-    icon: <Icons.UserCircle className="h-4 w-4" />,
-    hash: '#about',
-    text: 'About',
-  },
-  {
     icon: <Icons.Building className="h-4 w-4" />,
     hash: '#experiences',
     text: 'Experience',

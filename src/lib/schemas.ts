@@ -35,8 +35,8 @@ export const profileFormSchema = z.object({
   twitterUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   linkedinUrl: z.string().url({ message: 'Please enter a valid URL.' }),
   oneLiner: z.string().min(1).max(100),
-  bio: z.string().max(400, {
-    message: 'Max character length (400) exceeded.',
+  bio: z.string().max(500, {
+    message: 'Max character length (500) exceeded.',
   }),
 });
 
@@ -57,9 +57,30 @@ export const extendedProjectSchema = projectSchema.extend({
 });
 
 export const experienceSchema = z.object({
-  position: z.string().min(1).max(255),
-  description: z.string().min(1).max(1800),
-  orgName: z.string().min(1).max(25),
+  position: z
+    .string()
+    .min(1, {
+      message: 'Position must be between 1 and 25 characters',
+    })
+    .max(25, {
+      message: 'Position must be between 1 and 25 characters',
+    }),
+  description: z
+    .string()
+    .min(1, {
+      message: 'Description must be between 1 and 1800 characters',
+    })
+    .max(1800, {
+      message: 'Description must be between 1 and 1800 characters',
+    }),
+  orgName: z
+    .string()
+    .min(1, {
+      message: 'Organization name must be between 1 and 25 characters',
+    })
+    .max(25, {
+      message: 'Organization name must be between 1 and 25 characters',
+    }),
   orgUrl: z
     .string()
     .min(1, {
@@ -116,18 +137,18 @@ export const testimonialSchema = z.object({
   author: z
     .string()
     .min(1, {
-      message: 'Author must be between 1 and 20 characters',
+      message: 'Author must be between 1 and 14 characters',
     })
-    .max(20, {
-      message: 'Author must be between 1 and 20 characters',
+    .max(14, {
+      message: 'Author must be between 1 and 14 characters',
     }),
   designation: z
     .string()
     .min(1, {
-      message: 'Designation must be between 1 and 20 characters',
+      message: 'Designation must be between 1 and 50 characters',
     })
-    .max(80, {
-      message: 'Designation must be between 1 and 40 characters',
+    .max(50, {
+      message: 'Designation must be between 1 and 50 characters',
     }),
   authorUrl: z
     .string()
@@ -140,10 +161,10 @@ export const testimonialSchema = z.object({
   message: z
     .string()
     .min(1, {
-      message: 'Message must be between 1 and 200 characters',
+      message: 'Message must be between 1 and 350 characters',
     })
-    .max(1000, {
-      message: 'Message must be between 1 and 1000 characters',
+    .max(350, {
+      message: 'Message must be between 1 and 350 characters',
     }),
 });
 
