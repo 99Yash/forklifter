@@ -40,6 +40,7 @@ export default function Testimonials({ testimonials }: Props) {
       transition={{
         duration: 0.5,
       }}
+      id="testimonials"
       className="my-24 will-change-[transform,opacity]"
     >
       <motion.h2

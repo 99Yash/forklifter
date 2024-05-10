@@ -51,6 +51,7 @@ const AboutMe = ({ bio, twitter, linkedin, github, techStack }: Props) => {
       transition={{
         duration: 0.5,
       }}
+      id="contact"
       className="relative my-24 will-change-[transform,opacity]"
     >
       <motion.h2
