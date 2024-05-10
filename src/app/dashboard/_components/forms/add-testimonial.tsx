@@ -17,6 +17,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form';
 import * as Icons from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
@@ -88,6 +89,7 @@ const AddTestimonial = () => {
                   <FormControl>
                     <Input {...field} placeholder="Robert Crawford" />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -103,6 +105,7 @@ const AddTestimonial = () => {
                       placeholder="Sr. Computer Scientist at Adobe, California"
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -121,6 +124,7 @@ const AddTestimonial = () => {
                   <FormDescription>
                     A link that points to the author&apos;s page.
                   </FormDescription>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -138,6 +142,7 @@ const AddTestimonial = () => {
                       {...field}
                     />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />

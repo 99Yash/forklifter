@@ -21,7 +21,9 @@ export function ProjectCard(props: {
           <span>{primaryText}</span>
         </CardTitle>
         <CardDescription
-          className={`min-h-[2.5rem] max-h-[2.8rem] line-clamp-3`}
+          className={`min-h-[2.5rem] max-h-[2.8rem] line-clamp-3 ${
+            secondaryText.length > 40 ? 'text-ellipsis' : ''
+          }`}
         >
           {secondaryText}
         </CardDescription>

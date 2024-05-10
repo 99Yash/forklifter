@@ -31,6 +31,7 @@ export const ExternalLink = Lucide.ExternalLink;
 export const Flame = Lucide.Flame;
 export const GITMerge = Lucide.GitMerge;
 export const Github = Lucide.Github;
+export const GitPr = Lucide.GitPullRequestCreateArrow;
 export const Help = Lucide.HelpCircle;
 export const Home = Lucide.Home;
 export const Info = Lucide.Info;

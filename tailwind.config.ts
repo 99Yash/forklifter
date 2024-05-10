@@ -127,6 +127,11 @@ const config = {
           from: { transform: 'translateY(0)' },
           to: { transform: 'translateY(calc(-100% - var(--gap)))' },
         },
+        'text-gradient': {
+          to: {
+            backgroundPosition: '200% center',
+          },
+        },
       },
       fontFamily: {
         title: ['var(--font-title)'],
@@ -136,10 +141,11 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-down': 'fade-down 0.5s',
         'fade-up': 'fade-up 0.5s',
+        'text-gradient': 'text-gradient 1.5s linear infinite',
         'background-shine': 'background-shine 2s linear infinite',
         'button-shine': 'shine .6s linear forwards',
         'spin-once': 'spin .33s ease-in',
-        'marquee-left': 'marquee-left var(--duration, 30s) linear infinite',
+        'marquee-left': 'marquee-left var(--duration, 13s) linear infinite',
         'marquee-up': 'marquee-up var(--duration, 30s) linear infinite',
       },
       backgroundImage: {

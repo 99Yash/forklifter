@@ -1,13 +1,19 @@
 import { prisma } from '@/lib/db';
 import type { Metadata } from 'next';
 
+import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/config/site';
 import { env } from '@/env.mjs';
+import Image from 'next/image';
+import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+import GlowBottom from '../../../../public/images/blur-indigo.png';
 import AboutMe from './about-me';
+import Contributions from './contributions';
 import FeaturedProjects from './featured-projects';
 import Header from './header';
 import Hero from './hero';
+import Testimonials from './testimonials';
 
 type Props = {
   params: { username: string };
@@ -125,10 +131,7 @@ export default async function Website({
         linkedIn={user.linkedinUrl ?? ''}
         twitter={user.twitterUrl ?? ''}
       />
-      <section
-        id="skip-nav"
-        className="mx-auto mb-16 max-w-5xl px-5 py-24 sm:px-8 space-y-24"
-      >
+      <section className="mx-auto mb-16 max-w-5xl px-5 py-24 sm:px-8 space-y-36">
         <Hero
           mail={user.email}
           name={user.name}
@@ -137,6 +140,13 @@ export default async function Website({
         {user.projects && user.projects.length > 0 && (
           <FeaturedProjects projects={user.projects} />
         )}
+        {user.contributions && user.contributions.length > 0 && (
+          <Contributions contributions={user.contributions} />
+        )}
+        {user.testimonials && user.testimonials.length > 0 && (
+          <Testimonials testimonials={user.testimonials} />
+        )}
+        {/* {user.experiences && user.experiences.length > 0 && <Work />} */}
         {user.bio && user.twitterUrl && user.githubUrl && user.linkedinUrl && (
           <AboutMe
             bio={user.bio}
@@ -147,6 +157,30 @@ export default async function Website({
           />
         )}
       </section>
+      <footer className="relative flex flex-col justify-center items-center">
+        <div className="absolute bottom-0 -z-10 opacity-10">
+          <Image
+            src={GlowBottom}
+            className="max-w-[60vw]"
+            width={1404}
+            height={658}
+            alt="Glow Bottom"
+          />
+        </div>
+        <Separator className="w-1/5 bg-cyan-900" />
+        <div className="flex justify-center items-center py-8 text-sm text-gray-400 font-title">
+          <p>
+            &copy; {siteConfig.name}, {new Date().getFullYear()}. Built in the
+            open by
+          </p>
+          <Link
+            href={siteConfig.links.twitter}
+            className="text-blue-500 hover:underline"
+          >
+            <p className="ml-1">Yash</p>
+          </Link>
+        </div>
+      </footer>
     </>
   );
 }

@@ -49,12 +49,12 @@ const Hero = () => {
         style={{ animationDelay: '0.40s', animationFillMode: 'forwards' }}
       >
         <Link
-          href={'/sign-in'}
+          href={'/ygkr'}
           className="flex items-center justify-center gap-2 rounded-md sm:mx-6 md:mx-0"
         >
           <PrimaryButton
             shiny
-            label="Get Going"
+            label="Final View"
             IconRight={Icons.ChevronRight}
           />
         </Link>

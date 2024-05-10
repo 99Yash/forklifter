@@ -32,10 +32,17 @@ const StacksCard = ({ stacks }: Props) => {
         pauseOnHover
         className="py-4 mt-4 cursor-pointer"
       >
-        {firstHalf.map((stack, i) => {
-          const Icon = stack.icon;
-          return <Icon key={stack.label} className="h-7 w-7 opacity-70" />;
-        })}
+        {firstHalf.length > 10
+          ? firstHalf.map((stack, i) => {
+              const Icon = stack.icon;
+              return <Icon key={stack.label} className="h-7 w-7 opacity-70" />;
+            })
+          : [...firstHalf, ...firstHalf].map((stack, i) => {
+              const Icon = stack.icon;
+              return (
+                <Icon key={Math.random()} className="h-7 w-7 opacity-70" />
+              );
+            })}
       </Marquee>
       <Marquee
         gap="20px"
@@ -44,10 +51,17 @@ const StacksCard = ({ stacks }: Props) => {
         fade
         pauseOnHover
       >
-        {secondHalf.map((stack, i) => {
-          const Icon = stack.icon;
-          return <Icon key={stack.label} className="h-7 w-7 opacity-70" />;
-        })}
+        {secondHalf.length > 10
+          ? secondHalf.map((stack, i) => {
+              const Icon = stack.icon;
+              return <Icon key={stack.label} className="h-7 w-7 opacity-70" />;
+            })
+          : [...secondHalf, ...secondHalf].map((stack, i) => {
+              const Icon = stack.icon;
+              return (
+                <Icon key={Math.random()} className="h-7 w-7 opacity-70" />
+              );
+            })}
       </Marquee>
     </div>
   );

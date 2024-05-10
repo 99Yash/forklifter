@@ -2,16 +2,37 @@
 
 import { PrimaryButton } from '@/components/ui/button';
 import * as Icons from '@/components/ui/icons';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
+import { useRef } from 'react';
+
+const variants = {
+  initial: {
+    y: 40,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 export default function Hero(user: {
   name: string;
   oneLiner: string;
   mail: string;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: false, margin: '-100px' });
+
   return (
-    <div className="space-y-6 md:my-16">
+    <motion.div
+      className="space-y-6 md:my-16"
+      ref={containerRef}
+      initial="initial"
+      animate={isInView ? 'animate' : 'initial'}
+      variants={variants}
+    >
       <div className="flex flex-col-reverse gap-8 md:flex-row md:justify-between">
         <motion.div
           className="flex flex-col gap-4 will-change-[transform,opacity] md:max-w-xl"
@@ -43,6 +64,6 @@ export default function Hero(user: {
           </Link>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
