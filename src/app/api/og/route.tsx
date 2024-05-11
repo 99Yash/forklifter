@@ -9,10 +9,6 @@ export const runtime = 'edge';
 export async function GET(request: NextRequest) {
   const username = request.nextUrl.searchParams.get('username') ?? 'ygkr';
 
-  const interMedium = await fetch(
-    new URL('@/styles/Inter-Medium.ttf', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-
   const interBold = await fetch(
     new URL('@/styles/inter-bold.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer());
@@ -56,8 +52,8 @@ export async function GET(request: NextRequest) {
         height: 630,
         fonts: [
           {
-            name: 'Inter Medium',
-            data: interMedium,
+            name: 'Inter Bold',
+            data: interBold,
             style: 'normal',
           },
         ],
@@ -83,18 +79,18 @@ export async function GET(request: NextRequest) {
         >
           {user.oneLiner}
         </p>
-        <p tw="absolute bottom-2 self-center text-xs">{siteConfig.name}</p>
+        <p
+          style={{ fontFamily: 'Inter Semibold' }}
+          tw="absolute bottom-2 self-center text-xs"
+        >
+          {siteConfig.name}
+        </p>
       </div>
     ),
     {
       width: 1200,
       height: 630,
       fonts: [
-        {
-          name: 'Inter Medium',
-          data: interMedium,
-          style: 'normal',
-        },
         {
           name: 'Inter Bold',
           data: interBold,
