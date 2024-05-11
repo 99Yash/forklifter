@@ -13,10 +13,6 @@ export async function GET(request: NextRequest) {
     new URL('@/styles/inter-bold.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer());
 
-  const interSemibold = await fetch(
-    new URL('@/styles/inter-semibold.ttf', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-
   if (!username) {
     return new ImageResponse(<>Visit with &quot;?username=vercel&quot;</>, {
       width: 1200,
@@ -74,13 +70,13 @@ export async function GET(request: NextRequest) {
         </h1>
         <p
           style={{
-            fontFamily: 'Inter Semibold',
+            fontFamily: 'Inter Bold',
           }}
         >
           {user.oneLiner}
         </p>
         <p
-          style={{ fontFamily: 'Inter Semibold' }}
+          style={{ fontFamily: 'Inter Bold' }}
           tw="absolute bottom-2 self-center text-xs"
         >
           {siteConfig.name}
@@ -94,11 +90,6 @@ export async function GET(request: NextRequest) {
         {
           name: 'Inter Bold',
           data: interBold,
-          style: 'normal',
-        },
-        {
-          name: 'Inter Semibold',
-          data: interSemibold,
           style: 'normal',
         },
       ],
