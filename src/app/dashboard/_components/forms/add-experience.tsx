@@ -43,6 +43,7 @@ type Inputs = z.infer<typeof experienceSchema>;
 const AddExperience = () => {
   const form = useForm<Inputs>({
     resolver: zodResolver(experienceSchema),
+    mode: 'onChange',
   });
 
   const [isPending, startTransition] = useTransition();
@@ -232,7 +233,9 @@ const AddExperience = () => {
                       >
                         <Calendar
                           mode="single"
-                          selected={field.value}
+                          selected={
+                            field.value === null ? undefined : field.value
+                          }
                           onSelect={(date) => {
                             field.onChange(date);
                             setEndDatePickerOpen(false);

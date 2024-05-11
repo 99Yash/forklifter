@@ -30,9 +30,9 @@ const Hero = () => {
       >
         <Badge />
       </div>
-      <div className=" flex flex-col flex-wrap gap-6 px-6 text-center lg:gap-3 lg:px-2">
+      <div className="flex flex-col flex-wrap gap-6 px-6 text-center lg:gap-3 lg:px-2">
         <h1
-          className={`animate-fade-down bg-gradient-to-r from-gray-500/90 via-gray-100/75 to-gray-500/80 bg-clip-text text-7xl font-bold tracking-tight text-transparent md:bg-gradient-to-r md:from-gray-500/90 md:via-gray-100/75 md:to-gray-500/90 md:text-8xl md:leading-[6.1rem] `}
+          className={`animate-fade-down bg-gradient-to-r from-gray-500/90 via-gray-100/75 to-gray-500/80 bg-clip-text text-7xl font-bold tracking-tight text-transparent md:bg-gradient-to-r md:from-gray-500/90 md:via-gray-100/75 md:to-gray-500/90 md:text-8xl md:leading-[6.1rem]`}
           style={{ animationDelay: '0.20s', animationFillMode: 'forwards' }}
         >
           <ReactWrapBalancer>{data.opening.heading}</ReactWrapBalancer>

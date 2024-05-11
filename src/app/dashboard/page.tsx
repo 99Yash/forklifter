@@ -1,3 +1,4 @@
+import { buttonVariants } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -5,9 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import * as Icons from '@/components/ui/icons';
 import { getCurrentUser } from '@/lib/auth-opts';
 import { prisma } from '@/lib/db';
+import { cn } from '@/lib/utils';
 import { type Metadata } from 'next';
+import Link from 'next/link';
 import { ProfileForm } from './_components/forms/update-profile';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -54,8 +58,19 @@ export default async function Page() {
   return (
     <Card className="flex flex-col gap-4">
       <CardHeader className="flex flex-col">
-        <CardTitle className="text-xl font-bold font-title">
+        <CardTitle className="text-xl font-bold font-title flex items-center gap-2">
           {user.name?.split(' ')[0]}&apos;s Workspace
+          <Link
+            href={`/${user.username}`}
+            target="_blank"
+            className={cn(
+              buttonVariants({ variant: 'outline' }),
+              'flex items-center gap-2 text-yellow-600 hover:bg-inherit hover:text-yellow-400 transition-colors duration-300'
+            )}
+          >
+            See your site
+            <Icons.ExternalLink className="h-4 w-4" />
+          </Link>
         </CardTitle>
         <CardDescription className="text-muted-foreground font-title">
           Edit your profile data to be reflected on your site

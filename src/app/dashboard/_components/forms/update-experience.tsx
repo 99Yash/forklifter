@@ -245,7 +245,7 @@ const UpdateExperience = ({
                   <PopoverContent className="fixed w-auto p-0" align="start">
                     <Calendar
                       mode="single"
-                      selected={field.value}
+                      selected={field.value === null ? undefined : field.value}
                       onSelect={(date) => {
                         field.onChange(date);
                         setEndDatePickerOpen(false);

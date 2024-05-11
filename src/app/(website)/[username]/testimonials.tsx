@@ -93,7 +93,7 @@ function TestimonialCard({ testimonial }: CardProps) {
         color="#726f6f"
         vy={-0.15}
         vx={-0.15}
-        quantity={10}
+        quantity={20}
         className="absolute inset-0 -z-10"
       />
       <div className="absolute right-5 top-0 h-px w-80 bg-gradient-to-l from-transparent via-white/30 via-10% to-transparent" />
@@ -101,7 +101,7 @@ function TestimonialCard({ testimonial }: CardProps) {
         className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
-						radial-gradient(190px circle at ${mouseX}px ${mouseY}px, rgba(105, 93, 109, 0.2), transparent 80%)
+						radial-gradient(240px circle at ${mouseX}px ${mouseY}px, rgba(105, 93, 109, 0.2), transparent 80%)
 					`,
         }}
       />

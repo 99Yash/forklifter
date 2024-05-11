@@ -34,7 +34,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Textarea } from '@/components/ui/textarea';
-import { tech } from '@/lib/constants';
+import { stacks, tech } from '@/lib/constants';
 import { projectSchema } from '@/lib/schemas';
 import { catchError, cn, manualDialogClose } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -193,16 +193,16 @@ const AddProject = () => {
                         />
                         <CommandEmpty>Nothing found.</CommandEmpty>
                         <CommandGroup>
-                          {tech.map((t) => (
+                          {stacks.map((t) => (
                             <CommandItem
                               value={t.label}
-                              key={t.value}
+                              key={t.label}
                               onSelect={() => {
                                 form.setValue(
                                   'techStack',
-                                  field.value.includes(t.value)
-                                    ? field.value.filter((v) => v !== t.value)
-                                    : [...field.value, t.value],
+                                  field.value.includes(t.label)
+                                    ? field.value.filter((v) => v !== t.label)
+                                    : [...field.value, t.label],
                                   {
                                     shouldValidate: true,
                                     shouldDirty: true,
@@ -214,7 +214,7 @@ const AddProject = () => {
                               <Icons.Check
                                 className={cn(
                                   'mr-2 h-4 w-4',
-                                  field.value.includes(t.value)
+                                  field.value.includes(t.label)
                                     ? 'opacity-100'
                                     : 'opacity-0'
                                 )}

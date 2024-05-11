@@ -39,15 +39,15 @@ type Props = {
 };
 
 const AboutMe = ({ bio, twitter, linkedin, github, techStack }: Props) => {
-  const cardsRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(cardsRef, { once: false, margin: '-100px' });
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: false, margin: '-100px' });
 
   return (
     <motion.div
       initial="initial"
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
-      ref={cardsRef}
+      ref={containerRef}
       transition={{
         duration: 0.5,
       }}
@@ -112,6 +112,7 @@ const AboutMe = ({ bio, twitter, linkedin, github, techStack }: Props) => {
                 return (
                   <Link
                     key={i}
+                    target="_blank"
                     href={link}
                     className="inline-flex items-center justify-center rounded-xl text-sm border border-white/10 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-4 py-5 transition-colors"
                   >
