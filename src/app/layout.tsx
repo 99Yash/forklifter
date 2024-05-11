@@ -23,6 +23,17 @@ const calcom = localFont({
   variable: '--font-title',
 });
 
+const haptik = localFont({
+  src: '../../public/fonts/GT-Haptik-Regular.ttf',
+  variable: '--font-google',
+});
+
+const haptikBold = localFont({
+  src: '../../public/fonts/GT-Haptik-Bold.ttf',
+  variable: '--font-gb',
+  weight: '800',
+});
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -95,7 +106,9 @@ export default function RootLayout({
         className={cn(
           'min-h-screen font-sans antialiased',
           inter.variable,
-          calcom.variable
+          calcom.variable,
+          haptik.variable,
+          haptikBold.variable
         )}
       >
         <Providers>

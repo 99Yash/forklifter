@@ -91,7 +91,7 @@ export default function Contributions({ contributions: oss }: Props) {
         {oss.map((contro, i) => (
           <div
             key={i}
-            className="group rounded-xl px-2 py-4 shadow-feature-card-dark"
+            className="group rounded-xl px-2 py-4 shadow-feature-card-dark flex flex-col"
           >
             <BlurImage
               src={
@@ -104,7 +104,7 @@ export default function Contributions({ contributions: oss }: Props) {
               width={1280}
               height={832}
               alt={''}
-              imageClassName="group-hover:scale-105"
+              imageClassName="group-hover:scale-125 opacity-90 group-hover:opacity-100 transition-all duration-300"
               className="rounded-lg"
             />
             <div className="flex-1 px-2 py-4 flex flex-col justify-between gap-3">
@@ -160,9 +160,12 @@ export default function Contributions({ contributions: oss }: Props) {
                       return (
                         <div
                           key={Math.random()}
-                          className="rounded-lg px-1 py-2 text-xs leading-4 bg-zinc-950"
+                          className="relative inline-flex overflow-hidden rounded-lg p-px"
                         >
-                          {t}
+                          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#0f0f0f_0%,#323232_50%,#929090_100%)]" />
+                          <span className="inline-flex h-full w-full items-center justify-center rounded-full bg-neutral-950 px-3 py-1 text-xs font-medium text-gray-200 backdrop-blur-3xl">
+                            {t}
+                          </span>
                         </div>
                       );
                     } else if (index === 5) {

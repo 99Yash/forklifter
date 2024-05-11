@@ -119,6 +119,16 @@ const config = {
             backgroundPosition: '-200% 0',
           },
         },
+        flip: {
+          to: {
+            transform: 'rotate(360deg)',
+          },
+        },
+        rotate: {
+          to: {
+            transform: 'rotate(90deg)',
+          },
+        },
         'marquee-left': {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(calc(-100% - var(--gap)))' },
@@ -135,6 +145,8 @@ const config = {
       },
       fontFamily: {
         title: ['var(--font-title)'],
+        google: ['var(--font-google)'],
+        gb: ['var(--font-gb)'],
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -147,6 +159,8 @@ const config = {
         'spin-once': 'spin .33s ease-in',
         'marquee-left': 'marquee-left var(--duration, 13s) linear infinite',
         'marquee-up': 'marquee-up var(--duration, 30s) linear infinite',
+        flip: 'flip 6s infinite steps(2, end)',
+        rotate: 'rotate 3s linear infinite both',
       },
       backgroundImage: {
         pinned:

@@ -145,7 +145,7 @@ export function ProfileForm({
                 </FormControl>
                 <FormDescription className="flex gap-2 items-center text-yellow-600">
                   <Icons.Warning className="h-4 w-4" />
-                  Your Analytics will be affected
+                  Existing links wont redirect you to the new page on changing
                 </FormDescription>
                 <FormMessage />
               </FormItem>

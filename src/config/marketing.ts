@@ -24,7 +24,7 @@ export const features = [
     icon: Icons.Flame,
     name: 'Incredibly Versatile',
     description:
-      'Effortlessly add a bio, an about section, previous work, and showcase your projects.',
+      'Effortlessly add a bio, a work section, testimonials, and showcase your projects.',
   },
   {
     icon: Icons.LayoutPanelLeft,

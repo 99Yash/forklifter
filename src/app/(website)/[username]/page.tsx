@@ -1,18 +1,17 @@
 import { prisma } from '@/lib/db';
 import type { Metadata } from 'next';
 
-import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/config/site';
 import { env } from '@/env.mjs';
-import Image from 'next/image';
-import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
-import GlowBottom from '../../../../public/images/blur-indigo.png';
 import AboutMe from './about-me';
 import Contributions from './contributions';
-import FeaturedProjects from './featured-projects';
+
+import Experiences from './experiences';
+import Footer from './footer';
 import Header from './header';
 import Hero from './hero';
+import FeaturedProjects from './projects';
 import Testimonials from './testimonials';
 
 type Props = {
@@ -113,6 +112,9 @@ export default async function Website({
           startDate: true,
           position: true,
         },
+        orderBy: {
+          startDate: 'desc',
+        },
       },
     },
   });
@@ -146,7 +148,9 @@ export default async function Website({
         {user.testimonials && user.testimonials.length > 0 && (
           <Testimonials testimonials={user.testimonials} />
         )}
-        {/* {user.experiences && user.experiences.length > 0 && <Work />} */}
+        {user.experiences && user.experiences.length > 0 && (
+          <Experiences experiences={user.experiences} />
+        )}
         {user.bio && user.twitterUrl && user.githubUrl && user.linkedinUrl && (
           <AboutMe
             bio={user.bio}
@@ -156,17 +160,9 @@ export default async function Website({
             github={user.githubUrl}
           />
         )}
+        <Footer />
       </section>
-      <footer className="relative flex flex-col justify-center items-center">
-        <div className="absolute bottom-0 -z-10 opacity-10">
-          <Image
-            src={GlowBottom}
-            className="max-w-[60vw]"
-            width={1404}
-            height={658}
-            alt="Glow Bottom"
-          />
-        </div>
+      {/* <footer className="relative flex flex-col justify-center items-center">
         <Separator className="w-1/5 bg-cyan-900" />
         <div className="flex justify-center items-center py-8 text-sm text-gray-400 font-title">
           <p>
@@ -174,13 +170,14 @@ export default async function Website({
             open by
           </p>
           <Link
+            target="_blank"
             href={siteConfig.links.twitter}
             className="text-blue-500 hover:underline"
           >
             <p className="ml-1">Yash</p>
           </Link>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }

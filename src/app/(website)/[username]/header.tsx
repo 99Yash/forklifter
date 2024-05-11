@@ -80,7 +80,7 @@ const Header = ({
           <ul className="hidden space-x-2 md:flex">
             {HEADER_LINKS.map((link) => {
               if (
-                (link.hash === '#experience' && !experiences) ||
+                (link.hash === '#experiences' && !experiences) ||
                 (link.hash === '#contributions' && !contributions) ||
                 (link.hash === '#testimonials' && !testimonials) ||
                 (link.hash === '#projects' && !projects)
