@@ -65,19 +65,20 @@ export async function GET(request: NextRequest) {
         >
           {getInitials(user.name)}
         </h1>
-        <h1 style={{ fontFamily: 'Inter Bold' }} tw="text-3xl tracking-tight">
+        <h1 style={{ fontFamily: 'Inter Bold' }} tw="text-6xl tracking-tight">
           {user.name}
         </h1>
         <p
           style={{
             fontFamily: 'Inter Bold',
           }}
+          tw="text-5xl"
         >
           {user.oneLiner}
         </p>
         <p
           style={{ fontFamily: 'Inter Bold' }}
-          tw="absolute bottom-2 self-center text-xs"
+          tw="absolute bottom-2 self-center text-3xl"
         >
           {siteConfig.name}
         </p>

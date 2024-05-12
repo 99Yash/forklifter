@@ -36,11 +36,13 @@ export default function WelcomeEmail({ name = 'there' }: { name?: string }) {
   return (
     <Html>
       <Head>
-        <title>Welcome to {siteConfig.name}</title>
+        <title>
+          {name !== 'there'
+            ? `Welcome to ${siteConfig.name}, ${name}!`
+            : `Welcome to ${siteConfig.name}!`}
+        </title>
       </Head>
-      <Preview>
-        Hi ${name}, welcome to {siteConfig.name}!
-      </Preview>
+      <Preview>Hi {name}, nice to see you here.</Preview>
       <Tailwind>
         <Body className="mx-auto bg-zinc-50 font-sans">
           <Container className="mx-auto my-[40px] max-w-2xl rounded p-4">
