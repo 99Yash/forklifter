@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     description: 'Fully responsive, Open source Portfolio generator.',
     creator: '@YashGouravKar1',
     card: 'summary_large_image',
-    images: [`${siteConfig.url}/og.png`],
+    images: [`${siteConfig.url}/opengraph.png`],
   },
   authors: {
     name: 'Yash Gourav Kar',
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: 'https://forklifter.vercel.app/og.png',
+        url: 'https://forklifter.vercel.app/opengraph.png',
         width: 2322,
         height: 1306,
       },

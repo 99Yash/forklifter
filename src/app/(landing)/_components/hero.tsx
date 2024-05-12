@@ -54,7 +54,7 @@ const Hero = () => {
         >
           <PrimaryButton
             shiny
-            label="Final View"
+            label="Take a Look"
             IconRight={Icons.ChevronRight}
           />
         </Link>
