@@ -66,6 +66,7 @@ export const metadata: Metadata = {
     description: 'Fully responsive, Open source Portfolio generator.',
     creator: '@YashGouravKar1',
     card: 'summary_large_image',
+    images: [`${siteConfig.url}/og.png`],
   },
   authors: {
     name: 'Yash Gourav Kar',

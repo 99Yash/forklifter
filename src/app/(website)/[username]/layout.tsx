@@ -27,7 +27,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -z-10 opacity-60">
         <Image
           src={GlowTop}
-          className="max-w-[55vw]"
+          className="max-w-[55vw] fixed -z-10 right-1/4"
           width={1404}
           height={658}
           alt="Glow Top"
