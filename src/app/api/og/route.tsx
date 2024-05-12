@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   ).then((res) => res.arrayBuffer());
 
   const calSemiBold = await fetch(
-    new URL('../../../assets/fonts/CalSans-SemiBold.ttf', import.meta.url)
+    new URL('../../../styles/CalSans-SemiBold.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer());
 
   if (!username) {
