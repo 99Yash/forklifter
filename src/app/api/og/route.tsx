@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const username = request.nextUrl.searchParams.get('username') ?? 'ygkr';
 
   const interBold = await fetch(
-    new URL('@/styles/inter-bold.ttf', import.meta.url)
+    new URL('../../../styles/Inter-Regular.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer());
 
   const calSemiBold = await fetch(
