@@ -55,6 +55,7 @@ const UpdateExperience = ({
       startDate: experience.startDate,
       endDate: experience.endDate === null ? undefined : experience.endDate,
     },
+    mode: 'onChange',
   });
 
   function onSubmit(data: Inputs) {

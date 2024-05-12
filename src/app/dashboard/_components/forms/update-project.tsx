@@ -50,6 +50,7 @@ const UpdateProject = ({ project }: { project: Inputs & { id: string } }) => {
       name: project.name,
       techStack: project.techStack,
     },
+    mode: 'onChange',
   });
 
   function onSubmit(data: Inputs) {

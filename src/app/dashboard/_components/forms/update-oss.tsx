@@ -50,6 +50,7 @@ const UpdateOSS = ({ oss }: { oss: Inputs & { id: string } }) => {
       url: oss.url,
       tags: oss.tags,
     },
+    mode: 'onChange',
   });
 
   function onSubmit(data: Inputs) {

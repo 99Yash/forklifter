@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/tooltip';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { BlurImage } from '../utils/blur-image';
 import { placeholderImgs } from '../utils/placeholder-images';
 
@@ -48,36 +48,6 @@ export default function FeaturedProjects({ projects }: Props) {
     once: false,
     margin: '-100px',
   });
-  const [ogImageUrls, setOgImageUrls] = useState<Array<string>>([]);
-
-  // useEffect(() => {
-  //   const fetchOgImages = async () => {
-  //     const usedPlaceholders = new Set<string>();
-  //     for (const project of projects) {
-  //       let ogImageUrl =
-  //         (await getOgImageUrl(project.webUrl)) ??
-  //         (await getOgImageUrl(project.githubUrl));
-  //       if (!ogImageUrl) {
-  //         let placeholderUrl: string | null = null;
-  //         do {
-  //           placeholderUrl =
-  //             placeholderImgs[
-  //               Math.floor(Math.random() * placeholderImgs.length)
-  //             ];
-  //         } while (usedPlaceholders.has(placeholderUrl));
-
-  //         if (placeholderUrl) {
-  //           usedPlaceholders.add(placeholderUrl);
-  //           ogImageUrl = placeholderUrl;
-  //         }
-  //         setOgImageUrls((prev) => [...prev, placeholderUrl]);
-  //       }
-  //     }
-  //     setOgImageUrls((prev) => [...prev, ogImageUrl]);
-  //   };
-
-  //   fetchOgImages();
-  // }, [projects]);
 
   return (
     <motion.div
@@ -107,7 +77,7 @@ export default function FeaturedProjects({ projects }: Props) {
         Featured Projects
       </motion.h2>
       <motion.div
-        className="mt-12 gap-4 grid grid-cols-1 md:grid-cols-2"
+        className="mt-12 gap-4 grid grid-cols-1 lg:grid-cols-2"
         initial={{
           y: 40,
           opacity: 0,
@@ -127,7 +97,6 @@ export default function FeaturedProjects({ projects }: Props) {
           >
             <BlurImage
               src={
-                ogImageUrls[i] ??
                 placeholderImgs[
                   Math.floor(Math.random() * placeholderImgs.length)
                 ]
@@ -136,7 +105,7 @@ export default function FeaturedProjects({ projects }: Props) {
               width={1280}
               height={832}
               alt={''}
-              imageClassName="group-hover:scale-150"
+              imageClassName="group-hover:scale-150 opacity-80"
               className="rounded-lg"
             />
             <div className="px-2 py-4 flex flex-col justify-between gap-3 absolute bottom-6">
@@ -146,7 +115,7 @@ export default function FeaturedProjects({ projects }: Props) {
                     <h2 className="text-2xl font-bold bg-gradient-to-br from-slate-800 to-slate-700 bg-clip-text text-transparent">
                       {project.name}
                     </h2>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center">
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger asChild>
@@ -155,7 +124,7 @@ export default function FeaturedProjects({ projects }: Props) {
                               className="p-2"
                               href={project.githubUrl}
                             >
-                              <Icons.Github className="h-4 w-4 text-slate-800" />
+                              <Icons.Github className="h-5 w-5 text-slate-800" />
                             </Link>
                           </TooltipTrigger>
                           <TooltipContent className="bg-slate-800 text-slate-300">
@@ -171,7 +140,7 @@ export default function FeaturedProjects({ projects }: Props) {
                               className="p-2"
                               href={project.webUrl}
                             >
-                              <Icons.ExternalLink className="h-4 w-4 text-slate-800" />
+                              <Icons.ExternalLink className="h-5 w-5 text-slate-800" />
                             </Link>
                           </TooltipTrigger>
                           <TooltipContent className="bg-slate-800 text-slate-300">

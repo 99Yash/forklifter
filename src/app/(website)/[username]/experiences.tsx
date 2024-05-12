@@ -11,9 +11,10 @@ import { experienceSchema } from '@/lib/schemas';
 import { formatDate } from '@/lib/utils';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
-import { BlurImage } from '../utils/blur-image';
+import { BlurUnknownImage } from '../utils/blur-unkown-image';
+import { getOgImageUrl } from '../utils/get-og-image';
 import { placeholderImgs } from '../utils/placeholder-images';
 
 const variants = {
@@ -42,7 +43,30 @@ export default function Experiences({ experiences }: Props) {
   const contRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(contRef, { once: false, margin: '-100px' });
 
-  const [ogImageUrls, setOgImageUrls] = useState<Array<string>>([]);
+  const [ogImageUrls, setOgImageUrls] = useState<Array<string | null>>([]);
+
+  useEffect(() => {
+    experiences.forEach(async (exp) => {
+      try {
+        const fetchOgImages = async () => {
+          const usedPlaceholders = new Set<string>();
+          let placeholderUrl: string | null = null;
+          do {
+            placeholderUrl =
+              placeholderImgs[
+                Math.floor(Math.random() * placeholderImgs.length)
+              ];
+          } while (usedPlaceholders.has(placeholderUrl));
+          let ogImageUrl = (await getOgImageUrl(exp.orgUrl)) || placeholderUrl;
+          setOgImageUrls((prev) => [...prev, ogImageUrl]);
+        };
+        fetchOgImages();
+      } catch (error) {
+        console.error(`Error fetching og image for ${exp.orgUrl}:`, error);
+        setOgImageUrls((prev) => [...prev, null]);
+      }
+    });
+  }, [experiences]);
 
   return (
     <motion.div
@@ -91,7 +115,7 @@ export default function Experiences({ experiences }: Props) {
             key={i}
             className="group relative rounded-xl px-2 py-4 shadow-feature-card-dark flex flex-col"
           >
-            <BlurImage
+            <BlurUnknownImage
               src={
                 ogImageUrls[i] ??
                 placeholderImgs[
