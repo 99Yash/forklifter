@@ -50,25 +50,31 @@ export const authOptions: NextAuthOptions = {
     }),
     signIn: async ({ user, email, account, profile, credentials }) => {
       if (typeof user.email !== 'string') return false;
-      const dbUser = await prisma.user.findFirst({
-        where: { email: user.email },
-      });
-      if (!dbUser) {
-        await fetch(
-          `${
-            env.NODE_ENV === 'development'
-              ? 'http://localhost:3000'
-              : siteConfig.url
-          }api/email/welcome`,
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              email: user.email,
-              name: user.name?.split(' ')[0],
-              subject: `Welcome ${user.name}.`,
-            }),
-          }
-        );
+
+      try {
+        const dbUser = await prisma.user.findFirst({
+          where: { email: user.email },
+        });
+        if (dbUser) return true;
+        else {
+          await fetch(
+            `${
+              env.NODE_ENV === 'development'
+                ? 'http://localhost:3000'
+                : siteConfig.url
+            }api/email/welcome`,
+            {
+              method: 'POST',
+              body: JSON.stringify({
+                email: user.email,
+                name: user.name?.split(' ')[0],
+                subject: `Welcome ${user.name}.`,
+              }),
+            }
+          );
+        }
+      } catch (error) {
+        return true;
       }
       return true;
     },
