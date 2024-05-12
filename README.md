@@ -10,3 +10,4 @@
 
 [![Website Hero](./public/image.png)](https://forklifter.vercel.app/ygkr)
 [![Website Contact section](./public/ygkr-about.png)](https://forklifter.vercel.app/ygkr#about)
+[![Testimonials section](./public/ygkr-testimonials.png)](https://forklifter.vercel.app/ygkr#testimonials)
