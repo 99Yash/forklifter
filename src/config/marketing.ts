@@ -24,7 +24,7 @@ export const features = [
     icon: Icons.Flame,
     name: 'Incredibly Versatile',
     description:
-      'Dynamic OpenGraph images, full responsiveness, & top-notch SEO optimization for your website',
+      'Dynamic OpenGraph images, page analytics, top-notch SEO optimization & more',
   },
   {
     icon: Icons.LayoutPanelLeft,
