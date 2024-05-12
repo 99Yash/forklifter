@@ -13,6 +13,10 @@ export async function GET(request: NextRequest) {
     new URL('@/styles/inter-bold.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer());
 
+  const calSemiBold = await fetch(
+    new URL('../../../assets/fonts/CalSans-SemiBold.ttf', import.meta.url)
+  ).then((res) => res.arrayBuffer());
+
   if (!username) {
     return new ImageResponse(<>Visit with &quot;?username=vercel&quot;</>, {
       width: 1200,
@@ -52,6 +56,11 @@ export async function GET(request: NextRequest) {
             data: interBold,
             style: 'normal',
           },
+          {
+            name: 'Cal SemiBold',
+            data: calSemiBold,
+            style: 'normal',
+          },
         ],
       }
     );
@@ -65,12 +74,12 @@ export async function GET(request: NextRequest) {
         >
           {getInitials(user.name)}
         </h1>
-        <h1 style={{ fontFamily: 'Inter Bold' }} tw="text-3xl tracking-tight">
+        <h1 style={{ fontFamily: 'Cal Semibold' }} tw="text-3xl tracking-tight">
           {user.name}
         </h1>
         <p
           style={{
-            fontFamily: 'Inter Bold',
+            fontFamily: 'Cal Semibold',
           }}
         >
           {user.oneLiner}
@@ -90,6 +99,11 @@ export async function GET(request: NextRequest) {
         {
           name: 'Inter Bold',
           data: interBold,
+          style: 'normal',
+        },
+        {
+          name: 'Cal SemiBold',
+          data: calSemiBold,
           style: 'normal',
         },
       ],
