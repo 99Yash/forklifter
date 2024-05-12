@@ -1,9 +1,11 @@
+import { fetchAnalytics } from '@/app/_actions/analytics';
 import { getCurrentUser } from '@/lib/auth-opts';
 import { type Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import { ProjectCard } from '../_components/project-card';
+import InsightCard from './card';
 
 export const metadata: Metadata = {
   title: 'Analytics',
@@ -14,7 +16,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect('/');
 
-  // const insights = await fetchAnalytics();
+  const insights = await fetchAnalytics();
 
   return (
     <div className="flex flex-col gap-4">
@@ -38,19 +40,24 @@ const page = async () => {
       </div>
 
       <div className="relative">
-        <ul className="grid select-none grid-cols-1 gap-4 opacity-40 md:grid-cols-3">
+        <ul className="grid select-none grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <InsightCard
+            title="Total Page Views"
+            description="The total number of pages viewed. Repeated views of a single page are counted."
+            value={insights[0].visits}
+          />
           <ProjectCard.Skeleton isAnalyticsCard />
           <ProjectCard.Skeleton isAnalyticsCard />
           <ProjectCard.Skeleton isAnalyticsCard />
         </ul>
         <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 text-center space-y-2 font-title">
           <h2 className="text-2xl font-bold text-orange-300">
-            <Balancer>Analytics is coming soon</Balancer>
+            <Balancer>Proper Analytics is coming soon</Balancer>
           </h2>
           <p className="text-sm font-semibold text-orange-200 animate-pulse">
             <Balancer>
-              Loglib API doesn{`'`}t support route based analytics. Stay tuned
-              as we find solutions
+              Loglib API doesn{`'`}t support proper route based analytics. Stay
+              tuned
             </Balancer>
           </p>
         </div>

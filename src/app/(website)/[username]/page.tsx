@@ -163,6 +163,9 @@ export default async function Website({
           name={user.name}
           oneLiner={user.oneLiner ?? ''}
         />
+        {user.experiences && user.experiences.length > 0 && (
+          <Experiences experiences={user.experiences} />
+        )}
         {user.projects && user.projects.length > 0 && (
           <FeaturedProjects projects={user.projects} />
         )}
@@ -171,9 +174,6 @@ export default async function Website({
         )}
         {user.testimonials && user.testimonials.length > 0 && (
           <Testimonials testimonials={user.testimonials} />
-        )}
-        {user.experiences && user.experiences.length > 0 && (
-          <Experiences experiences={user.experiences} />
         )}
         {user.bio && user.twitterUrl && user.githubUrl && user.linkedinUrl && (
           <AboutMe

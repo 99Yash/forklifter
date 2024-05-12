@@ -24,7 +24,7 @@ export const features = [
     icon: Icons.Flame,
     name: 'Incredibly Versatile',
     description:
-      'Effortlessly add a bio, a work section, testimonials, and showcase your projects.',
+      'Dynamic OpenGraph images, full responsiveness, & top-notch SEO optimization for your website',
   },
   {
     icon: Icons.LayoutPanelLeft,
@@ -34,7 +34,8 @@ export const features = [
   {
     icon: Icons.Code2,
     name: 'Developer Specific',
-    description: 'Add your Tech Stack and Social profiles',
+    description:
+      'Marquee your tech stack, and impress recruiters with Testimonials',
   },
   {
     icon: Icons.Wallet,

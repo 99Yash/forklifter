@@ -16,8 +16,10 @@ export default function InsightCard({
   return (
     <Card className="overflow-hidden">
       <CardHeader>
-        <CardTitle className="flex gap-2 items-center justify-between font-title">
-          <span className="text-md text-card-foreground">{title}</span>
+        <CardTitle className="flex gap-2 items-center justify-between">
+          <span className="text-md text-card-foreground font-title">
+            {title}
+          </span>
           <Tip tip={description}>
             <Icons.Help className="h-[14px] w-[14px]" />
           </Tip>
