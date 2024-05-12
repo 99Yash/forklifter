@@ -67,8 +67,8 @@ const UpdateOSS = ({ oss }: { oss: Inputs & { id: string } }) => {
           }),
           {
             loading: 'Saving testimonial...',
-            success: 'Testimonial saved successfully!',
-            error: 'Failed to add testimonial.',
+            success: 'Contribution saved successfully!',
+            error: 'Failed to save contribution.',
           }
         );
       } catch (err) {

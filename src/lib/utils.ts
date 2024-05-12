@@ -1,10 +1,15 @@
-import { type ClassValue, clsx } from 'clsx';
+import { env } from '@/env.mjs';
+import { clsx, type ClassValue } from 'clsx';
 import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 import { z } from 'zod';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function absoluteUrl(path: string) {
+  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
 
 export function catchError(err: unknown) {

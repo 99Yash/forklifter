@@ -13,8 +13,8 @@ import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
+import { getOgImageUrl } from '../../_actions/get-og-image';
 import { BlurUnknownImage } from '../utils/blur-unkown-image';
-import { getOgImageUrl } from '../utils/get-og-image';
 import { placeholderImgs } from '../utils/placeholder-images';
 
 const variants = {

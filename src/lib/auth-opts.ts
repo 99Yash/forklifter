@@ -43,9 +43,27 @@ export const authOptions: NextAuthOptions = {
       user: {
         ...session.user,
         id: user.id,
+        email: user.email,
         username: user.username,
       },
     }),
+    signIn: async ({ user, email, account, profile, credentials }) => {
+      if (typeof user.email !== 'string') return false;
+      const dbUser = await prisma.user.findFirst({
+        where: { email: user.email },
+      });
+      if (!dbUser) {
+        await fetch('/api/email/welcome', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: user.email,
+            name: user.name?.split(' ')[0],
+            subject: `Welcome ${user.name}.`,
+          }),
+        });
+      }
+      return true;
+    },
     redirect() {
       return '/dashboard';
     },

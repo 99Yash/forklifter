@@ -20,8 +20,8 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 import { ossSchema } from '../../../lib/schemas';
+import { getOgImageUrl } from '../../_actions/get-og-image';
 import { BlurUnknownImage } from '../utils/blur-unkown-image';
-import { getOgImageUrl } from '../utils/get-og-image';
 import { placeholderImgs } from '../utils/placeholder-images';
 
 const variants = {
@@ -134,7 +134,7 @@ export default function Contributions({ contributions: oss }: Props) {
               width={1280}
               height={832}
               alt={''}
-              imageClassName="group-hover:scale-110 opacity-90 group-hover:opacity-100 transition-all duration-300"
+              imageClassName="group-hover:scale-110 opacity-90 transition-all duration-300"
               className="rounded-lg"
             />
             <div className="flex-1 px-2 py-4 flex flex-col justify-between gap-3">

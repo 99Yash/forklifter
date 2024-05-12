@@ -7,6 +7,7 @@ import { notFound, redirect } from 'next/navigation';
 import AboutMe from './about-me';
 import Contributions from './contributions';
 
+import { absoluteUrl } from '@/lib/utils';
 import Experiences from './experiences';
 import Footer from './footer';
 import Header from './header';
@@ -20,6 +21,10 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const username = params.username;
+
+  const url = absoluteUrl('/');
+  const ogUrl = new URL(`${url}/api/og`);
+  ogUrl.searchParams.set('username', username);
 
   const user = await prisma.user.findUnique({
     where: { username },
@@ -47,6 +52,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ? `http://localhost:3000/${username}`
         : `https://${siteConfig.url}${username}`
     ),
+    openGraph: {
+      title: `${user.name} • ${siteConfig.name}`,
+      description: `${user.bio}`,
+      type: 'website',
+      images: [
+        {
+          url: ogUrl.toString(),
+          width: 1200,
+          height: 630,
+          alt: `${user.name} • ${siteConfig.name}`,
+        },
+      ],
+    },
+    twitter: {
+      title: `${user.name} • ${siteConfig.name}`,
+      description: `${user.bio}`,
+      card: 'summary_large_image',
+      images: [ogUrl.toString()],
+    },
     robots: {
       index: true,
       follow: true,
