@@ -6,6 +6,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { env } from '@/env.mjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from '../../lib/utils';
 
 export const metadata: Metadata = {
   title: 'Something went Wrong',
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 const Error = ({ error }: { readonly error: Error }) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-12">
+    <div className="flex flex-col items-center justify-center gap-12 h-screen">
       <Image
         width={1512}
         height={550}
@@ -23,18 +24,19 @@ const Error = ({ error }: { readonly error: Error }) => {
         role="presentation"
         priority
       />
-      <div className="space-y-4 px-2 py-8">
+      <div className="px-2 py-8 flex flex-col items-center justify-center gap-4">
         <h1 className="text-2xl font-bold font-title">Something went wrong!</h1>
         {env.NODE_ENV === 'development' && (
-          <p className="break-words p-4">{error.message}</p>
-        )}
-        {
-          <p className="text-muted-foreground">
-            There seems to be an error with the page you are looking for.
+          <p className="break-words p-4 text-sm font-title text-center">
+            {error.message}
           </p>
-        }
+        )}
+
+        <p className="text-muted-foreground font-title">
+          There seems to be an error with the page you are looking for.
+        </p>
       </div>
-      <Link href="/" className={buttonVariants()}>
+      <Link href="/" className={cn(buttonVariants(), 'font-title')}>
         Go homepage
       </Link>
     </div>

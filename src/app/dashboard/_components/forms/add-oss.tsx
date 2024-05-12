@@ -51,6 +51,7 @@ const AddOSS = () => {
     defaultValues: {
       tags: [],
     },
+    mode: 'onChange',
   });
 
   const [isPending, startTransition] = useTransition();

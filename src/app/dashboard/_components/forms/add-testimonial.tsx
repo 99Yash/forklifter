@@ -36,6 +36,7 @@ const AddTestimonial = () => {
 
   const form = useForm<Inputs>({
     resolver: zodResolver(testimonialSchema),
+    mode: 'onChange',
   });
 
   function onSubmit(data: Inputs) {

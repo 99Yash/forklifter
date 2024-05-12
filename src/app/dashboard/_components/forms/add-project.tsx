@@ -58,6 +58,7 @@ const AddProject = () => {
       name: '',
       techStack: [],
     },
+    mode: 'onChange',
   });
 
   function onSubmit(data: Inputs) {

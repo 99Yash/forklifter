@@ -55,6 +55,8 @@
     "next": "^14.2.3",
     "next-auth": "^4.24.4",
     "next-themes": "^0.2.1",
+    "open-graph-scraper": "^6.5.1",
+    "parse-open-graph": "^0.4.0",
     "react": "18.2.0",
     "react-day-picker": "^8.10.0",
     "react-dom": "18.2.0",

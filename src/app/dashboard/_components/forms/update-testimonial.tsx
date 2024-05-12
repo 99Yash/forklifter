@@ -42,6 +42,7 @@ const UpdateTestimonial = ({
       designation: testimonial.designation,
       message: testimonial.message,
     },
+    mode: 'onChange',
   });
 
   function onSubmit(data: Inputs) {

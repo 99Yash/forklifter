@@ -17,10 +17,11 @@ import {
 } from '@/components/ui/tooltip';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
 import { ossSchema } from '../../../lib/schemas';
-import { BlurImage } from '../utils/blur-image';
+import { BlurUnknownImage } from '../utils/blur-unkown-image';
+import { getOgImageUrl } from '../utils/get-og-image';
 import { placeholderImgs } from '../utils/placeholder-images';
 
 const variants = {
@@ -44,7 +45,36 @@ export default function Contributions({ contributions: oss }: Props) {
     once: false,
     margin: '-100px',
   });
-  const [ogImageUrls, setOgImageUrls] = useState<Array<string>>([]);
+  const [ogImageUrls, setOgImageUrls] = useState<Array<string | null>>([]);
+
+  useEffect(() => {
+    oss.forEach(async (contribution) => {
+      try {
+        const fetchOgImages = async () => {
+          const usedPlaceholders = new Set<string>();
+          let placeholderUrl: string | null = null;
+          do {
+            placeholderUrl =
+              placeholderImgs[
+                Math.floor(Math.random() * placeholderImgs.length)
+              ];
+          } while (usedPlaceholders.has(placeholderUrl));
+          let ogImageUrl =
+            (await getOgImageUrl(contribution.orgUrl)) ||
+            (await getOgImageUrl(contribution.url)) ||
+            placeholderUrl;
+          setOgImageUrls((prev) => [...prev, ogImageUrl]);
+        };
+        fetchOgImages();
+      } catch (error) {
+        console.error(
+          `Error fetching og image for ${contribution.url}:`,
+          error
+        );
+        setOgImageUrls((prev) => [...prev, null]);
+      }
+    });
+  }, [oss]);
 
   return (
     <motion.div
@@ -93,7 +123,7 @@ export default function Contributions({ contributions: oss }: Props) {
             key={i}
             className="group rounded-xl px-2 py-4 shadow-feature-card-dark flex flex-col"
           >
-            <BlurImage
+            <BlurUnknownImage
               src={
                 ogImageUrls[i] ??
                 placeholderImgs[
@@ -104,7 +134,7 @@ export default function Contributions({ contributions: oss }: Props) {
               width={1280}
               height={832}
               alt={''}
-              imageClassName="group-hover:scale-125 opacity-90 group-hover:opacity-100 transition-all duration-300"
+              imageClassName="group-hover:scale-110 opacity-90 group-hover:opacity-100 transition-all duration-300"
               className="rounded-lg"
             />
             <div className="flex-1 px-2 py-4 flex flex-col justify-between gap-3">
