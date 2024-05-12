@@ -1,9 +1,16 @@
 'use server';
 
 import { env } from '@/env.mjs';
+import { getCurrentUser } from '@/lib/auth-opts';
 import axios from 'axios';
 
 export async function fetchAnalytics() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    throw new Error('User not found');
+  }
+
   const { data: insights } = await axios.get<{
     insight: {
       uniqueVisitors: {
@@ -87,5 +94,6 @@ export async function fetchAnalytics() {
   }>(`https://api.loglib.io/v1/insight?apiKey=${env.LOGLIB_API_KEY}`, {
     withCredentials: false,
   });
-  return insights;
+  const ret = insights.data.pages.filter((p) => p.page === `/${user.username}`);
+  return ret;
 }
