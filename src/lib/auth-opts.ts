@@ -2,6 +2,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
+import { siteConfig } from '@/config/site';
 import { env } from '@/env.mjs';
 import {
   DefaultSession,
@@ -34,7 +35,7 @@ export const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: '/sign-in',
-    signOut: '/sign-out',
+    signOut: '/signout',
   },
   secret: env.NEXTAUTH_SECRET,
   callbacks: {
@@ -53,7 +54,7 @@ export const authOptions: NextAuthOptions = {
         where: { email: user.email },
       });
       if (!dbUser) {
-        await fetch('/api/email/welcome', {
+        await fetch(`${siteConfig.url}api/email/welcome`, {
           method: 'POST',
           body: JSON.stringify({
             email: user.email,
