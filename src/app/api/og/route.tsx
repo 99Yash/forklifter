@@ -10,11 +10,7 @@ export async function GET(request: NextRequest) {
   const username = request.nextUrl.searchParams.get('username') ?? 'ygkr';
 
   const interBold = await fetch(
-    new URL('../../../styles/Inter-Regular.ttf', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-
-  const calSemiBold = await fetch(
-    new URL('../../../styles/CalSans-SemiBold.ttf', import.meta.url)
+    new URL('@/styles/inter-bold.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer());
 
   if (!username) {
@@ -56,11 +52,6 @@ export async function GET(request: NextRequest) {
             data: interBold,
             style: 'normal',
           },
-          {
-            name: 'Cal SemiBold',
-            data: calSemiBold,
-            style: 'normal',
-          },
         ],
       }
     );
@@ -74,12 +65,12 @@ export async function GET(request: NextRequest) {
         >
           {getInitials(user.name)}
         </h1>
-        <h1 style={{ fontFamily: 'Cal Semibold' }} tw="text-3xl tracking-tight">
+        <h1 style={{ fontFamily: 'Inter Bold' }} tw="text-3xl tracking-tight">
           {user.name}
         </h1>
         <p
           style={{
-            fontFamily: 'Cal Semibold',
+            fontFamily: 'Inter Bold',
           }}
         >
           {user.oneLiner}
@@ -99,11 +90,6 @@ export async function GET(request: NextRequest) {
         {
           name: 'Inter Bold',
           data: interBold,
-          style: 'normal',
-        },
-        {
-          name: 'Cal SemiBold',
-          data: calSemiBold,
           style: 'normal',
         },
       ],
