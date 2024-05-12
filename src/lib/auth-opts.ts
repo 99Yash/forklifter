@@ -2,7 +2,6 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
-import { siteConfig } from '@/config/site';
 import { env } from '@/env.mjs';
 import {
   DefaultSession,
@@ -48,36 +47,36 @@ export const authOptions: NextAuthOptions = {
         username: user.username,
       },
     }),
-    signIn: async ({ user, email, account, profile, credentials }) => {
-      if (typeof user.email !== 'string') return false;
+    // signIn: async ({ user, email, account, profile, credentials }) => {
+    //   if (typeof user.email !== 'string') return false;
 
-      try {
-        const dbUser = await prisma.user.findFirst({
-          where: { email: user.email },
-        });
-        if (dbUser) return true;
-        else {
-          await fetch(
-            `${
-              env.NODE_ENV === 'development'
-                ? 'http://localhost:3000'
-                : siteConfig.url
-            }api/email/welcome`,
-            {
-              method: 'POST',
-              body: JSON.stringify({
-                email: user.email,
-                name: user.name?.split(' ')[0],
-                subject: `Welcome ${user.name}.`,
-              }),
-            }
-          );
-        }
-      } catch (error) {
-        return true;
-      }
-      return true;
-    },
+    //   try {
+    //     const dbUser = await prisma.user.findFirst({
+    //       where: { email: user.email },
+    //     });
+    //     if (dbUser) return true;
+    //     else {
+    //       await fetch(
+    //         `${
+    //           env.NODE_ENV === 'development'
+    //             ? 'http://localhost:3000'
+    //             : siteConfig.url
+    //         }api/email/welcome`,
+    //         {
+    //           method: 'POST',
+    //           body: JSON.stringify({
+    //             email: user.email,
+    //             name: user.name?.split(' ')[0],
+    //             subject: `Welcome ${user.name}.`,
+    //           }),
+    //         }
+    //       );
+    //     }
+    //   } catch (error) {
+    //     return true;
+    //   }
+    //   return true;
+    // },
     redirect() {
       return '/dashboard';
     },
