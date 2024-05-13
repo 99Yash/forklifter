@@ -28,7 +28,7 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { OSSTAGS } from '@/lib/constants';
 import { ossSchema } from '@/lib/schemas';
-import { catchError, cn } from '@/lib/utils';
+import { catchError, cn, manualDialogClose } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
@@ -71,6 +71,7 @@ const UpdateOSS = ({ oss }: { oss: Inputs & { id: string } }) => {
             error: 'Failed to save contribution.',
           }
         );
+        manualDialogClose();
       } catch (err) {
         catchError(err);
       }

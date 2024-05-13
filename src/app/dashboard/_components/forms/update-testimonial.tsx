@@ -17,7 +17,7 @@ import * as Icons from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { testimonialSchema } from '@/lib/schemas';
-import { catchError } from '@/lib/utils';
+import { catchError, manualDialogClose } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
@@ -87,6 +87,7 @@ const UpdateTestimonial = ({
             error: 'Failed to delete testimonial.',
           }
         );
+        manualDialogClose();
       } catch (err) {
         catchError(err);
       }
