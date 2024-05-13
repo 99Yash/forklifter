@@ -178,7 +178,7 @@ export default function Contributions({ contributions: oss }: Props) {
                     </TooltipProvider>
                   </div>
                 </div>
-                <p className="text-muted-foreground text-sm font-medium">
+                <p className="text-muted-foreground text-sm font-medium whitespace-pre-line break-words">
                   {contro.description}
                 </p>
               </div>

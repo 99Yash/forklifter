@@ -107,7 +107,7 @@ function TestimonialCard({ testimonial }: CardProps) {
       />
       <div className=" space-y-3 rounded-xl border border-white/10 px-4 py-5">
         <div className="space-y-5 flex flex-col gap-2 justify-center items-center">
-          <p className="text-sm leading-[1.5] text-center text-neutral-300/80 cursor-default self-stretch">
+          <p className="text-sm leading-[1.5] text-center text-neutral-300/80 cursor-default self-stretch whitespace-pre-line break-words">
             {testimonial.message}
           </p>
           <div className="leading-snug text-center">

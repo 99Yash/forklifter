@@ -29,7 +29,6 @@ export async function addExperience(input: z.infer<typeof experienceSchema>) {
     },
   });
   revalidatePath(`/dashboard/experiences`);
-  revalidatePath(`/${dbUser.username}`);
 }
 
 export async function updateExperience(
@@ -60,7 +59,6 @@ export async function updateExperience(
     },
   });
   revalidatePath(`/dashboard/experiences`);
-  revalidatePath(`/${dbUser.username}`);
 }
 
 export async function deleteExperience(id: string) {
@@ -79,5 +77,4 @@ export async function deleteExperience(id: string) {
     },
   });
   revalidatePath(`/dashboard/experiences`);
-  revalidatePath(`/${dbUser.username}`);
 }

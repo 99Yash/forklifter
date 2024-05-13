@@ -28,7 +28,6 @@ export async function addOSS(input: z.infer<typeof ossSchema>) {
     },
   });
   revalidatePath(`/dashboard/oss`);
-  revalidatePath(`/${dbUser.username}`);
 }
 
 export async function updateOSS(id: string, input: z.infer<typeof ossSchema>) {

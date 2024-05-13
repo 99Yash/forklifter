@@ -150,7 +150,7 @@ export default function FeaturedProjects({ projects }: Props) {
                       </TooltipProvider>
                     </div>
                   </div>
-                  <p className="text-slate-900 text-sm grow font-medium">
+                  <p className="text-slate-900 text-sm grow font-medium whitespace-pre-line break-words">
                     {project.description}
                   </p>
                 </div>
