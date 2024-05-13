@@ -259,12 +259,6 @@ const UpdateOSS = ({ oss }: { oss: Inputs & { id: string } }) => {
             <span className="sr-only">Delete Contribution</span>
           </Button>
           <Button type="submit" disabled={isPending || !form.formState.isDirty}>
-            {isPending && (
-              <Icons.Spinner
-                className="mr-2 h-4 w-4 animate-spin"
-                aria-hidden="true"
-              />
-            )}
             Save
             <span className="sr-only">Edit Contribution</span>
           </Button>

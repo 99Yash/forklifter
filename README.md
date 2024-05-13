@@ -10,8 +10,9 @@
 
 [![Website Hero](./public/image.png)](https://forklifter.vercel.app/ygkr)
 [![Website Contact section](./public/ygkr-about.png)](https://forklifter.vercel.app/ygkr#about)
+[![Website OSS section](./public/ygkr-oss.png)](https://forklifter.vercel.app/ygkr#contributions)
 [![Testimonials section](./public/ygkr-testimonials.png)](https://forklifter.vercel.app/ygkr#testimonials)
 
-###Dynamic opengraph image
+### Dynamic opengraph image
 
 [![Forklifter](./public/dynamic-og.png)](https://forklifter.vercel.app/)

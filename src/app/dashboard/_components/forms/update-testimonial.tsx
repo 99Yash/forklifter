@@ -175,14 +175,8 @@ const UpdateTestimonial = ({
           </Button>
           <span className="sr-only">Delete Testimonial</span>
           <Button type="submit" disabled={isPending || !form.formState.isDirty}>
-            {isPending && (
-              <Icons.Spinner
-                className="mr-2 h-4 w-4 animate-spin"
-                aria-hidden="true"
-              />
-            )}
-            Edit
-            <span className="sr-only">Insert Testimonial</span>
+            Save
+            <span className="sr-only">Update Testimonial</span>
           </Button>
         </div>
       </form>

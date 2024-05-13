@@ -260,12 +260,6 @@ const UpdateProject = ({ project }: { project: Inputs & { id: string } }) => {
             className="justify-self-end w-fit"
             disabled={isPending || !form.formState.isDirty}
           >
-            {isPending && (
-              <Icons.Spinner
-                className="mr-2 h-4 w-4 animate-spin"
-                aria-hidden="true"
-              />
-            )}
             Save
             <span className="sr-only">Update Project</span>
           </Button>
