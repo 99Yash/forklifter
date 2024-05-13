@@ -6,8 +6,12 @@
 </a>
 </div>
 
-> A Seamless, No-Cost Solution to Elevate Your Digital Presence & Simplify Recruiter Recognition.The Ultimate Platform for Backend Developers and new Programmers to Showcase Their Projects, Professional Journey, and Technical Expertise. Enter a bunch of information, get your website ready in a flash.
+> A Seamless, No-Cost Solution **to** Elevate Your Digital Presence & Simplify Recruiter Recognition.The Ultimate Platform for Backend Developers and new Programmers to Showcase Their Projects, Professional Journey, and Technical Expertise. Enter a bunch of information, get your website ready in a flash.
 
 [![Website Hero](./public/image.png)](https://forklifter.vercel.app/ygkr)
 [![Website Contact section](./public/ygkr-about.png)](https://forklifter.vercel.app/ygkr#about)
 [![Testimonials section](./public/ygkr-testimonials.png)](https://forklifter.vercel.app/ygkr#testimonials)
+
+###Dynamic opengraph image
+
+[![Forklifter](./public/dynamic-og.png)](https://forklifter.vercel.app/)
