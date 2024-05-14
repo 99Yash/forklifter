@@ -83,7 +83,8 @@ const Header = ({
                 (link.hash === '#experiences' && !experiences) ||
                 (link.hash === '#contributions' && !contributions) ||
                 (link.hash === '#testimonials' && !testimonials) ||
-                (link.hash === '#projects' && !projects)
+                (link.hash === '#projects' && !projects) ||
+                (link.hash === '#contact' && !twitter && !github && !linkedIn)
               ) {
                 return null;
               }
