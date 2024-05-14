@@ -1,5 +1,5 @@
 import { getAuthSession } from '@/lib/auth-opts';
-import { cn } from '@/lib/utils';
+import { cn, getInitials } from '@/lib/utils';
 import Link from 'next/link';
 import {
   Avatar,
@@ -35,11 +35,7 @@ const Nav = async () => {
       </nav>
     );
 
-  const initials = `${session.user.name?.split(' ')[0]![0]}${
-    session.user.name?.split(' ')[1]
-      ? session.user.name?.split(' ')[1]![0] ?? '.'
-      : ''
-  }`;
+  const initials = getInitials(session.user.name ?? 'Van Heusen');
 
   return (
     <nav
@@ -58,7 +54,12 @@ const Nav = async () => {
         )}
       >
         <Avatar className="mr-2 h-5 w-5">
-          <AvatarImage src={session.user.image!} />
+          <AvatarImage
+            src={
+              session.user.image ??
+              'https://cdn.vectorstock.com/i/1000x1000/45/79/male-avatar-profile-picture-silhouette-light-vector-4684579.webp'
+            }
+          />
           <AvatarFallback className="text-xs">{initials}</AvatarFallback>
         </Avatar>
         Dashboard

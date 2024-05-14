@@ -35,7 +35,7 @@ export const BlurUnknownImage = React.forwardRef<HTMLDivElement, ImageProps>(
           src={src}
           alt={alt}
           loading={lazy ? 'lazy' : undefined}
-          priority={`${!lazy}`}
+          priority={!lazy}
           quality={100}
           onLoad={() => setLoading(false)}
           {...rest}

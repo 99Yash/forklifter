@@ -74,7 +74,7 @@ export default function FeaturedProjects({ projects }: Props) {
           duration: 0.3,
         }}
       >
-        Featured Projects
+        Featured {projects.length > 1 ? 'Projects' : 'Project'}
       </motion.h2>
       <motion.div
         className="mt-12 gap-4 grid grid-cols-1 lg:grid-cols-2"

@@ -1,4 +1,5 @@
 import * as Icons from '@/components/ui/icons';
+import { getInitials } from '@/lib/utils';
 import { User } from 'next-auth';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -14,10 +15,7 @@ import {
 } from './ui/dropdown-menu';
 
 export function UserNav({ user }: { user: User }) {
-  const initials = `${user.name?.split(' ')[0]![0]}${
-    user.name?.split(' ')[1] ? user.name?.split(' ')[1]![0] ?? '.' : ''
-  }`;
-
+  const initials = getInitials(user.name ?? 'Van Heusen');
   const email = user.email;
 
   return (
@@ -25,7 +23,13 @@ export function UserNav({ user }: { user: User }) {
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.image!} alt={user.username ?? ''} />
+            <AvatarImage
+              src={
+                user.image ??
+                'https://cdn.vectorstock.com/i/1000x1000/45/79/male-avatar-profile-picture-silhouette-light-vector-4684579.webp'
+              }
+              alt={user.username ?? ''}
+            />
             <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
         </Button>
