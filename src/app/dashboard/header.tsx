@@ -1,14 +1,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import * as Icons from '@/components/ui/icons';
 import { UserNav } from '@/components/user-nav';
+import { getInitials } from '@/lib/utils';
 import { type User } from 'next-auth';
 import Link from 'next/link';
 import MobileNav from './mobile-nav';
 
 export default function Header({ user }: { user: User }) {
-  const initials = `${user.name?.split(' ')[0]![0]}${
-    user.name?.split(' ')[1] ? user.name?.split(' ')[1]![0] ?? '.' : ''
-  }`;
+  const initials = getInitials(user.name ?? 'Van Heusen');
 
   return (
     <header className="m-4 flex items-center justify-between gap-2 md:pl-4">
