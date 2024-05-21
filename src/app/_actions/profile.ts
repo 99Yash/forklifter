@@ -29,8 +29,13 @@ export async function updateProfile({
   if (!dbUser) throw new Error('User not found');
 
   if (dbUser.username !== username) {
-    if (username === 'dashboard' || username.includes('dashboard/'))
-      throw new Error('Username cannot be set as "dashboard"');
+    if (
+      username === 'dashboard' ||
+      username.includes('dashboard/') ||
+      username.includes('sign-in') ||
+      username.includes('signout')
+    )
+      throw new Error('This is not a valid username"');
 
     const usernameExists = await prisma.user.findUnique({
       where: {
