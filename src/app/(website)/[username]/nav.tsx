@@ -14,7 +14,7 @@ export default function Nav({
   testimonials,
 }: NavProps) {
   return (
-    <nav className="xl:flex gap-6 text-md hidden">
+    <nav className="xl:flex gap-6  hidden">
       <Link
         className="font-bold hover:bg-slate-300/10 rounded-lg py-2 px-4 transition-colors duration-200"
         href="#about"

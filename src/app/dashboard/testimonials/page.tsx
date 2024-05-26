@@ -53,7 +53,7 @@ const page = async () => {
             <h2 className="text-2xl font-bold">
               <Balancer>You&apos;ve zero testimonials.</Balancer>
             </h2>
-            <p className="text-md text-muted-foreground">
+            <p className=" text-muted-foreground">
               <Balancer>
                 If you have prior experience or collaborations, do consider
                 asking for one.
