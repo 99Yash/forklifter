@@ -54,7 +54,7 @@ const page = async () => {
             <h2 className="text-2xl font-bold">
               <Balancer>You have no projects yet.</Balancer>
             </h2>
-            <p className="text-md text-muted-foreground">
+            <p className=" text-muted-foreground">
               <Balancer>Create your first project to get started.</Balancer>
             </p>
           </div>

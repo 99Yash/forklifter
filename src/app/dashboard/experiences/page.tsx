@@ -53,7 +53,7 @@ const page = async () => {
             <h2 className="text-2xl font-bold">
               <Balancer>You haven&apos;t added experiences.</Balancer>
             </h2>
-            <p className="text-md text-muted-foreground">
+            <p className=" text-muted-foreground">
               <Balancer>
                 Don&apos;t have any? Head over to the Contributions tab to add
                 any Open Source contributions.

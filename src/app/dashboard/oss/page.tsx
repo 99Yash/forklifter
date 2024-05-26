@@ -53,7 +53,7 @@ const page = async () => {
             <h2 className="text-2xl font-bold">
               <Balancer>You&apos;ve Zero open source contributions.</Balancer>
             </h2>
-            <p className="text-md text-muted-foreground">
+            <p className=" text-muted-foreground">
               <Balancer>Put all your Open Source contributions here.</Balancer>
             </p>
           </div>

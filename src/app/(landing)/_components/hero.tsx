@@ -38,7 +38,7 @@ const Hero = () => {
           <ReactWrapBalancer>{data.opening.heading}</ReactWrapBalancer>
         </h1>
         <p
-          className={`text-md animate-fade-down text-gray-400`}
+          className={` animate-fade-down text-gray-400`}
           style={{ animationDelay: '0.30s', animationFillMode: 'forwards' }}
         >
           <ReactWrapBalancer>{data.opening.subheading}</ReactWrapBalancer>
