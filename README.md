@@ -6,7 +6,7 @@
 </a>
 </div>
 
-> A Seamless, No-Cost Solution **to** Elevate Your Digital Presence & Simplify Recruiter Recognition.The Ultimate Platform for Backend Developers and new Programmers to Showcase Their Projects, Professional Journey, and Technical Expertise. Enter a bunch of information, get your website ready in a flash.
+> A Seamless, No-Cost Solution to Elevate Your Digital Presence & Simplify Recruiter Recognition.The Ultimate Platform for Backend Developers and new Programmers to Showcase Their Projects, Professional Journey, and Technical Expertise. Enter a bunch of information, get your website ready in a flash.
 
 > These images are auto generated from the URL
 
