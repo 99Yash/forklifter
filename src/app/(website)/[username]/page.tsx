@@ -163,18 +163,6 @@ export default async function Website({
           name={user.name}
           oneLiner={user.oneLiner ?? ''}
         />
-        {user.experiences && user.experiences.length > 0 && (
-          <Experiences experiences={user.experiences} />
-        )}
-        {user.projects && user.projects.length > 0 && (
-          <FeaturedProjects projects={user.projects} />
-        )}
-        {user.contributions && user.contributions.length > 0 && (
-          <Contributions contributions={user.contributions} />
-        )}
-        {user.testimonials && user.testimonials.length > 0 && (
-          <Testimonials testimonials={user.testimonials} />
-        )}
         {user.bio && user.twitterUrl && user.githubUrl && user.linkedinUrl && (
           <AboutMe
             bio={user.bio}
@@ -184,24 +172,20 @@ export default async function Website({
             github={user.githubUrl}
           />
         )}
+        {user.projects && user.projects.length > 0 && (
+          <FeaturedProjects projects={user.projects} />
+        )}
+        {user.experiences && user.experiences.length > 0 && (
+          <Experiences experiences={user.experiences} />
+        )}
+        {user.contributions && user.contributions.length > 0 && (
+          <Contributions contributions={user.contributions} />
+        )}
+        {user.testimonials && user.testimonials.length > 0 && (
+          <Testimonials testimonials={user.testimonials} />
+        )}
         <Footer />
       </section>
-      {/* <footer className="relative flex flex-col justify-center items-center">
-        <Separator className="w-1/5 bg-cyan-900" />
-        <div className="flex justify-center items-center py-8 text-sm text-gray-400 font-title">
-          <p>
-            &copy; {siteConfig.name}, {new Date().getFullYear()}. Built in the
-            open by
-          </p>
-          <Link
-            target="_blank"
-            href={siteConfig.links.twitter}
-            className="text-blue-500 hover:underline"
-          >
-            <p className="ml-1">Yash</p>
-          </Link>
-        </div>
-      </footer> */}
     </>
   );
 }
