@@ -31,9 +31,32 @@ export const profileFormSchema = z.object({
     })
     .email(),
   techStack: z.array(z.enum(stackl)).default([]),
-  githubUrl: z.string().url({ message: 'Please enter a valid URL.' }),
-  twitterUrl: z.string().url({ message: 'Please enter a valid URL.' }),
-  linkedinUrl: z.string().url({ message: 'Please enter a valid URL.' }),
+  githubUrl: z
+    .string()
+    .url({ message: 'Please enter a valid URL.' })
+    .regex(/^https?:\/\/(www\.)?github\.com\//, {
+      message: 'Please enter a valid Github URL.',
+    }),
+  twitterUrl: z.union([
+    z
+      .string()
+      .url()
+      .regex(/^https?:\/\/(www\.)?x\.com\//, {
+        message: 'Please enter a valid Twitter URL.',
+      }),
+    z
+      .string()
+      .url()
+      .regex(/^https?:\/\/(www\.)?twitter\.com\//, {
+        message: 'Please enter a valid Twitter URL.',
+      }),
+  ]),
+  linkedinUrl: z
+    .string()
+    .url({ message: 'Please enter a valid URL.' })
+    .regex(/^https?:\/\/(www\.)?linkedin\.com\//, {
+      message: 'Please enter a valid Linkedin URL.',
+    }),
   oneLiner: z.string().min(1).max(100),
   bio: z.string().max(500, {
     message: 'Max character length (500) exceeded.',

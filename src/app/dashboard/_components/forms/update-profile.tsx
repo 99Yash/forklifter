@@ -13,7 +13,7 @@ import {
 import * as Icons from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { catchError, cn } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
@@ -75,13 +75,24 @@ export function ProfileForm({
 
   function onSubmit(data: ProfileFormValues) {
     startTransition(async () => {
-      try {
-        if (!form.formState.isDirty) return;
-        await updateProfile(data);
-        toast.success('Profile updated successfully!');
-      } catch (error) {
-        catchError(error);
-      }
+      toast.promise(
+        new Promise<void>(async (resolve, reject) => {
+          try {
+            await updateProfile(data);
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
+            resolve();
+          } catch (error) {
+            reject(error);
+          }
+        }),
+        {
+          loading: 'Saving profile...',
+          success: 'Profile saved successfully!',
+          error: 'Failed to save profile.',
+        }
+      );
     });
   }
 
