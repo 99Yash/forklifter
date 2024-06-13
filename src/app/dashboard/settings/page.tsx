@@ -14,7 +14,7 @@ const page = async () => {
   if (!user) return redirect('/');
 
   return (
-    <div className="space-y-4 lg:container">
+    <section className="space-y-4 lg:container">
       <div className="flex flex-col">
         <h2 className="text-xl font-bold font-title">Account</h2>
         <p className="text-muted-foreground">
@@ -23,7 +23,7 @@ const page = async () => {
       </div>
 
       <DeleteWorkspace />
-    </div>
+    </section>
   );
 };
 

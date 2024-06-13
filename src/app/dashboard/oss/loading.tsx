@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const loading = () => {
   return (
-    <div className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4">
       <div className="flex flex-col">
         <h2 className="text-xl font-bold font-title">Contributions</h2>
         <p className="text-muted-foreground">
@@ -23,7 +23,7 @@ const loading = () => {
           <ProjectCard.Skeleton />
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

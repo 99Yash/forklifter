@@ -11,7 +11,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return null;
   return (
-    <div className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4">
       <div className="flex flex-col">
         <h2 className="text-xl font-bold font-title">Experiences</h2>
         <p className="text-muted-foreground">
@@ -26,7 +26,7 @@ const page = async () => {
           <ProjectCard.Skeleton />
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

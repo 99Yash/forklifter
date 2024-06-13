@@ -235,7 +235,14 @@ const AddProject = () => {
                 </FormItem>
               )}
             />
-            <Button className="justify-self-end w-fit" disabled={isPending}>
+            <Button
+              className="justify-self-end w-fit"
+              disabled={
+                isPending ||
+                form.formState.isSubmitting ||
+                !form.formState.isValid
+              }
+            >
               {isPending && (
                 <Icons.Spinner
                   className="mr-2 h-4 w-4 animate-spin"

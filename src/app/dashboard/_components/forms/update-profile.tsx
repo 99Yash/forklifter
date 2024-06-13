@@ -112,10 +112,6 @@ export function ProfileForm({
                 <FormControl>
                   <Input autoComplete="off" placeholder="Yash" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name. It can be your real name or
-                  a pseudonym.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -136,9 +132,6 @@ export function ProfileForm({
                     {...field}
                   />
                 </FormControl>
-                <FormDescription>
-                  This is your primary contact method.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -251,7 +244,7 @@ export function ProfileForm({
             control={form.control}
             name="techStack"
             render={({ field }) => (
-              <FormItem className="flex flex-col">
+              <FormItem className="flex-1 flex flex-col">
                 <FormLabel>Tech Stack</FormLabel>
                 <Popover modal>
                   <PopoverTrigger asChild>

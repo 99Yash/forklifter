@@ -14,7 +14,7 @@ const page = async () => {
   if (!user) return redirect('/');
 
   return (
-    <div className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4">
       <div className="flex justify-between">
         <div className="flex flex-col">
           <h2 className="text-xl font-bold font-title">
@@ -34,7 +34,7 @@ const page = async () => {
           <ProjectCard.Skeleton isAnalyticsCard />
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

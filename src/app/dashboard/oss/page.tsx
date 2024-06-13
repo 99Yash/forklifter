@@ -31,7 +31,7 @@ const page = async () => {
   });
 
   return (
-    <div className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <h2 className="text-xl font-bold font-title">Contributions</h2>
@@ -84,7 +84,7 @@ const page = async () => {
           ))}
         </ul>
       )}
-    </div>
+    </section>
   );
 };
 
