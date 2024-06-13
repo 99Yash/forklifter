@@ -255,7 +255,15 @@ const AddExperience = () => {
                 )}
               />
             </div>
-            <Button type="submit" className="w-full" disabled={isPending}>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={
+                isPending ||
+                form.formState.isSubmitting ||
+                !form.formState.isValid
+              }
+            >
               {isPending && (
                 <Icons.Spinner
                   className="mr-2 h-4 w-4 animate-spin"

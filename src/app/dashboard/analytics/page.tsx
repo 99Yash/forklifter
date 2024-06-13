@@ -19,7 +19,7 @@ const page = async () => {
   const insights = await fetchAnalytics();
 
   return (
-    <div className="flex flex-col gap-4">
+    <section className="flex flex-col gap-4">
       <div className="flex justify-between">
         <div className="flex flex-col">
           <h2 className="text-xl font-bold font-title">Analytics</h2>
@@ -62,7 +62,7 @@ const page = async () => {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

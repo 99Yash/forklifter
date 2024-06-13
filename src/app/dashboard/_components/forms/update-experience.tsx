@@ -282,7 +282,12 @@ const UpdateExperience = ({
             Delete
             <span className="sr-only">Delete Experience</span>
           </Button>
-          <Button type="submit" disabled={isPending || !form.formState.isDirty}>
+          <Button
+            type="submit"
+            disabled={
+              isPending || !form.formState.isDirty || !form.formState.isValid
+            }
+          >
             Save
             <span className="sr-only">Edit Experience</span>
           </Button>
