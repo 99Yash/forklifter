@@ -12,17 +12,20 @@ export function absoluteUrl(path: string) {
   return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
 
-export function catchError(err: unknown) {
-  if (err instanceof z.ZodError) {
-    const errors = err.issues.map((issue) => {
+export function getErrorMessage(error: unknown) {
+  if (error instanceof z.ZodError) {
+    return error.issues.map((issue) => {
       return issue.message;
     });
-    return toast.error(errors.join('\n'));
-  } else if (err instanceof Error) {
-    return toast.error(err.message);
+  } else if (error instanceof Error) {
+    return error.message;
   } else {
-    return toast.error('Something went wrong, please try again later.');
+    return 'Something went wrong, please try again later.';
   }
+}
+
+export function catchError(err: unknown) {
+  toast.error(getErrorMessage(err));
 }
 
 export function formatDate(
