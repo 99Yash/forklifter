@@ -116,38 +116,28 @@ export default function FeaturedProjects({ projects }: Props) {
                       {project.name}
                     </h2>
                     <div className="flex items-center">
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Link
-                              target="_blank"
-                              className="p-2"
-                              href={project.githubUrl}
-                            >
-                              <Icons.Github className="h-5 w-5 text-slate-800" />
-                            </Link>
-                          </TooltipTrigger>
-                          <TooltipContent className="bg-slate-800 text-slate-300">
-                            <p>Source code</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Link
-                              target="_blank"
-                              className="p-2"
-                              href={project.webUrl}
-                            >
-                              <Icons.ExternalLink className="h-5 w-5 text-slate-800" />
-                            </Link>
-                          </TooltipTrigger>
-                          <TooltipContent className="bg-slate-800 text-slate-300">
-                            <p>View project</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                      {[project.githubUrl, project.webUrl].map((url) => (
+                        <TooltipProvider key={url} delayDuration={100}>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Link target="_blank" className="p-2" href={url}>
+                                {url === project.githubUrl ? (
+                                  <Icons.Github className="h-5 w-5 text-slate-800" />
+                                ) : (
+                                  <Icons.ExternalLink className="h-5 w-5 text-slate-800" />
+                                )}
+                              </Link>
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-slate-800 text-slate-300">
+                              <p>
+                                {url === project.githubUrl
+                                  ? 'Source code'
+                                  : 'View project'}
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      ))}
                     </div>
                   </div>
                   <p className="text-slate-900 text-sm grow font-medium whitespace-pre-line break-words">
