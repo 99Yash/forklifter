@@ -51,14 +51,23 @@ export default function Footer() {
                 href={'https://acme-corp.jumr.dev'}
               >
                 Acme
-              </Link>{' '}
-              and{' '}
+              </Link>
+              {''}
+              {', '}
               <Link
                 target="_blank"
                 className=" text-pink-300"
                 href={'https://highstorm.app/'}
               >
                 Highstorm
+              </Link>
+              {', and '}
+              <Link
+                target="_blank"
+                className="text-blue-400"
+                href={'https://honghong.me/'}
+              >
+                Hong&apos;s site
               </Link>
               .
             </p>
@@ -90,14 +99,22 @@ export default function Footer() {
             href={'https://acme-corp.jumr.dev'}
           >
             Acme
-          </Link>{' '}
-          and{' '}
+          </Link>
+          {', '}
           <Link
             target="_blank"
             className=" text-pink-300"
             href={'https://highstorm.app/'}
           >
             Highstorm
+          </Link>
+          and{' '}
+          <Link
+            target="_blank"
+            className="text-blue-400"
+            href={'https://honghong.me/'}
+          >
+            Hong&apos;s site
           </Link>
           . Components by{' '}
           <Link
