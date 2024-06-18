@@ -17,7 +17,7 @@ const NotFound = () => {
         width={1512}
         height={550}
         className="absolute left-1/2 top-0 -z-10 -translate-x-1/2"
-        src="/gradient-background-top.png"
+        src="/images/gradient-background-top.png"
         alt=""
         role="presentation"
         priority
@@ -25,7 +25,7 @@ const NotFound = () => {
       <h1 className="text-center text-4xl font-bold font-title">
         Sorry, this page isn&apos;t available.
       </h1>
-      <p className="text-center  text-gray-400">
+      <p className="text-center text-gray-400">
         The link you followed may be broken, or the page may have been removed.
       </p>
       <Link href="/" className={cn(buttonVariants(), 'font-title')}>
