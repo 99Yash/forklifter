@@ -20,7 +20,7 @@ const Error = ({ error }: { readonly error: Error }) => {
         height={550}
         className="absolute left-1/2 top-0 -z-10 -translate-x-1/2"
         src="/images/gradient-background-top.png"
-        alt=""
+        alt="Gradient background"
         role="presentation"
         priority
       />
