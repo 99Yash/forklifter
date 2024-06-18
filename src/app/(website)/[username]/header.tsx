@@ -9,7 +9,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HEADER_LINKS } from '../lib/links';
 import CommandMenu from './command-menu';
-import MobileNav from './mobile-nav';
 
 type NavProps = {
   experiences: boolean | undefined;
@@ -124,12 +123,6 @@ const Header = ({
         </nav>
         <Separator orientation="vertical" className="h-6" />
         <CommandMenu github={github} twitter={twitter} linkedIn={linkedIn} />
-        <MobileNav
-          experiences={experiences}
-          testimonials={testimonials}
-          contributions={contributions}
-          projects={projects}
-        />
       </div>
     </motion.header>
   );
