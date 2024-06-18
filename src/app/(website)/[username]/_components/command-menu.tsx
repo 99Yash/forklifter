@@ -15,7 +15,7 @@ import { Separator } from '@/components/ui/separator';
 import { siteConfig } from '@/config/site';
 import React from 'react';
 import { toast } from 'sonner';
-import { useCopyToClipboard } from '../utils/use-clipboard';
+import { useCopyToClipboard } from '../../utils/use-clipboard';
 
 type Groups = Array<{
   name: string;

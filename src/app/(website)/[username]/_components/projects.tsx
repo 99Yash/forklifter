@@ -18,8 +18,8 @@ import {
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { useRef } from 'react';
-import { BlurImage } from '../utils/blur-image';
-import { placeholderImgs } from '../utils/placeholder-images';
+import { BlurImage } from '../../utils/blur-image';
+import { placeholderImgs } from '../../utils/placeholder-images';
 
 const variants = {
   initial: {

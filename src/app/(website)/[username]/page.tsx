@@ -4,16 +4,16 @@ import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { env } from '@/env.mjs';
 import { notFound, redirect } from 'next/navigation';
-import AboutMe from './about-me';
-import Contributions from './contributions';
+import Contributions from './_components/contributions';
 
 import { absoluteUrl } from '@/lib/utils';
-import Experiences from './experiences';
-import Footer from './footer';
-import Header from './header';
-import Hero from './hero';
-import FeaturedProjects from './projects';
-import Testimonials from './testimonials';
+import AboutMe from './_components/about-me';
+import Experiences from './_components/experiences';
+import Footer from './_components/footer';
+import Header from './_components/header';
+import Hero from './_components/hero';
+import FeaturedProjects from './_components/projects';
+import Testimonials from './_components/testimonials';
 
 type Props = {
   params: { username: string };

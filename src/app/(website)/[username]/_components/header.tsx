@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 import { cn, getInitials } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { HEADER_LINKS } from '../lib/links';
+import { HEADER_LINKS } from '../../lib/links';
 import CommandMenu from './command-menu';
 
 type NavProps = {

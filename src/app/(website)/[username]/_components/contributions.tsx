@@ -19,10 +19,10 @@ import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { z } from 'zod';
-import { ossSchema } from '../../../lib/schemas';
-import { getOgImageUrl } from '../../_actions/get-og-image';
-import { BlurUnknownImage } from '../utils/blur-unkown-image';
-import { placeholderImgs } from '../utils/placeholder-images';
+import { ossSchema } from '../../../../lib/schemas';
+import { getOgImageUrl } from '../../../_actions/get-og-image';
+import { BlurUnknownImage } from '../../utils/blur-unkown-image';
+import { placeholderImgs } from '../../utils/placeholder-images';
 
 const variants = {
   initial: {

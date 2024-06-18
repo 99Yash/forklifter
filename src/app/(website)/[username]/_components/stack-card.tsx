@@ -3,7 +3,7 @@
 import { Marquee } from '@/components/ui/marquee';
 
 import * as Icons from '@/components/ui/icons';
-import { stackl, stacks as stacksArr } from '../../../lib/constants';
+import { stackl, stacks as stacksArr } from '../../../../lib/constants';
 
 type Props = {
   stacks: Array<(typeof stackl)[number]>;
