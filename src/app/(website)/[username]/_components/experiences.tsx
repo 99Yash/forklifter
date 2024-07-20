@@ -127,7 +127,7 @@ export default function Experiences({ experiences }: Props) {
               height={832}
               alt={''}
               imageClassName="group-hover:scale-110"
-              className="rounded-lg"
+              className="rounded-lg aspect-video"
             />
             <div className="flex-1 px-2 py-4 flex flex-col justify-between gap-3">
               <div className="space-y-2 flex flex-col justify-between">

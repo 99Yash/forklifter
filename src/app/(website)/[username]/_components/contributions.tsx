@@ -135,7 +135,7 @@ export default function Contributions({ contributions: oss }: Props) {
               height={832}
               alt={''}
               imageClassName="group-hover:scale-110 opacity-90 transition-all duration-300"
-              className="rounded-lg"
+              className="rounded-lg aspect-auto"
             />
             <div className="flex-1 px-2 py-4 flex flex-col justify-between gap-3">
               <div className="space-y-2 flex flex-col justify-between">
