@@ -13,14 +13,17 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node v20
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install dependencies
         run: yarn
+
+      - name: Add env vars
+        run: cp .env.example .env
 
       - name: Generate Prisma Client
         run: cd prisma && yarn prisma generate && cd ..
