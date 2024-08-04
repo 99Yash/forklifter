@@ -35,7 +35,7 @@ jobs:
         run: yarn
 
       - name: Generate Prisma Client
-        run: cd prisma && yarn prisma generate && cd ..
+        run: cd prisma && yarn prisma generate --no engine && cd ..
 
       - name: Build
         run: yarn build
