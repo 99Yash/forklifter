@@ -5,7 +5,7 @@ import Link from 'next/link';
 import ReactWrapBalancer from 'react-wrap-balancer';
 import { Particles } from '../../../components/utils/particles';
 
-const Cta = () => {
+export function Cta() {
   return (
     <section
       className={`
@@ -35,6 +35,4 @@ const Cta = () => {
       </Link>
     </section>
   );
-};
-
-export default Cta;
+}

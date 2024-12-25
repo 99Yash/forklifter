@@ -1,7 +1,7 @@
 import { siteConfig } from '@/config/site';
 import Link from 'next/link';
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer aria-labelledby="footer-heading">
       <div className="mx-auto max-w-7xl px-6 pb-8 lg:px-8">

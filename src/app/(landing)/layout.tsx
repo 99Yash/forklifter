@@ -1,5 +1,5 @@
-import Footer from '@/app/(landing)/_components/footer';
-import Nav from '@/app/(landing)/_components/nav';
+import { Footer } from '@/app/(landing)/_components/footer';
+import { Nav } from '@/app/(landing)/_components/nav';
 import Image from 'next/image';
 
 export default async function LandingLayout({

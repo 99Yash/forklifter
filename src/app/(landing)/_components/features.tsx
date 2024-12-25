@@ -2,7 +2,7 @@ import { data, features } from '@/config/marketing';
 import Image from 'next/image';
 import ReactWrapBalancer from 'react-wrap-balancer';
 
-const Features = () => {
+export function Features() {
   return (
     <div className="flex justify-between max-w-[90vw]">
       <section
@@ -75,6 +75,4 @@ const Features = () => {
       </div>
     </div>
   );
-};
-
-export default Features;
+}

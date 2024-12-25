@@ -5,9 +5,9 @@ import { siteConfig } from '@/config/site';
 import Link from 'next/link';
 import ReactWrapBalancer from 'react-wrap-balancer';
 import { Particles } from '../../../components/utils/particles';
-import Badge from './top-badge';
+import { Badge } from './top-badge';
 
-const Hero = () => {
+export function Hero() {
   return (
     <section
       className={`relative z-10 flex h-screen max-w-6xl flex-col items-center gap-4 pt-20 md:pt-36`}
@@ -69,6 +69,4 @@ const Hero = () => {
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

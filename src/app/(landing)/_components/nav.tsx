@@ -9,7 +9,7 @@ import {
 import { buttonVariants } from '../../../components/ui/button';
 import * as Icons from '../../../components/ui/icons';
 
-const Nav = async () => {
+export async function Nav() {
   const session = await getAuthSession();
 
   if (!session)
@@ -67,6 +67,4 @@ const Nav = async () => {
       </Link>
     </nav>
   );
-};
-
-export default Nav;
+}

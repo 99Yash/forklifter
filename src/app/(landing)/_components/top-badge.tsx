@@ -2,7 +2,7 @@ import * as Icons from '@/components/ui/icons';
 import { siteConfig } from '@/config/site';
 import Link from 'next/link';
 
-const Badge = () => {
+export function Badge() {
   return (
     <Link href={siteConfig.links.github} target="_blank">
       <h6 className="group inline-flex h-full animate-background-shine cursor-pointer items-center justify-center rounded-full border border-slate-800 bg-[linear-gradient(110deg,#000,45%,#7a7c7995,55%,#000)] bg-[length:250%_100%] px-3 py-1 text-xs font-medium backdrop-blur-3xl md:text-sm">
@@ -15,6 +15,4 @@ const Badge = () => {
       </h6>
     </Link>
   );
-};
-
-export default Badge;
+}
