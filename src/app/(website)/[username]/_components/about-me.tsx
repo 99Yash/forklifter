@@ -16,8 +16,8 @@ import { cn } from '@/lib/utils';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import * as React from 'react';
-import Connect from './connect';
-import StacksCard from './stack-card';
+import { Connect } from './connect';
+import { StacksCard } from './stack-card';
 
 const variants = {
   initial: {
@@ -38,7 +38,7 @@ type Props = {
   techStack: Array<(typeof stackl)[number]>;
 };
 
-const AboutMe = ({ bio, twitter, linkedin, github, techStack }: Props) => {
+export function AboutMe({ bio, twitter, linkedin, github, techStack }: Props) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: false, margin: '-100px' });
 
@@ -139,6 +139,4 @@ const AboutMe = ({ bio, twitter, linkedin, github, techStack }: Props) => {
       </div>
     </motion.div>
   );
-};
-
-export default AboutMe;
+}

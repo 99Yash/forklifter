@@ -39,7 +39,7 @@ type Props = {
   >;
 };
 
-export default function Experiences({ experiences }: Props) {
+export function Experiences({ experiences }: Props) {
   const contRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(contRef, { once: false, margin: '-100px' });
 

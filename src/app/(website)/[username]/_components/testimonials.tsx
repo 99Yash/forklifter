@@ -27,7 +27,7 @@ type Props = {
   testimonials: Array<z.infer<typeof testimonialSchema>>;
 };
 
-export default function Testimonials({ testimonials }: Props) {
+export function Testimonials({ testimonials }: Props) {
   const contRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(contRef, { once: false, margin: '-100px' });
 

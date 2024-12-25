@@ -26,7 +26,7 @@ type Groups = Array<{
   }>;
 }>;
 
-export default function CommandMenu({
+export function CommandMenu({
   twitter,
   linkedIn,
   github,

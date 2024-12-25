@@ -42,7 +42,7 @@ type Props = {
   }[];
 };
 
-export default function FeaturedProjects({ projects }: Props) {
+export function FeaturedProjects({ projects }: Props) {
   const projectsRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(projectsRef, {
     once: false,

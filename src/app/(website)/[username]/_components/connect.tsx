@@ -7,7 +7,7 @@ type Props = {
   github: string;
 };
 
-const Connect = ({ twitter, linkedin, github }: Props) => {
+export function Connect({ twitter, linkedin, github }: Props) {
   return (
     <div className="flex flex-col gap-6 rounded-xl p-4 shadow-feature-card-dark lg:p-6">
       <div className="flex items-center gap-2">
@@ -39,6 +39,4 @@ const Connect = ({ twitter, linkedin, github }: Props) => {
       </div>
     </div>
   );
-};
-
-export default Connect;
+}

@@ -8,7 +8,7 @@ import { cn, getInitials } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HEADER_LINKS } from '../../lib/links';
-import CommandMenu from './command-menu';
+import { CommandMenu } from './command-menu';
 
 type NavProps = {
   experiences: boolean | undefined;
@@ -21,7 +21,7 @@ type NavProps = {
   github: string;
 };
 
-const Header = ({
+export function Header({
   experiences,
   contributions,
   testimonials,
@@ -30,7 +30,7 @@ const Header = ({
   twitter,
   linkedIn,
   github,
-}: NavProps) => {
+}: NavProps) {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const pathname = usePathname();
   console.log('🚀 ~ file: header.tsx ~ line 33 ~ Header ~ pathname', pathname);
@@ -126,6 +126,6 @@ const Header = ({
       </div>
     </motion.header>
   );
-};
+}
 
 export default Header;

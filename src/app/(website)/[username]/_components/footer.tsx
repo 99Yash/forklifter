@@ -17,7 +17,7 @@ const variants = {
   },
 };
 
-export default function Footer() {
+export function Footer() {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: false, margin: '-100px' });
 

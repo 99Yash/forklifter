@@ -39,7 +39,7 @@ type Props = {
   contributions: Array<z.infer<typeof ossSchema>>;
 };
 
-export default function Contributions({ contributions: oss }: Props) {
+export function Contributions({ contributions: oss }: Props) {
   const ossRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ossRef, {
     once: false,

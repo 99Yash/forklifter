@@ -7,7 +7,7 @@ type NavProps = {
   projects: boolean | undefined;
 };
 
-export default function Nav({
+export function Nav({
   contributions,
   experiences,
   projects,

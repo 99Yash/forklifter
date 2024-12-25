@@ -17,11 +17,7 @@ const variants = {
   },
 };
 
-export default function Hero(user: {
-  name: string;
-  oneLiner: string;
-  mail: string;
-}) {
+export function Hero(user: { name: string; oneLiner: string; mail: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: false, margin: '-100px' });
 

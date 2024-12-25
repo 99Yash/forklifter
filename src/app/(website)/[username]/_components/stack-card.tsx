@@ -9,7 +9,7 @@ type Props = {
   stacks: Array<(typeof stackl)[number]>;
 };
 
-const StacksCard = ({ stacks }: Props) => {
+export function StacksCard({ stacks }: Props) {
   const firstHalf = stacksArr
     .filter((stack, i) => stacks.includes(stack.label))
     .slice(0, Math.ceil(stacks.length / 2));
@@ -65,6 +65,6 @@ const StacksCard = ({ stacks }: Props) => {
       </Marquee>
     </div>
   );
-};
+}
 
 export default StacksCard;
