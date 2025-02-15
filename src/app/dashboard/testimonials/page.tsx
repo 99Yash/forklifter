@@ -7,10 +7,10 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { getCurrentUser } from '@/lib/auth-opts';
-import { prisma } from '@/lib/db';
 import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
+import { getTestimonials } from '../../_actions/user';
 import AddTestimonial from '../_components/forms/add-testimonial';
 import UpdateTestimonial from '../_components/forms/update-testimonial';
 import { ProjectCard } from '../_components/project-card';
@@ -24,11 +24,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect('/');
 
-  const testimonials = await prisma.testimonial.findMany({
-    where: {
-      userId: user.id,
-    },
-  });
+  const testimonials = await getTestimonials(user.id);
 
   return (
     <section className="flex flex-col gap-4">

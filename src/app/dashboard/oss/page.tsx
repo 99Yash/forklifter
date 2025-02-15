@@ -7,10 +7,10 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { getCurrentUser } from '@/lib/auth-opts';
-import { prisma } from '@/lib/db';
 import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
+import { getContributions } from '../../_actions/user';
 import AddOSS from '../_components/forms/add-oss';
 import UpdateOSS from '../_components/forms/update-oss';
 import { ProjectCard } from '../_components/project-card';
@@ -24,11 +24,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect('/');
 
-  const contributions = await prisma.contribution.findMany({
-    where: {
-      userId: user.id,
-    },
-  });
+  const contributions = await getContributions(user.id);
 
   return (
     <section className="flex flex-col gap-4">

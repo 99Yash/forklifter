@@ -1,4 +1,5 @@
 'use server';
+import 'server-only';
 
 import { getCurrentUser } from '@/lib/auth-opts';
 import { prisma } from '@/lib/db';

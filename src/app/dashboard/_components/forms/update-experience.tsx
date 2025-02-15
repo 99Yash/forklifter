@@ -34,7 +34,7 @@ import { CalendarIcon } from 'lucide-react';
 type Inputs = z.infer<typeof experienceSchema>;
 type InputsOverride = Omit<Inputs, 'endDate'> & { endDate: Date | null };
 
-const UpdateExperience = ({
+export const UpdateExperience = ({
   experience,
 }: {
   experience: InputsOverride & { id: string };
@@ -296,5 +296,3 @@ const UpdateExperience = ({
     </Form>
   );
 };
-
-export default UpdateExperience;

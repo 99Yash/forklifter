@@ -1,5 +1,4 @@
 import { getCurrentUser } from '@/lib/auth-opts';
-
 import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import DeleteWorkspace from './delete-workspace';

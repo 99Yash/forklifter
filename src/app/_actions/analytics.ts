@@ -1,4 +1,5 @@
 'use server';
+import 'server-only';
 
 import { env } from '@/env.mjs';
 import { getCurrentUser } from '@/lib/auth-opts';

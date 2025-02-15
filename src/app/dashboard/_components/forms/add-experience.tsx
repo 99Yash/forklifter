@@ -40,7 +40,7 @@ import { z } from 'zod';
 
 type Inputs = z.infer<typeof experienceSchema>;
 
-const AddExperience = () => {
+export const AddExperience = () => {
   const form = useForm<Inputs>({
     resolver: zodResolver(experienceSchema),
     mode: 'onChange',
@@ -279,5 +279,3 @@ const AddExperience = () => {
     </Dialog>
   );
 };
-
-export default AddExperience;

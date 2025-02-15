@@ -7,12 +7,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { getCurrentUser } from '@/lib/auth-opts';
-import { prisma } from '@/lib/db';
 import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
-import AddExperience from '../_components/forms/add-experience';
-import UpdateExperience from '../_components/forms/update-experience';
+import { getExperiences } from '../../_actions/user';
+import { AddExperience } from '../_components/forms/add-experience';
+import { UpdateExperience } from '../_components/forms/update-experience';
 import { ProjectCard } from '../_components/project-card';
 
 export const metadata: Metadata = {
@@ -24,11 +24,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect('/');
 
-  const experiences = await prisma.experience.findMany({
-    where: {
-      userId: user.id,
-    },
-  });
+  const experiences = await getExperiences(user.id);
 
   return (
     <section className="flex flex-col gap-4">

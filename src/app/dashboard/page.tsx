@@ -8,10 +8,10 @@ import {
 } from '@/components/ui/card';
 import * as Icons from '@/components/ui/icons';
 import { getCurrentUser } from '@/lib/auth-opts';
-import { prisma } from '@/lib/db';
 import { cn } from '@/lib/utils';
 import { type Metadata } from 'next';
 import Link from 'next/link';
+import { getUserByUsername } from '../_actions/user';
 import { ProfileForm } from './_components/forms/update-profile';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,20 +26,7 @@ export default async function Page() {
   const user = await getCurrentUser();
   if (!user) return null;
 
-  const prismaUser = await prisma.user.findUnique({
-    where: { id: user.id },
-    select: {
-      name: true,
-      username: true,
-      email: true,
-      bio: true,
-      oneLiner: true,
-      twitterUrl: true,
-      githubUrl: true,
-      linkedinUrl: true,
-      techStack: true,
-    },
-  });
+  const prismaUser = await getUserByUsername(user.id);
 
   if (!prismaUser)
     return (

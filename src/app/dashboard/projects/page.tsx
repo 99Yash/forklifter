@@ -7,10 +7,10 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { getCurrentUser } from '@/lib/auth-opts';
-import { prisma } from '@/lib/db';
 import { type Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
+import { getProjects } from '../../_actions/user';
 import ProjectForm from '../_components/forms/add-project';
 import UpdateProject from '../_components/forms/update-project';
 import { ProjectCard } from '../_components/project-card';
@@ -24,11 +24,7 @@ const page = async () => {
   const user = await getCurrentUser();
   if (!user) return redirect('/');
 
-  const projects = await prisma.project.findMany({
-    where: {
-      userId: user.id,
-    },
-  });
+  const projects = await getProjects(user.id);
 
   return (
     <section className="flex flex-col gap-4">
@@ -39,7 +35,6 @@ const page = async () => {
             All your projects show up here.
           </p>
         </div>
-        {/* //? includes the create Project button */}
         <ProjectForm />
       </div>
 
