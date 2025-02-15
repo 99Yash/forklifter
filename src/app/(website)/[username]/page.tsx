@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/db';
 import type { Metadata } from 'next';
 
+import { getFullUserDetails } from '@/app/_actions/user';
 import { siteConfig } from '@/config/site';
 import { env } from '@/env.mjs';
 import { absoluteUrl } from '@/lib/utils';
@@ -96,52 +97,7 @@ export default async function Website({
 }: {
   params: { username: string };
 }) {
-  const user = await prisma.user.findUnique({
-    where: { username: params.username },
-    include: {
-      projects: {
-        select: {
-          name: true,
-          description: true,
-          githubUrl: true,
-          techStack: true,
-          webUrl: true,
-        },
-      },
-      contributions: {
-        select: {
-          description: true,
-          orgName: true,
-          orgUrl: true,
-          tags: true,
-          url: true,
-        },
-      },
-      testimonials: {
-        select: {
-          author: true,
-          authorUrl: true,
-          designation: true,
-          message: true,
-        },
-      },
-      experiences: {
-        select: {
-          description: true,
-          orgName: true,
-          orgUrl: true,
-          currentlyWorking: true,
-          endDate: true,
-          startDate: true,
-          position: true,
-        },
-        orderBy: {
-          startDate: 'desc',
-        },
-      },
-    },
-  });
-
+  const user = await getFullUserDetails(params.username);
   if (!user) redirect(notFound());
 
   return (

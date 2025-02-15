@@ -86,3 +86,53 @@ export async function getExperiences(userId: string) {
 
   return experiences || [];
 }
+
+export async function getFullUserDetails(username: string) {
+  const user = await prisma.user.findUnique({
+    where: { username },
+    include: {
+      projects: {
+        select: {
+          name: true,
+          description: true,
+          githubUrl: true,
+          techStack: true,
+          webUrl: true,
+        },
+      },
+      contributions: {
+        select: {
+          description: true,
+          orgName: true,
+          orgUrl: true,
+          tags: true,
+          url: true,
+        },
+      },
+      testimonials: {
+        select: {
+          author: true,
+          authorUrl: true,
+          designation: true,
+          message: true,
+        },
+      },
+      experiences: {
+        select: {
+          description: true,
+          orgName: true,
+          orgUrl: true,
+          currentlyWorking: true,
+          endDate: true,
+          startDate: true,
+          position: true,
+        },
+        orderBy: {
+          startDate: 'desc',
+        },
+      },
+    },
+  });
+
+  return user;
+}
