@@ -253,7 +253,7 @@ export function ProfileForm({
                         variant="outline"
                         role="combobox"
                         className={cn(
-                          'w-[200px] justify-between',
+                          ' justify-between',
                           !field.value && 'text-muted-foreground'
                         )}
                       >
@@ -267,7 +267,7 @@ export function ProfileForm({
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent className="w-[200px] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
+                  <PopoverContent className="w-[--radix-popover-trigger-width] max-h-[300px] scrollbar-hide overflow-auto z-[400] p-0">
                     <Command>
                       <CommandInput
                         placeholder={`Search ${stackl.length} stacks`}

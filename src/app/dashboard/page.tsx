@@ -11,6 +11,7 @@ import { getCurrentUser } from '@/lib/auth-opts';
 import { cn } from '@/lib/utils';
 import { type Metadata } from 'next';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { getUserByUsername } from '../_actions/user';
 import { ProfileForm } from './_components/forms/update-profile';
 
@@ -24,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const user = await getCurrentUser();
-  if (!user) return null;
+  if (!user) return redirect('/sign-in');
 
   const prismaUser = await getUserByUsername(user.id);
 
