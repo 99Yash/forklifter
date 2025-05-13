@@ -85,7 +85,7 @@ export function AboutMe({ bio, twitter, linkedin, github, techStack }: Props) {
           duration: 0.3,
         }}
       >
-        <StacksCard stacks={techStack} />
+        {techStack.length > 0 && <StacksCard stacks={techStack} />}
         <Connect twitter={twitter} linkedin={linkedin} github={github} />
       </motion.div>
       <div className="my-8 flex items-center justify-center">

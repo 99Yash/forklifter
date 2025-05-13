@@ -33,9 +33,8 @@ export function Header({
 }: NavProps) {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const pathname = usePathname();
-  console.log('🚀 ~ file: header.tsx ~ line 33 ~ Header ~ pathname', pathname);
+
   const hashname = pathname.split('#')[1] ?? '';
-  console.log('🚀 ~ file: header.tsx ~ line 36 ~ Header ~ hashname', hashname);
 
   React.useEffect(() => {
     const changeBackground = () => {
