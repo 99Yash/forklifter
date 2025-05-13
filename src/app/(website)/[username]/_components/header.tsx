@@ -32,9 +32,24 @@ export function Header({
   github,
 }: NavProps) {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const [hashname, setHashname] = React.useState('');
   const pathname = usePathname();
 
-  const hashname = pathname.split('#')[1] ?? '';
+  React.useEffect(() => {
+    // Handle initial hash on load
+    setHashname(window.location.hash.replace('#', '') || '');
+
+    // Listen for hash changes
+    const handleHashChange = () => {
+      setHashname(window.location.hash.replace('#', '') || '');
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, [pathname]);
 
   React.useEffect(() => {
     const changeBackground = () => {
@@ -106,13 +121,19 @@ export function Header({
                       }
                     )}
                     href={link.hash}
+                    onClick={() => {
+                      // Force update hashname on click
+                      setTimeout(() => {
+                        setHashname(link.hash.replace('#', ''));
+                      }, 0);
+                    }}
                   >
                     {link.text}
                   </Link>
                   {isActive && (
                     <>
                       <div className="absolute bottom-0 left-1/2 h-px w-12 -translate-x-1/2 bg-nav-link-indicator dark:bg-nav-link-indicator-dark" />
-                      <div className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_122_151)] blur-[8px] dark:bg-[rgb(223_29_72)]" />
+                      <div className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rounded-[4px] bg-[rgb(255_133_133)] blur-[8px] dark:bg-[rgb(255_28_28)]" />
                     </>
                   )}
                 </li>

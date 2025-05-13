@@ -72,7 +72,9 @@ export function AboutMe({ bio, twitter, linkedin, github, techStack }: Props) {
         About Me
       </motion.h2>
       <motion.div
-        className="mt-12 grid gap-4 md:grid-cols-2"
+        className={`mt-12 grid gap-4 ${
+          techStack.length > 0 ? 'md:grid-cols-2' : 'grid-cols-1'
+        }`}
         initial={{
           y: 40,
           opacity: 0,
