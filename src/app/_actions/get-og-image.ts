@@ -15,18 +15,4 @@ export async function getOgImageUrl(url: string): Promise<string> {
     console.error(`Error fetching og image for ${url}:`, error);
     return '/images/social-bg-dark-lines.jpg';
   }
-  // const parser = new DOMParser();
-  // try {
-  //   const response = await fetch(url, { mode: 'cors' });
-  //   const html = await response.text();
-  //   const doc = parser.parseFromString(html, 'text/html');
-  //   const image =
-  //     doc
-  //       ?.querySelector('meta[property="og:image"]')
-  //       ?.getAttribute('content') ?? '';
-  //   return image;
-  // } catch (error) {
-  //   console.error(`Error fetching og image for ${url}:`, error);
-  //   return null;
-  // }
 }
