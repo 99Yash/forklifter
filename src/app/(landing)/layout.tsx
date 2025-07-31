@@ -18,6 +18,7 @@ export default async function LandingLayout({
         role="presentation"
         priority
       />
+      <p className="sr-only">a37adf55-837c-460e-8d77-1cc0b3f8cc4e</p>
       <Nav />
       <main className="flex flex-grow flex-col items-center">{children}</main>
       <Footer />
