@@ -38,12 +38,12 @@ model Session {
 }
 
 model VerificationToken {
-    id         String   @id @default(auto()) @map("_id") @db.ObjectId
-    identifier String
-    token      String   @unique
-    expires    DateTime
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
-    @@unique([identifier, token])
+  @@unique([identifier, token])
 }
 
 model User {
@@ -58,7 +58,7 @@ model User {
   twitterUrl    String?
   githubUrl     String?
   linkedinUrl   String?
-  techStack     Stack[]      @default([])
+  techStack     Stack[]        @default([])
   accounts      Account[]
   sessions      Session[]
   experiences   Experience[]
@@ -84,7 +84,7 @@ enum Stack {
   Fastify
   Figma
   Firebase
-  Flask 
+  Flask
   Framer
   Gatsby
   Go
@@ -119,22 +119,22 @@ enum Stack {
 model Testimonial {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   author      String // Name of the employer / client (eg. Robert Crawford)
-  authorUrl   String   // LinkedIn or Twitter or anything for the contact of the Author
+  authorUrl   String // LinkedIn or Twitter or anything for the contact of the Author
   designation String // Designation of the employer / client (eg. Ex-Engineering Manager & Sr. Computer Scientist @ Adobe California)
-  message     String 
+  message     String
   userId      String @db.ObjectId
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Contribution {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
   orgName     String
   orgUrl      String
   description String
-  tags        Tag[] 
+  tags        Tag[]
   url         String // URL of the Contribution >>> https://github.com/org/repo/pulls/yourgithubusername
-  userId      String   @db.ObjectId
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String @db.ObjectId
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum Tag {
@@ -147,7 +147,6 @@ enum Tag {
   Fix
   Other
 }
-
 
 model Project {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
