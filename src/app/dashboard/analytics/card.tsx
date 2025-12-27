@@ -14,7 +14,7 @@ export default function InsightCard({
   value,
 }: AnalyticsCardProps) {
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden h-full">
       <CardHeader>
         <CardTitle className="flex gap-2 items-center justify-between">
           <span className=" text-card-foreground font-title">{title}</span>
