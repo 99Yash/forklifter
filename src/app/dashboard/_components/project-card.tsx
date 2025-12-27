@@ -14,7 +14,7 @@ export function ProjectCard(props: {
 }) {
   const { primaryText, secondaryText, id } = props;
   return (
-    <Card className="overflow-hidden cursor-pointer">
+    <Card className="overflow-hidden cursor-pointer h-full">
       <div className="h-32 line-clamp-3" style={getRandomPatternStyle(id)} />
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
@@ -37,7 +37,7 @@ ProjectCard.Skeleton = function ProjectCardSkeleton(props: {
 }) {
   const { pulse = true, isAnalyticsCard = false } = props;
   return (
-    <Card>
+    <Card className="h-full">
       <div
         className={cn(
           'bg-muted',
